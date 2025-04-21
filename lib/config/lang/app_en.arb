@@ -1,0 +1,19 @@
+{
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "notHaveAccount": "Not have account !",
+  "signUp": "SignUp",
+  "emty": "{value} can not be empty",
+  "@emty": {
+    "description": " Error message when the field is empty",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "البريد الالكتروني"
+      }
+    }
+  },
+  "emailFormat": "Email format is not correct",
+  "passwordFormat": "Password must contain uppercase, lowercase, number and special character"
+}
