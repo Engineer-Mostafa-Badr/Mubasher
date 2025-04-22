@@ -1,170 +1,163 @@
-import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:mubasher_app/features/auth/widgets/sign_in_export_file.dart';
+import 'package:mubasher_app/core/resources/app_assets_manager.dart';
+import 'package:mubasher_app/features/auth/widgets/password.dart';
+import 'package:mubasher_app/features/auth/widgets/email.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:mubasher_app/core/route/routes.dart';
+import 'package:flutter_svg/svg.dart';
 
-class SignUpView extends StatefulWidget {
+class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
-
-  @override
-  State<SignUpView> createState() => _SignUpViewState();
-}
-
-class _SignUpViewState extends State<SignUpView> {
-  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
     final golden = const Color(0xFFB98A35);
     final textStyle = Theme.of(context).textTheme;
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          children: [
-            const SizedBox(height: 16),
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: Color(0xFFB98A35),
-              ),
-            ),
-            const SizedBox(height: 24),
-            RichText(
-              text: TextSpan(
-                style: textStyle.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+    return BlocProvider(
+      create: (context) => RegistrationCubit(),
+      child: BlocBuilder<RegistrationCubit, RegistrationState>(
+        buildWhen:
+            (previous, current) =>
+                previous.isShowPasswrd != current.isShowPasswrd,
+        builder: (context, state) {
+          return Scaffold(
+            body: SafeArea(
+              child: ListView(
+                padding: EdgeInsets.symmetric(horizontal: 6.w),
                 children: [
-                  TextSpan(
-                    text: "Create your ",
-                    style: TextStyle(color: golden),
+                  SizedBox(height: 1.5.h),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: SvgPicture.asset(
+                      SvgImagesManager.arrowBack,
+                      fit: BoxFit.scaleDown,
+                      colorFilter: ColorFilter.mode(
+                        ColorManager.primaryColor,
+                        BlendMode.srcIn,
+                      ),
+                    ),
                   ),
-                  const TextSpan(
-                    text: "account",
-                    style: TextStyle(color: Colors.black),
+                  SizedBox(height: 4.h),
+                  RichText(
+                    text: TextSpan(
+                      style: textStyle.headlineMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: "Create your ",
+                          style: TextStyle(color: golden),
+                        ),
+                        const TextSpan(
+                          text: "account",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    "quis nostrud exercitation ullamco laboris nisi ut",
+                    style: textStyle.bodyMedium?.copyWith(
+                      color: Colors.black54,
+                    ),
+                  ),
+                  const SizedBox(height: 32),
+                  AppTextFormField(
+                    textEditingController: state.nameController,
+                    hinText: "Full Name",
+                    prefix: SvgPicture.asset(
+                      SvgImagesManager.profile,
+                      fit: BoxFit.scaleDown,
+                      colorFilter: ColorFilter.mode(
+                        ColorManager.primaryColor,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  EmailWidget(),
+                  AppTextFormField(
+                    textEditingController: state.phoneController,
+                    hinText: "Phone Number",
+                    prefix: SvgPicture.asset(
+                      SvgImagesManager.phone,
+                      fit: BoxFit.scaleDown,
+                      colorFilter: ColorFilter.mode(
+                        ColorManager.primaryColor,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  AppTextFormField(
+                    textEditingController: state.whatsAppController,
+                    hinText: "WhatsApp",
+                    prefix: SvgPicture.asset(
+                      SvgImagesManager.vector,
+                      fit: BoxFit.scaleDown,
+                      colorFilter: ColorFilter.mode(
+                        ColorManager.primaryColor,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  PasswordWidget(),
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        child: Text(
+                          "Terms of service",
+                          style: textStyle.bodySmall,
+                        ),
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            PageRouteName.activateRoute,
+                          );
+                        },
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          context.read<RegistrationCubit>().showHidePassword();
+                        },
+                        child: Text(
+                          state.isShowPasswrd
+                              ? "Show password"
+                              : "Hide password",
+                          style: textStyle.bodySmall?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    height: 52,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: golden,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        "Register",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 8),
-            Text(
-              "quis nostrud exercitation ullamco laboris nisi ut",
-              style: textStyle.bodyMedium?.copyWith(color: Colors.black54),
-            ),
-            const SizedBox(height: 32),
-
-            // Full name
-            buildInputField(Iconsax.user, 'Full name'),
-
-            // Email
-            buildInputField(Iconsax.sms, 'Email'),
-
-            // Phone number
-            buildInputField(Iconsax.call, 'Phone number'),
-
-            // Whatsapp
-            buildInputField(Iconsax.wallet1, 'Whatsapp'),
-
-            // Password
-            buildInputField(
-              Iconsax.lock,
-              'Password',
-              isPassword: true,
-              obscureText: _obscurePassword,
-              onEyeTap: () {
-                setState(() {
-                  _obscurePassword = !_obscurePassword;
-                });
-              },
-            ),
-
-            const SizedBox(height: 12),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Terms of service", style: textStyle.bodySmall),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _obscurePassword = !_obscurePassword;
-                    });
-                  },
-                  child: Text(
-                    _obscurePassword ? "Show password" : "Hide password",
-                    style: textStyle.bodySmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 24),
-
-            // Register button
-            SizedBox(
-              height: 52,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: golden,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
-                  ),
-                ),
-                onPressed: () {},
-                child: const Text(
-                  "Register",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildInputField(
-    IconData icon,
-    String hint, {
-    bool isPassword = false,
-    bool obscureText = false,
-    VoidCallback? onEyeTap,
-  }) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF6F5F9),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: const Color(0xFFB98A35)),
-          const SizedBox(width: 12),
-          Expanded(
-            child: TextField(
-              obscureText: obscureText,
-              decoration: InputDecoration(
-                hintText: hint,
-                hintStyle: const TextStyle(color: Colors.grey),
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-          if (isPassword)
-            GestureDetector(
-              onTap: onEyeTap,
-              child: Icon(
-                obscureText ? Iconsax.eye_slash : Iconsax.eye,
-                color: Colors.grey,
-                size: 20,
-              ),
-            ),
-        ],
+          );
+        },
       ),
     );
   }

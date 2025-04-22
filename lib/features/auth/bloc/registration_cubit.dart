@@ -2,6 +2,7 @@ import 'package:mubasher_app/features/auth/data_helper/validate.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
+import 'dart:developer';
 part 'registration_state.dart';
 
 class RegistrationCubit extends Cubit<RegistrationState> with Validate {
@@ -11,6 +12,10 @@ class RegistrationCubit extends Cubit<RegistrationState> with Validate {
           formKey: GlobalKey<FormState>(),
           emailController: TextEditingController(),
           passwordController: TextEditingController(),
+          nameController: TextEditingController(),
+          phoneController: TextEditingController(),
+          whatsAppController: TextEditingController(),
+          isShowPasswrd: true,
         ),
       );
   void showHidePassword() {
@@ -19,9 +24,9 @@ class RegistrationCubit extends Cubit<RegistrationState> with Validate {
 
   void login() {
     if (state.formKey.currentState!.validate()) {
-      print('Login successful');
+      log('Login successful');
     } else {
-      print('Login failed');
+      log('Login failed');
     }
   }
 }

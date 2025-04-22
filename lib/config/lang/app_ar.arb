@@ -3,7 +3,7 @@
   "email": "البريد الالكتروني",
   "password": "كلمه السر",
   "notHaveAccount": "لا يوجد لديك حساب ! ",
-  "signUp": "إنشاء حساب",
+  "register": "إنشاء حساب",
   "emty": "{value} لا يمكن ان يكون فارغ",
   "@emty": {
     "description": " Error message when the field is empty",
@@ -15,5 +15,9 @@
     }
   },
   "emailFormat": "البريد الالكتروني غير صحيح",
-  "passwordFormat": "كلمه السر يجب ان تحتوي على حروف كبيرة وصغيرة ورقم ورمز خاص"
+  "passwordFormat": "كلمه السر يجب ان تحتوي على حروف كبيرة وصغيرة ورقم ورمز خاص",
+  "loginText": "دعنا",
+  "signIn": "نسجل الدخول",
+  "descriptionLoginText": " أي شخص يمارس أي نوع من العمل إلا من أجل",
+  "endTextLogin": " تابع دون تسجيل دخول"
 }

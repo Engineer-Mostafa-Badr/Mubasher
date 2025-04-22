@@ -6,16 +6,17 @@ class AppText extends StatelessWidget {
     super.key,
     required this.text,
     this.textColor,
-    this.isBold = false,
+
     this.fontSize,
     this.fontFamily,
     this.textAlign,
     this.latterSpace,
+    this.fontWeight,
   });
 
   final String text;
   final Color? textColor;
-  final bool isBold;
+  final FontWeight? fontWeight;
   final double? fontSize;
   final String? fontFamily;
   final TextAlign? textAlign;
@@ -25,10 +26,11 @@ class AppText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: TextStyle(
         color: textColor,
         fontFamily: fontFamily,
-        fontWeight: isBold ? FontWeight.bold : null,
+        fontWeight: fontWeight,
         letterSpacing: latterSpace,
         fontSize: fontSize?.sp ?? 16.sp,
       ),

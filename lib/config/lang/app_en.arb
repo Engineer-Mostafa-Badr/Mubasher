@@ -2,8 +2,9 @@
   "login": "Login",
   "email": "Email",
   "password": "Password",
-  "notHaveAccount": "Not have account !",
+  "notHaveAccount": "Don’t have an account?  ",
   "signUp": "SignUp",
+  "register": "Register",
   "emty": "{value} can not be empty",
   "@emty": {
     "description": " Error message when the field is empty",
@@ -15,5 +16,10 @@
     }
   },
   "emailFormat": "Email format is not correct",
-  "passwordFormat": "Password must contain uppercase, lowercase, number and special character"
+  "passwordFormat": "Password must contain uppercase, lowercase, number and special character",
+  "loginText": "Let’s ",
+  "signIn": "Sign In",
+  "descriptionLoginText": "quis nostrud exercitation ullamco laboris nisi ut",
+  "forgotPassword": "Forgot Password?",
+  "endTextLogin": "Continue without signing"
 }

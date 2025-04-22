@@ -27,7 +27,7 @@ mixin Validate {
     );
 
     if (password?.isEmpty ?? true) {
-      return context.lang.emty(context.lang.email);
+      return context.lang.emty(context.lang.password);
     } else if (!passwordRegExp.hasMatch(password!)) {
       return context.lang.passwordFormat;
     }
