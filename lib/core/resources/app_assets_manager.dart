@@ -15,6 +15,20 @@ abstract class SvgImagesManager {
   static const String phone = "assets/svg_images/phone.svg";
   static const String vector = "assets/svg_images/Vector.svg";
   static const String arrowLeft = "assets/svg_images/arrow-left-line.svg";
-  static const String group = "assets/svg_images/Group21.svg";
+  static const String group21 = "assets/svg_images/Group21.svg";
   static const String arrowBack = "assets/svg_images/Arrow-back.svg";
+  static const String location = "assets/svg_images/Location.svg";
+  static const String search = "assets/svg_images/Search.svg";
+  static const String heart = "assets/svg_images/Heart.svg";
+  static const String arrowRight = "assets/svg_images/arrow-right-line.svg";
+  static const String ellipse = "assets/svg_images/Ellipse.svg";
+  static const String home = "assets/svg_images/Active-Home.svg";
+  static const String group22 = "assets/svg_images/Group 22.svg";
+  static const String notificationsOutline =
+      "assets/svg_images/ion_notifications-outline.svg";
+  static const String micActive = "assets/svg_images/Mic - Active.svg";
+  static const String notification = "assets/svg_images/Notification.svg";
+  static const String starSmall = "assets/svg_images/Star - Small.svg";
+  static const String arrowBackBackground =
+      "assets/svg_images/Arrow-back-background.svg";
 }

@@ -1,19 +1,10 @@
-import 'package:mubasher_app/features/auth/widgets/sign_in_export_file.dart';
-import 'package:mubasher_app/core/resources/app_assets_manager.dart';
-import 'package:mubasher_app/features/auth/widgets/password.dart';
-import 'package:mubasher_app/features/auth/widgets/email.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:mubasher_app/core/route/routes.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:mubasher_app/features/auth/widgets/auth_export_file.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final golden = const Color(0xFFB98A35);
-    final textStyle = Theme.of(context).textTheme;
-
     return BlocProvider(
       create: (context) => RegistrationCubit(),
       child: BlocBuilder<RegistrationCubit, RegistrationState>(
@@ -21,139 +12,129 @@ class SignUpView extends StatelessWidget {
             (previous, current) =>
                 previous.isShowPasswrd != current.isShowPasswrd,
         builder: (context, state) {
-          return Scaffold(
-            body: SafeArea(
-              child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 6.w),
-                children: [
-                  SizedBox(height: 1.5.h),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: SvgPicture.asset(
-                      SvgImagesManager.arrowBack,
-                      fit: BoxFit.scaleDown,
-                      colorFilter: ColorFilter.mode(
-                        ColorManager.primaryColor,
-                        BlendMode.srcIn,
-                      ),
+          return Form(
+            key: state.formKey,
+            child: Scaffold(
+              body: SafeArea(
+                child: ListView(
+                  padding: EdgeInsets.symmetric(horizontal: 6.w),
+                  children: [
+                    ArrowBackLeadingAppbar(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          PageRouteName.signInRoute,
+                        );
+                      },
                     ),
-                  ),
-                  SizedBox(height: 4.h),
-                  RichText(
-                    text: TextSpan(
-                      style: textStyle.headlineMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    SizedBox(height: 4.h),
+                    TextSpanManager(
+                      textAlign: TextAlign.start,
+                      textOne: context.lang.createyourText,
+                      fontSizeTextOne: 25.px,
+                      fontWeightTextOne: FontWeight.w500,
+                      colorTextOne: ColorManager.primaryColor,
+                      latterSpaceTextOne: 0.5,
+                      fontFamilyTextOne: "Lato",
+                      textTwo: context.lang.accountText,
+                      fontSizeTextTwo: 25.px,
+                      fontWeightTextTwo: FontWeight.w800,
+                      colorTextTwo: ColorManager.black,
+                      fontFamilyTextTwo: "Lato",
+                      latterSpaceTextTwo: 0.5,
+                    ),
+                    SizedBox(height: 2.h),
+                    AppText(
+                      text: context.lang.descriptionLoginText,
+                      fontFamily: "Lato",
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.px,
+                    ),
+                    SizedBox(height: 3.5.h),
+                    RegisterTextFormField(
+                      validate:
+                          (name) => context
+                              .read<RegistrationCubit>()
+                              .validateName(context: context, name: name),
+                      controller: state.nameController,
+                      hintText: context.lang.fullNameText,
+
+                      color: ColorManager.grey,
+                      prefixIconPath: SvgImagesManager.profile,
+                      keyboardType: TextInputType.name,
+                    ),
+                    EmailWidget(),
+                    RegisterTextFormField(
+                      validate:
+                          (phone) => context
+                              .read<RegistrationCubit>()
+                              .validatePhoneNumber(
+                                context: context,
+                                phoneNumber: phone,
+                              ),
+                      controller: state.phoneController,
+                      hintText: context.lang.phoneNumberText,
+                      color: ColorManager.grey,
+                      prefixIconPath: SvgImagesManager.phone,
+                    ),
+                    RegisterTextFormField(
+                      validate:
+                          (whatsApp) => context
+                              .read<RegistrationCubit>()
+                              .validateWhatsApp(
+                                context: context,
+                                whatsAppNumber: whatsApp,
+                              ),
+                      controller: state.whatsAppController,
+                      hintText: context.lang.whatsAppText,
+                      color: ColorManager.grey,
+                      prefixIconPath: SvgImagesManager.vector,
+                      keyboardType: TextInputType.phone,
+                    ),
+                    PasswordWidget(),
+                    SizedBox(height: 2.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        TextSpan(
-                          text: "Create your ",
-                          style: TextStyle(color: golden),
+                        AppText(
+                          text: context.lang.termsOfServiceText,
+                          textColor: ColorManager.black,
+                          fontSize: 14.px,
+                          fontFamily: "Lato",
+                          fontWeight: FontWeight.w700,
                         ),
-                        const TextSpan(
-                          text: "account",
-                          style: TextStyle(color: Colors.black),
+                        GestureDetector(
+                          onTap: () {
+                            context
+                                .read<RegistrationCubit>()
+                                .showHidePassword();
+                          },
+                          child: AppText(
+                            text:
+                                state.isShowPasswrd
+                                    ? context.lang.showPasswordText
+                                    : context.lang.hidePasswordText,
+                            textColor: ColorManager.black,
+                            fontSize: 14.px,
+                            fontFamily: "Raleway",
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    "quis nostrud exercitation ullamco laboris nisi ut",
-                    style: textStyle.bodyMedium?.copyWith(
-                      color: Colors.black54,
+                    SizedBox(height: 3.h),
+                    ElevatedButtonManager(
+                      text: context.lang.register,
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          PageRouteName.activateRoute,
+                        );
+                        // context.read<RegistrationCubit>().signUp(context);
+                      },
                     ),
-                  ),
-                  const SizedBox(height: 32),
-                  AppTextFormField(
-                    textEditingController: state.nameController,
-                    hinText: "Full Name",
-                    prefix: SvgPicture.asset(
-                      SvgImagesManager.profile,
-                      fit: BoxFit.scaleDown,
-                      colorFilter: ColorFilter.mode(
-                        ColorManager.primaryColor,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                  EmailWidget(),
-                  AppTextFormField(
-                    textEditingController: state.phoneController,
-                    hinText: "Phone Number",
-                    prefix: SvgPicture.asset(
-                      SvgImagesManager.phone,
-                      fit: BoxFit.scaleDown,
-                      colorFilter: ColorFilter.mode(
-                        ColorManager.primaryColor,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                  AppTextFormField(
-                    textEditingController: state.whatsAppController,
-                    hinText: "WhatsApp",
-                    prefix: SvgPicture.asset(
-                      SvgImagesManager.vector,
-                      fit: BoxFit.scaleDown,
-                      colorFilter: ColorFilter.mode(
-                        ColorManager.primaryColor,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                  PasswordWidget(),
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        child: Text(
-                          "Terms of service",
-                          style: textStyle.bodySmall,
-                        ),
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            PageRouteName.activateRoute,
-                          );
-                        },
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          context.read<RegistrationCubit>().showHidePassword();
-                        },
-                        child: Text(
-                          state.isShowPasswrd
-                              ? "Show password"
-                              : "Hide password",
-                          style: textStyle.bodySmall?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  SizedBox(
-                    height: 52,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: golden,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        "Register",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

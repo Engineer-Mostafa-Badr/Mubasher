@@ -23,7 +23,7 @@ class OutlineButtonManager extends StatelessWidget {
           Navigator.pushNamed(context, PageRouteName.homeRoute);
         },
         child: AppText(
-          text: context.lang.endTextLogin,
+          text: context.lang.endTextLoginText,
           fontWeight: FontWeight.w700,
           fontSize: 18.px,
           fontFamily: "Lato",

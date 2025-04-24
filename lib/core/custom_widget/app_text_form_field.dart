@@ -16,6 +16,7 @@ class AppTextFormField extends StatelessWidget {
     this.horizentalPadding,
     this.verticalPadding,
     this.isShowContent = false,
+    this.keyboardType,
   });
 
   final TextEditingController textEditingController;
@@ -29,6 +30,8 @@ class AppTextFormField extends StatelessWidget {
   final double? horizentalPadding;
   final double? verticalPadding;
   final bool isShowContent;
+  final TextInputType? keyboardType;
+
   InputBorder border({
     bool isErrorBorder = false,
     required BuildContext context,
@@ -46,6 +49,7 @@ class AppTextFormField extends StatelessWidget {
         vertical: verticalPadding ?? 1.h,
       ),
       child: TextFormField(
+        keyboardType: keyboardType,
         controller: textEditingController,
         validator: validate,
         obscureText: isShowContent,
@@ -53,6 +57,12 @@ class AppTextFormField extends StatelessWidget {
           prefixIcon: prefix,
           suffixIcon: suffix,
           hintText: hinText,
+          hintStyle: TextStyle(
+            color: color ?? ColorManager.primaryColor,
+            fontSize: 14.px,
+            fontWeight: FontWeight.w400,
+            fontFamily: "Lato",
+          ),
           labelText: labelText,
           filled: isFill,
           errorMaxLines: 2,

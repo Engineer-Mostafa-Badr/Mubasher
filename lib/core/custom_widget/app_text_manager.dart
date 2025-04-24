@@ -6,7 +6,6 @@ class AppText extends StatelessWidget {
     super.key,
     required this.text,
     this.textColor,
-
     this.fontSize,
     this.fontFamily,
     this.textAlign,

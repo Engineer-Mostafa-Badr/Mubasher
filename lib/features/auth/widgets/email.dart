@@ -12,6 +12,7 @@ class EmailWidget extends StatelessWidget {
         return AppTextFormField(
           textEditingController: state.emailController,
           hinText: context.lang.email,
+          color: ColorManager.grey,
           validate:
               (email) => context.read<RegistrationCubit>().validateEmail(
                 context: context,

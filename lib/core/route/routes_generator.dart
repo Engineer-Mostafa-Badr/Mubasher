@@ -1,4 +1,5 @@
 import 'package:mubasher_app/features/auth/active_account/views/activate_view.dart';
+import 'package:mubasher_app/features/auth/active_account/views/enter_otp_view.dart';
 import 'package:mubasher_app/features/splash/splash_view.dart';
 import '../../features/auth/sign_in/views/sign_in_view.dart';
 import '../../features/auth/sign_up/views/sign_up_view.dart';
@@ -34,11 +35,11 @@ class RoutesGenerator {
           builder: (context) => const ActivateView(),
           settings: settings,
         );
-      // case PageRoutesName.productScreenRoute:
-      //   return MaterialPageRoute(
-      //     builder: (context) => const ProductsScreen(),
-      //     settings: settings,
-      //   );
+      case PageRouteName.enterOTPRoute:
+        return MaterialPageRoute(
+          builder: (context) => EnterOTPView(),
+          settings: settings,
+        );
       // case PageRoutesName.productDetailsScreenRoute:
       //   return MaterialPageRoute(
       //     builder: (context) => const ProductDetails(),

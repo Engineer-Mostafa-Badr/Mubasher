@@ -15,6 +15,7 @@ class PasswordWidget extends StatelessWidget {
         return AppTextFormField(
           textEditingController: state.passwordController,
           hinText: context.lang.password,
+          color: ColorManager.grey,
           validate:
               (password) => context.read<RegistrationCubit>().validatePassword(
                 context: context,

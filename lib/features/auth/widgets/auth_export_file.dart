@@ -1,7 +1,10 @@
+export 'package:mubasher_app/features/auth/widgets/components/register_text_form_field.dart';
 export 'package:mubasher_app/features/auth/widgets/components/elevated_button_manager.dart';
 export 'package:mubasher_app/features/auth/widgets/components/outline_button_manager.dart';
-export 'package:mubasher_app/features/auth/bloc/registration_cubit.dart';
 export 'package:mubasher_app/features/auth/widgets/components/text_span_manager.dart';
+export 'package:mubasher_app/core/custom_widget/arrow_back_leading_appbar.dart';
+export 'package:mubasher_app/features/auth/widgets/auth_export_file.dart';
+export 'package:mubasher_app/features/auth/bloc/registration_cubit.dart';
 export 'package:mubasher_app/core/custom_widget/app_text_manager.dart';
 export 'package:mubasher_app/core/resources/app_assets_manager.dart';
 export 'package:mubasher_app/core/resources/app_color_manager.dart';
@@ -9,5 +12,6 @@ export 'package:mubasher_app/features/auth/widgets/password.dart';
 export 'package:mubasher_app/features/auth/widgets/email.dart';
 export 'package:mubasher_app/core/extension/context.dart';
 export 'package:responsive_sizer/responsive_sizer.dart';
+export 'package:mubasher_app/core/route/routes.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:flutter/material.dart';

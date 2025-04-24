@@ -13,21 +13,24 @@ class ElevatedButtonManager extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: ColorManager.primaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4.w),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 4.w),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: ColorManager.primaryColor,
+            padding: EdgeInsets.symmetric(vertical: 5.5.w),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4.w),
+            ),
           ),
-          padding: EdgeInsets.symmetric(vertical: 4.w),
-        ),
-        onPressed: onPressed,
-        child: AppText(
-          text: text,
-          fontWeight: FontWeight.bold,
-          fontSize: 18.px,
-          fontFamily: "Lato",
-          textColor: ColorManager.white,
+          onPressed: onPressed,
+          child: AppText(
+            text: text,
+            fontWeight: FontWeight.bold,
+            fontSize: 18.px,
+            fontFamily: "Lato",
+            textColor: ColorManager.white,
+          ),
         ),
       ),
     );
