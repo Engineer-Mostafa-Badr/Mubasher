@@ -1,4 +1,4 @@
-import '../../core/resources/app_assets_manager.dart';
+import '../../../core/resources/app_assets_manager.dart';
 import 'package:mubasher_app/core/route/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class _SplashViewState extends State<SplashView> {
       Navigator.pushReplacementNamed(
         // ignore: use_build_context_synchronously
         context,
-        PageRouteName.signInRoute,
+        PageRouteName.onBoardingOneRoute,
       );
     });
     super.initState();

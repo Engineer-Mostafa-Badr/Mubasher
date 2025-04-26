@@ -38,5 +38,17 @@
   "smsCodeText": "رمز الرسائل القصيرة",
   "whatsappText": "رمز واتساب",
   "chooseMethodText": "اختر طريقتك",
-  "sendotpText": "إرسال OTP"
+  "sendotpText": "إرسال OTP",
+  "findText": "ابحث",
+  "forText": "ل",
+  "bistPlaseText": " أفضل مكان",
+  "toStayInText": "للبقاء في",
+  "goodPriceText": "سعر جيد",
+  "descriptionBordingViewsText": "لوريم إيبسوم دولور سيت أميت، كونسكتتور\nأديبيسيسينغ إيليت، سيد.",
+  "nextText": "التالي",
+  "fastBuyingYourPropertyText": "شراء ممتلكاتك بسرعة",
+  "inJustText": "في فقط ",
+  "oneClickText": "نقرة واحدة",
+  "perfectChoiceText": " خيار مثالي ",
+  "yourFutureHouseText": "منزلك المستقبلي"
 }

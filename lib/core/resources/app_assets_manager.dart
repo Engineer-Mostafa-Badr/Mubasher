@@ -15,7 +15,7 @@ abstract class SvgImagesManager {
   static const String phone = "assets/svg_images/phone.svg";
   static const String vector = "assets/svg_images/Vector.svg";
   static const String arrowLeft = "assets/svg_images/arrow-left-line.svg";
-  static const String group21 = "assets/svg_images/Group21.svg";
+  static const String group21 = "assets/svg_images/Group 21.svg";
   static const String arrowBack = "assets/svg_images/Arrow-back.svg";
   static const String location = "assets/svg_images/Location.svg";
   static const String search = "assets/svg_images/Search.svg";
@@ -31,4 +31,5 @@ abstract class SvgImagesManager {
   static const String starSmall = "assets/svg_images/Star - Small.svg";
   static const String arrowBackBackground =
       "assets/svg_images/Arrow-back-background.svg";
+  static const String skipButton = "assets/svg_images/Skip-Button.svg";
 }

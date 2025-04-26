@@ -39,5 +39,17 @@
   "smsCodeText": "Sms code",
   "whatsappText": "Whatsapp code",
   "chooseMethodText": "Choose your method",
-  "sendotpText": "Send OTP"
+  "sendotpText": "Send OTP",
+  "findText": "Find",
+  "forText": "for",
+  "bistPlaseText": " best place",
+  "toStayInText": "to stay in ",
+  "goodPriceText": "good price",
+  "descriptionBordingViewsText": "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed.",
+  "nextText": "Next",
+  "fastBuyingYourPropertyText": "Fast buying your property",
+  "inJustText": "in just ",
+  "oneClickText": "one click",
+  "perfectChoiceText": " perfect choice ",
+  "yourFutureHouseText": "your future house"
 }
