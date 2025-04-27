@@ -1,4 +1,4 @@
-import 'package:mubasher_app/features/auth/widgets/auth_export_file.dart';
+import 'package:mubasher_app/features/auth/widgets/components/auth_export_file.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
@@ -63,7 +63,7 @@ class SignUpView extends StatelessWidget {
                       prefixIconPath: SvgImagesManager.profile,
                       keyboardType: TextInputType.name,
                     ),
-                    EmailWidget(),
+                    CustomEmailTextFormField(),
                     RegisterTextFormField(
                       validate:
                           (phone) => context
@@ -91,7 +91,7 @@ class SignUpView extends StatelessWidget {
                       prefixIconPath: SvgImagesManager.vector,
                       keyboardType: TextInputType.phone,
                     ),
-                    PasswordWidget(),
+                    CustomPasswordTextFormField(),
                     SizedBox(height: 2.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -126,11 +126,7 @@ class SignUpView extends StatelessWidget {
                     ElevatedButtonManager(
                       text: context.lang.register,
                       onPressed: () {
-                        Navigator.pushReplacementNamed(
-                          context,
-                          PageRouteName.activateRoute,
-                        );
-                        // context.read<RegistrationCubit>().signUp(context);
+                        context.read<RegistrationCubit>().signUp(context);
                       },
                     ),
                   ],

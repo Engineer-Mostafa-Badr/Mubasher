@@ -1,4 +1,4 @@
-import 'package:mubasher_app/features/auth/widgets/sign_in_export_file.dart';
+import 'package:mubasher_app/features/auth/widgets/components/sign_in_export_file.dart';
 import '../../../../core/custom_widget/app_text_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../core/route/routes.dart';

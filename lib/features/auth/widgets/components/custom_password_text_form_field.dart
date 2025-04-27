@@ -1,9 +1,9 @@
-import 'package:mubasher_app/features/auth/widgets/sign_in_export_file.dart';
+import 'package:mubasher_app/features/auth/widgets/components/sign_in_export_file.dart';
 import 'package:mubasher_app/core/resources/app_assets_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class PasswordWidget extends StatelessWidget {
-  const PasswordWidget({super.key});
+class CustomPasswordTextFormField extends StatelessWidget {
+  const CustomPasswordTextFormField({super.key});
 
   @override
   Widget build(BuildContext context) {

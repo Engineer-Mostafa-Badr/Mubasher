@@ -6,6 +6,8 @@ abstract class AssetsManager {
   static const String onBoarding3 = "assets/images/Rectangle 8.png";
   static const String underCityLife =
       "assets/images/undraw_city_life_gnpr 1.png";
+  static const String ellipse = "assets/images/Ellipse.png";
+  static const String rectangle = "assets/images/Rectangle 20.png";
 }
 
 abstract class SvgImagesManager {
@@ -32,4 +34,6 @@ abstract class SvgImagesManager {
   static const String arrowBackBackground =
       "assets/svg_images/Arrow-back-background.svg";
   static const String skipButton = "assets/svg_images/Skip-Button.svg";
+  static const String backgroundAppBar =
+      "assets/svg_images/background-appbar.svg";
 }

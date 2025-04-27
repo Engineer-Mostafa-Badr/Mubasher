@@ -1,5 +1,5 @@
 import 'package:mubasher_app/features/splash/on_boarding/widgets/custom_onboarding_views.dart';
-import 'package:mubasher_app/features/auth/widgets/auth_export_file.dart';
+import 'package:mubasher_app/features/auth/widgets/components/auth_export_file.dart';
 
 class OnboardingThreeView extends StatelessWidget {
   const OnboardingThreeView({super.key});

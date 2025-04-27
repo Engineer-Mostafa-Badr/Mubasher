@@ -1,5 +1,5 @@
 import 'package:mubasher_app/core/custom_widget/app_text_form_field.dart';
-import 'package:mubasher_app/features/auth/widgets/auth_export_file.dart';
+import 'package:mubasher_app/features/auth/widgets/components/auth_export_file.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ActivateView extends StatefulWidget {

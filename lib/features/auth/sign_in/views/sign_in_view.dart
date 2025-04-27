@@ -1,4 +1,4 @@
-import 'package:mubasher_app/features/auth/widgets/auth_export_file.dart';
+import 'package:mubasher_app/features/auth/widgets/components/auth_export_file.dart';
 
 class SignInView extends StatelessWidget {
   const SignInView({super.key});
@@ -46,8 +46,8 @@ class SignInView extends StatelessWidget {
                       fontSize: 16.px,
                     ),
                     SizedBox(height: 2.h),
-                    EmailWidget(),
-                    PasswordWidget(),
+                    CustomEmailTextFormField(),
+                    CustomPasswordTextFormField(),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: TextButton(
