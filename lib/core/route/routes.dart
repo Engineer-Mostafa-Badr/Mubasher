@@ -11,4 +11,5 @@ class PageRouteName {
   static const String profileRoute = '/profile';
   static const String editProfileRoute = '/edit_profile';
   static const String profileOptionsRoute = '/profile_options';
+  static const String favoriteRoute = '/favorite';
 }

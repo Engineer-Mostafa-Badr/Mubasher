@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mubasher_app/features/favorite/views/favorite_view.dart';
+import 'package:mubasher_app/features/profile/views/profile_view.dart';
 import 'package:mubasher_app/core/resources/app_assets_manager.dart';
 import 'package:mubasher_app/core/resources/app_color_manager.dart';
-import 'package:mubasher_app/features/profile/views/profile_options.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -18,8 +19,8 @@ class HomeViewState extends State<HomeView> {
   final List<Widget> _pages = [
     const HomePage(),
     const SearchPage(),
-    const FavoritesPage(),
-    const ProfileOptionsView(),
+    const FavoriteView(),
+    const ProfileView(),
   ];
 
   @override
@@ -338,13 +339,5 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(child: Text('Search Page'));
-  }
-}
-
-class FavoritesPage extends StatelessWidget {
-  const FavoritesPage({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('Favorites Page'));
   }
 }
