@@ -1,5 +1,4 @@
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ArrowBackLeadingAppbar extends StatelessWidget {
   const ArrowBackLeadingAppbar({super.key, this.onTap});

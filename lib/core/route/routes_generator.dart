@@ -1,17 +1,17 @@
-import 'package:mubasher_app/features/favorite/views/favorite_view.dart';
-import 'package:mubasher_app/features/profile/views/edit_profile.dart';
-import 'package:mubasher_app/features/profile/views/profile_options.dart';
+import 'package:mubasher_app/features/home/views/home_view.dart';
 import 'package:mubasher_app/features/splash/on_boarding/views/on_boarding_three.dart';
 import 'package:mubasher_app/features/splash/on_boarding/views/on_boarding_two.dart';
 import 'package:mubasher_app/features/auth/active_account/views/enter_otp_view.dart';
 import 'package:mubasher_app/features/splash/on_boarding/views/on_boarding_one.dart';
 import 'package:mubasher_app/features/auth/active_account/views/activate_view.dart';
+import 'package:mubasher_app/features/profile/views/profile_options.dart';
+import 'package:mubasher_app/features/favorite/views/favorite_view.dart';
+import 'package:mubasher_app/features/profile/views/edit_profile.dart';
 import 'package:mubasher_app/features/profile/views/profile_view.dart';
 import 'package:mubasher_app/features/splash/views/splash_view.dart';
 import '../../features/auth/presentation/views/sign_in_view.dart';
 import '../../features/auth/presentation/views/sign_up_view.dart';
 import 'package:mubasher_app/core/route/routes.dart';
-import '../../features/home/views/home_view.dart';
 import 'package:flutter/material.dart';
 
 class RoutesGenerator {

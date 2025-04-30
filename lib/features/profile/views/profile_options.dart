@@ -1,135 +1,122 @@
-import 'package:flutter/material.dart';
+import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
+import 'package:mubasher_app/features/profile/views/components/custom_profile_options.dart';
+import 'package:mubasher_app/features/auth/presentation/view_models/auth_event.dart';
+import 'package:mubasher_app/features/auth/presentation/view_models/auth_state.dart';
+import 'package:mubasher_app/features/auth/presentation/view_models/auth_bloc.dart';
 
 class ProfileOptionsView extends StatelessWidget {
   const ProfileOptionsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFCF6EB),
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Back Button
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, top: 20),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.arrow_back_ios_new,
-                      color: Colors.brown,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is AuthLoggedOutSuccess) {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            PageRouteName.signInRoute,
+            (route) => false,
+          );
+        }
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 20.0, top: 2.h),
+                child: ArrowBackLeadingAppbar(
+                  onTap: () {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      PageRouteName.homeRoute,
+                    );
+                  },
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-
-            // Profile Info
-            const Text(
-              'Profile',
-              style: TextStyle(
+              SizedBox(height: 1.h),
+              AppText(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: Colors.brown,
+                textColor: Colors.brown,
+                text: 'Profile',
               ),
-            ),
-            const SizedBox(height: 15),
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage('assets/profile.jpg'), // حط صورتك هنا
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              'Sallem ahmed',
-              style: TextStyle(
+              SizedBox(height: 1.h),
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: AssetImage(AssetsManager.ellipse2),
+              ),
+              SizedBox(height: 1.h),
+              AppText(
                 fontSize: 20,
-                color: Colors.brown,
                 fontWeight: FontWeight.bold,
+                textColor: Colors.brown,
+                text: 'Sallem ahmed',
               ),
-            ),
-            const SizedBox(height: 30),
-
-            // Options
-            Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xFFFFF6E9),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
+              SizedBox(height: 2.5.h),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: ColorManager.backgroundContainerProfile,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(14.w),
+                      topRight: Radius.circular(14.w),
+                    ),
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10.w,
+                    vertical: 2.h,
+                  ),
+                  child: Center(
+                    child: GridView.count(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 15,
+                      mainAxisSpacing: 15,
+                      childAspectRatio: 0.75,
+                      children: [
+                        ProfileOption(
+                          iconAsset: SvgImagesManager.showOutlineIcon,
+                          backgroundAsset: SvgImagesManager.boxIconProfile,
+                          label: 'Show profile',
+                        ),
+                        ProfileOption(
+                          iconAsset: SvgImagesManager.editFilledIcon,
+                          backgroundAsset: SvgImagesManager.boxIconProfile,
+                          label: 'About us',
+                        ),
+                        ProfileOption(
+                          iconAsset: SvgImagesManager.yourProductIcon,
+                          backgroundAsset: SvgImagesManager.boxIconProfile,
+                          label: 'Your products',
+                        ),
+                        ProfileOption(
+                          isChangeLanguage: true,
+                          assetPath: AssetsManager.englishToArabicIcon,
+                          backgroundAsset: SvgImagesManager.boxIconProfile,
+                          label: 'Change language',
+                        ),
+                        ProfileOption(
+                          iconAsset: SvgImagesManager.internetIcon,
+                          backgroundAsset: SvgImagesManager.boxIconProfile,
+                          label: 'Change country',
+                        ),
+                        ProfileOption(
+                          iconAsset: SvgImagesManager.logoutIcon,
+                          backgroundAsset: SvgImagesManager.boxIconProfile,
+                          label: 'Log out',
+                          onTap: () {
+                            BlocProvider.of<AuthBloc>(
+                              context,
+                            ).add(LogoutEvent());
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 30,
-                  vertical: 20,
-                ),
-                child: GridView.count(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 15,
-                  children: [
-                    ProfileOption(
-                      icon: Icons.remove_red_eye,
-                      label: 'Show profile',
-                    ),
-                    ProfileOption(icon: Icons.edit, label: 'About us'),
-                    ProfileOption(
-                      icon: Icons.grid_view,
-                      label: 'Your products',
-                    ),
-                    ProfileOption(
-                      icon: Icons.language,
-                      label: 'change language',
-                    ),
-                    ProfileOption(icon: Icons.public, label: 'change country'),
-                    ProfileOption(icon: Icons.logout, label: 'Log out'),
-                  ],
-                ),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ProfileOption extends StatelessWidget {
-  final IconData icon;
-  final String label;
-
-  const ProfileOption({Key? key, required this.icon, required this.label})
-    : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFE9C9),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: InkWell(
-        onTap: () {
-          // هنا تقدر تضيف اللي يحصل لما تدوس علي الزرار
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 30, color: Colors.brown),
-            const SizedBox(height: 8),
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 12, color: Colors.brown),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

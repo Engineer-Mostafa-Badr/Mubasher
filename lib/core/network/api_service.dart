@@ -1,29 +1,26 @@
 import 'package:dio/dio.dart';
-import '../constants/api_constants.dart';
 
-class ApiService {
+abstract class ApiService {
+  Future<Response> post(String url, {Map<String, dynamic>? data});
+  Future<Response> get(String url, {Map<String, dynamic>? queryParameters});
+}
+
+class ApiServiceImpl implements ApiService {
   final Dio _dio;
+  final String baseUrl;
 
-  ApiService(this._dio);
+  ApiServiceImpl(this._dio, this.baseUrl);
 
-  factory ApiService.create() {
-    final dio = Dio(
-      BaseOptions(
-        baseUrl: ApiConstants.baseUrl,
-        connectTimeout: const Duration(seconds: 10),
-        receiveTimeout: const Duration(seconds: 10),
-        headers: {'Content-Type': 'application/json'},
-      ),
-    );
-
-    return ApiService(dio);
+  @override
+  Future<Response> post(String url, {Map<String, dynamic>? data}) async {
+    return await _dio.post(url, data: data);
   }
 
-  Future<Response> post(String path, {Map<String, dynamic>? data}) async {
-    try {
-      return await _dio.post(path, data: data);
-    } catch (e) {
-      throw Exception("Error sending request: $e");
-    }
+  @override
+  Future<Response> get(
+    String url, {
+    Map<String, dynamic>? queryParameters,
+  }) async {
+    return await _dio.get(url, queryParameters: queryParameters);
   }
 }

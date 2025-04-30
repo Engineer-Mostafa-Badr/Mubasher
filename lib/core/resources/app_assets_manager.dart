@@ -7,7 +7,11 @@ abstract class AssetsManager {
   static const String underCityLife =
       "assets/images/undraw_city_life_gnpr 1.png";
   static const String ellipse = "assets/images/Ellipse.png";
+  static const String ellipse2 = "assets/images/Ellipse2.png";
   static const String rectangle = "assets/images/Rectangle 20.png";
+  static const String shape = "assets/images/Shape.png";
+  static const String englishToArabicIcon =
+      "assets/images/English to Arabic.png";
 }
 
 abstract class SvgImagesManager {
@@ -24,7 +28,8 @@ abstract class SvgImagesManager {
   static const String heart = "assets/svg_images/Heart.svg";
   static const String arrowRight = "assets/svg_images/arrow-right-line.svg";
   static const String ellipse = "assets/svg_images/Ellipse.svg";
-  static const String home = "assets/svg_images/Active-Home.svg";
+  static const String home = "assets/svg_images/Active - Home.svg";
+  static const String home2 = "assets/svg_images/Active - Home2.svg";
   static const String group22 = "assets/svg_images/Group 22.svg";
   static const String notificationsOutline =
       "assets/svg_images/ion_notifications-outline.svg";
@@ -36,4 +41,16 @@ abstract class SvgImagesManager {
   static const String skipButton = "assets/svg_images/Skip-Button.svg";
   static const String backgroundAppBar =
       "assets/svg_images/background-appbar.svg";
+  static const String arrowRightIcon = "assets/svg_images/arrow_right_icon.svg";
+  static const String editIcon = "assets/svg_images/tabler_edit.svg";
+  static const String yourProductIcon =
+      "assets/svg_images/your-product-icon.svg";
+  static const String showOutlineIcon = "assets/svg_images/show-outline.svg";
+  static const String logoutIcon = "assets/svg_images/logout-solid.svg";
+  static const String internetIcon = "assets/svg_images/internet.svg";
+  static const String boxIconProfile = "assets/svg_images/Box-icon-profile.svg";
+  static const String editFilledIcon = "assets/svg_images/edit-filled.svg";
+  static const String heart2 = "assets/svg_images/Heart2.svg";
+  static const String dotIcon = "assets/svg_images/dot-icon.svg";
+  static const String shapeBigSale = "assets/svg_images/Shape-big-sale.svg";
 }

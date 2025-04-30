@@ -1,17 +1,51 @@
+// ignore_for_file: avoid_print
+import 'package:mubasher_app/features/auth/presentation/view_models/auth_bloc.dart';
+import 'package:mubasher_app/core/helpers/token_storage_helper.dart';
 import 'package:mubasher_app/config/lang/app_localizations.dart';
 import 'package:mubasher_app/core/route/routes_generator.dart';
 import 'config/app_controller/cubit/app_controller_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:mubasher_app/core/route/routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mubasher_app/core/di/di.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  initDI();
+
+  String? token;
+  try {
+    token = await TokenStorageHelper.getToken();
+    print('🔐 Token retrieved: $token');
+  } catch (e) {
+    print('❌ Error retrieving token: $e');
+  }
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(
+          create:
+              (_) => AuthBloc(
+                loginUseCase: getIt(), // أو حسب DI عندك
+                registerUseCase: getIt(),
+              ),
+        ),
+        // ممكن تضيف Blocs تانية هنا
+      ],
+      child: MubasherApp(
+        initialRoute:
+            token != null && token.isNotEmpty
+                ? PageRouteName.homeRoute
+                : PageRouteName.splashRoute,
+      ),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MubasherApp extends StatelessWidget {
+  final String initialRoute;
+  const MubasherApp({super.key, required this.initialRoute});
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +66,8 @@ class MyApp extends StatelessWidget {
                     seedColor: Colors.deepPurple,
                   ),
                 ),
+                initialRoute: initialRoute,
                 onGenerateRoute: RoutesGenerator.onGenerateRoutes,
-                initialRoute: PageRouteName.splashRoute,
               );
             },
           ),

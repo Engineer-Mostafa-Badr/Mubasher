@@ -1,22 +1,20 @@
 import 'package:mubasher_app/features/auth/data_helper/validate.dart';
 import 'package:mubasher_app/core/route/routes.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:bloc/bloc.dart';
-import 'dart:developer';
 part 'registration_state.dart';
 
 class RegistrationCubit extends Cubit<RegistrationState> with Validate {
   RegistrationCubit()
     : super(
         RegistrationState(
-          formKey: GlobalKey<FormState>(),
-          emailController: TextEditingController(),
-          passwordController: TextEditingController(),
           nameController: TextEditingController(),
+          emailController: TextEditingController(),
           phoneController: TextEditingController(),
           whatsAppController: TextEditingController(),
-          isShowPasswrd: true,
+          passwordController: TextEditingController(),
+          formKey: GlobalKey<FormState>(),
         ),
       );
 
@@ -27,18 +25,22 @@ class RegistrationCubit extends Cubit<RegistrationState> with Validate {
   void login(BuildContext context) {
     if (state.formKey.currentState!.validate()) {
       Navigator.pushReplacementNamed(context, PageRouteName.homeRoute);
-      log('Login successful');
-    } else {
-      log('Login failed');
     }
   }
 
   void signUp(BuildContext context) {
     if (state.formKey.currentState!.validate()) {
       Navigator.pushReplacementNamed(context, PageRouteName.activateRoute);
-      log('Sign up successful');
-    } else {
-      log('Sign up failed');
     }
+  }
+
+  @override
+  Future<void> close() {
+    state.nameController.dispose();
+    state.emailController.dispose();
+    state.phoneController.dispose();
+    state.whatsAppController.dispose();
+    state.passwordController.dispose();
+    return super.close();
   }
 }

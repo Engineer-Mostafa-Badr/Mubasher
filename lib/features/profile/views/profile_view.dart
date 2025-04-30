@@ -90,7 +90,7 @@ class ProfileView extends StatelessWidget {
 class MenuItem extends StatelessWidget {
   final String title;
 
-  const MenuItem({Key? key, required this.title}) : super(key: key);
+  const MenuItem({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +103,7 @@ class MenuItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
           boxShadow: [
             BoxShadow(
+              // ignore: deprecated_member_use
               color: Colors.grey.withOpacity(0.2),
               blurRadius: 8,
               offset: const Offset(0, 4),

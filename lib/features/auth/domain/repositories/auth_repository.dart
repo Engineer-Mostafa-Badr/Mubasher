@@ -12,5 +12,7 @@ abstract class AuthRepository {
     required String email,
     required String password,
     required String confirmPassword,
+    required String phone,
+    required String whatsapp,
   });
 }

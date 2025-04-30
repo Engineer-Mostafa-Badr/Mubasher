@@ -141,6 +141,7 @@ class ProfileField extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
               boxShadow: [
                 BoxShadow(
+                  // ignore: deprecated_member_use
                   color: Colors.grey.withOpacity(0.2),
                   blurRadius: 8,
                   offset: Offset(0, 4),

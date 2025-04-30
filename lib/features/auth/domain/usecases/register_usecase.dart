@@ -12,12 +12,16 @@ class RegisterUseCase {
     required String email,
     required String password,
     required String confirmPassword,
+    required String phone,
+    required String whatsapp,
   }) {
     return repository.register(
       username: username,
       email: email,
       password: password,
       confirmPassword: confirmPassword,
+      phone: phone,
+      whatsapp: whatsapp,
     );
   }
 }

@@ -1,6 +1,9 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mubasher_app/core/constants/api_constants.dart';
 import '../../../../core/network/api_service.dart';
 import '../models/user_model.dart';
+import 'package:dio/dio.dart';
+import 'dart:developer';
 
 abstract class AuthRemoteDataSource {
   Future<UserModel> login({required String username, required String password});
@@ -9,13 +12,16 @@ abstract class AuthRemoteDataSource {
     required String email,
     required String password,
     required String confirmPassword,
+    required String phone,
+    required String whatsapp,
   });
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final ApiService apiService;
+  final FlutterSecureStorage secureStorage;
 
-  AuthRemoteDataSourceImpl(this.apiService);
+  AuthRemoteDataSourceImpl(this.apiService, this.secureStorage);
 
   @override
   Future<UserModel> login({
@@ -25,16 +31,20 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     try {
       final response = await apiService.post(
         ApiConstants.login,
-        data: {'username': username, 'password': password},
+        data: {'Username': username, 'Password': password},
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 &&
+          response.data is Map &&
+          response.data['datac'] is List &&
+          (response.data['datac'] as List).isNotEmpty) {
+        log('Login successful: ${response.data}');
         return UserModel.fromJson(response.data['datac'][0]);
       } else {
-        throw Exception('Failed to login');
+        throw Exception('Login failed - Unexpected response: ${response.data}');
       }
     } catch (e) {
-      throw Exception(e.toString());
+      throw Exception('Login exception: ${e.toString()}');
     }
   }
 
@@ -44,25 +54,56 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String email,
     required String password,
     required String confirmPassword,
+    required String phone,
+    required String whatsapp,
   }) async {
     try {
       final response = await apiService.post(
         ApiConstants.register,
         data: {
-          'userName': username,
+          'user_name': username,
           'email': email,
+          'phoneno': phone,
           'password': password,
-          'confirmPassword': confirmPassword,
+          'confirm_Password': confirmPassword,
+          'whatsapp': whatsapp,
         },
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 &&
+          response.data is Map &&
+          response.data['datac'] is List &&
+          (response.data['datac'] as List).isNotEmpty) {
+        log('Register successful: ${response.data}');
+        // Save the accessToken securely
+        final accessTokenField = response.data['datac'][0]['accessToken'];
+        final token =
+            accessTokenField is Map
+                ? accessTokenField['token'] ?? ''
+                : accessTokenField.toString();
+
+        await secureStorage.write(key: 'accessToken', value: token);
+        log('Token saved: $token');
+
         return UserModel.fromJson(response.data['datac'][0]);
       } else {
-        throw Exception('Failed to register');
+        throw Exception(
+          'Register failed - Unexpected response: ${response.data}',
+        );
       }
+    } on DioException catch (dioError) {
+      if (dioError.response?.statusCode == 400 &&
+          dioError.response?.data != null) {
+        final errorData = dioError.response!.data;
+        final errors = errorData['errors'] ?? {};
+        final messages = (errors as Map).entries
+            .map((e) => '${e.key}: ${(e.value as List).join(', ')}')
+            .join('\n');
+        throw Exception('Registration failed:\n$messages');
+      }
+      throw Exception('Dio error: ${dioError.message}');
     } catch (e) {
-      throw Exception(e.toString());
+      throw Exception('Register exception: ${e.toString()}');
     }
   }
 }

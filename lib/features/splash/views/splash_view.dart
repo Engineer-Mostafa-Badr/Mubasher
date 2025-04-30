@@ -1,4 +1,5 @@
-import '../../../core/resources/app_assets_manager.dart';
+import 'package:mubasher_app/core/helpers/token_storage_helper.dart';
+import 'package:mubasher_app/core/resources/app_assets_manager.dart';
 import 'package:mubasher_app/core/route/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -12,14 +13,26 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(
-        // ignore: use_build_context_synchronously
-        context,
-        PageRouteName.onBoardingOneRoute,
-      );
-    });
     super.initState();
+    _checkTokenAndNavigate();
+  }
+
+  Future<void> _checkTokenAndNavigate() async {
+    await Future.delayed(const Duration(seconds: 2));
+
+    final token = await TokenStorageHelper.getToken();
+    // ignore: avoid_print
+    print("🔐 Token from splash: $token");
+    if (!mounted) return;
+    if (token != null && token.isNotEmpty) {
+      // المستخدم مسجل دخول بالفعل
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacementNamed(context, PageRouteName.homeRoute);
+    } else {
+      // المستخدم جديد أو مش مسجل دخول
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacementNamed(context, PageRouteName.onBoardingOneRoute);
+    }
   }
 
   @override

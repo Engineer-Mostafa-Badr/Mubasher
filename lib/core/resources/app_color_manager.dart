@@ -20,4 +20,7 @@ abstract class ColorManager {
   static const Color grey2 = Color(0xff797979);
   static const Color white = Color(0xFFF7F6FB);
   static const Color red = Color(0xffe61f34);
+  static const Color backgroundContainerProfile = Color(0xFFFFF6E9);
+  static const Color iconProfileColor = Color(0xFF704116);
+  static const Color boxProfileColor = Color(0xFFE7BABD);
 }
