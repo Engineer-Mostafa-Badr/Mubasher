@@ -51,5 +51,19 @@
   "inJustText": "in just ",
   "oneClickText": "one click",
   "perfectChoiceText": " perfect choice ",
-  "yourFutureHouseText": "your future house"
+  "yourFutureHouseText": "your future house",
+  "showProfileText": "Show profile",
+  "profileText": "Profile",
+  "aboutUsText": "About us",
+  "yourProductText": "Your product",
+  "changeLanguageText": "Change language",
+  "changeCountryText": "Change country",
+  "logOut": "Log out",
+  "favoriteText": "Favorite",
+  "countryText": "Country",
+  "nameText": "Name",
+  "phoneText": "Phone",
+  "paymentText": "Payment",
+  "paymentDataText": "Payment data",
+  "payNowText": "Pay now"
 }

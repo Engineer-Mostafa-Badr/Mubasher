@@ -50,5 +50,19 @@
   "inJustText": "في فقط ",
   "oneClickText": "نقرة واحدة",
   "perfectChoiceText": " خيار مثالي ",
-  "yourFutureHouseText": "منزلك المستقبلي"
+  "yourFutureHouseText": "منزلك المستقبلي",
+  "showProfileText": "مشاهده الملف الشخصي",
+  "profileText": "الملف الشخصي",
+  "aboutUsText": "عنا",
+  "yourProductText": "منتجاتك",
+  "changeLanguageText": "تغيير اللغه",
+  "changeCountryText": "تغيير المدينه",
+  "logOut": "تسجيل خروج",
+  "favoriteText": "المفضله",
+  "countryText": "المدينه",
+  "nameText": "الإسم",
+  "phoneText": "موبايل",
+  "paymentText": "الدفع",
+  "paymentDataText": "بيانات الدفع",
+  "payNowText": "ادفع الأن"
 }

@@ -1,4 +1,5 @@
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
+import 'package:mubasher_app/features/profile/views/components/custom_details_profile.dart';
 import 'package:mubasher_app/features/profile/views/components/custom_profile_options.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_event.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_state.dart';
@@ -23,35 +24,14 @@ class ProfileOptionsView extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(left: 20.0, top: 2.h),
-                child: ArrowBackLeadingAppbar(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(
-                      context,
-                      PageRouteName.homeRoute,
-                    );
-                  },
-                ),
-              ),
-              SizedBox(height: 1.h),
-              AppText(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                textColor: Colors.brown,
-                text: 'Profile',
-              ),
-              SizedBox(height: 1.h),
-              CircleAvatar(
-                radius: 50,
-                backgroundImage: AssetImage(AssetsManager.ellipse2),
-              ),
-              SizedBox(height: 1.h),
-              AppText(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                textColor: Colors.brown,
-                text: 'Sallem ahmed',
+              CustomDetailsProfile(
+                onTap: () {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    PageRouteName.homeRoute,
+                  );
+                },
+                text: context.lang.profileText,
               ),
               SizedBox(height: 2.5.h),
               Expanded(
@@ -65,10 +45,11 @@ class ProfileOptionsView extends StatelessWidget {
                   ),
                   padding: EdgeInsets.symmetric(
                     horizontal: 10.w,
-                    vertical: 2.h,
+                    vertical: 8.h,
                   ),
                   child: Center(
                     child: GridView.count(
+                      physics: NeverScrollableScrollPhysics(),
                       crossAxisCount: 3,
                       crossAxisSpacing: 15,
                       mainAxisSpacing: 15,
@@ -78,6 +59,12 @@ class ProfileOptionsView extends StatelessWidget {
                           iconAsset: SvgImagesManager.showOutlineIcon,
                           backgroundAsset: SvgImagesManager.boxIconProfile,
                           label: 'Show profile',
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              PageRouteName.editProfileRoute,
+                            );
+                          },
                         ),
                         ProfileOption(
                           iconAsset: SvgImagesManager.editFilledIcon,
@@ -88,6 +75,12 @@ class ProfileOptionsView extends StatelessWidget {
                           iconAsset: SvgImagesManager.yourProductIcon,
                           backgroundAsset: SvgImagesManager.boxIconProfile,
                           label: 'Your products',
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              PageRouteName.paymentRoute,
+                            );
+                          },
                         ),
                         ProfileOption(
                           isChangeLanguage: true,

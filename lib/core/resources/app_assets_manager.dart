@@ -10,6 +10,7 @@ abstract class AssetsManager {
   static const String ellipse2 = "assets/images/Ellipse2.png";
   static const String rectangle = "assets/images/Rectangle 20.png";
   static const String shape = "assets/images/Shape.png";
+  static const String paymentView = "assets/images/payment-view.png";
   static const String englishToArabicIcon =
       "assets/images/English to Arabic.png";
 }

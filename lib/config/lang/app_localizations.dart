@@ -358,6 +358,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'your future house'**
   String get yourFutureHouseText;
+
+  /// No description provided for @showProfileText.
+  ///
+  /// In en, this message translates to:
+  /// **'Show profile'**
+  String get showProfileText;
+
+  /// No description provided for @profileText.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileText;
+
+  /// No description provided for @aboutUsText.
+  ///
+  /// In en, this message translates to:
+  /// **'About us'**
+  String get aboutUsText;
+
+  /// No description provided for @yourProductText.
+  ///
+  /// In en, this message translates to:
+  /// **'Your product'**
+  String get yourProductText;
+
+  /// No description provided for @changeLanguageText.
+  ///
+  /// In en, this message translates to:
+  /// **'Change language'**
+  String get changeLanguageText;
+
+  /// No description provided for @changeCountryText.
+  ///
+  /// In en, this message translates to:
+  /// **'Change country'**
+  String get changeCountryText;
+
+  /// No description provided for @logOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get logOut;
+
+  /// No description provided for @favoriteText.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite'**
+  String get favoriteText;
+
+  /// No description provided for @countryText.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get countryText;
+
+  /// No description provided for @nameText.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get nameText;
+
+  /// No description provided for @phoneText.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phoneText;
+
+  /// No description provided for @paymentText.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment'**
+  String get paymentText;
+
+  /// No description provided for @paymentDataText.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment data'**
+  String get paymentDataText;
+
+  /// No description provided for @payNowText.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay now'**
+  String get payNowText;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

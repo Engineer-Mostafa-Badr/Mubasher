@@ -141,4 +141,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get yourFutureHouseText => 'your future house';
+
+  @override
+  String get showProfileText => 'Show profile';
+
+  @override
+  String get profileText => 'Profile';
+
+  @override
+  String get aboutUsText => 'About us';
+
+  @override
+  String get yourProductText => 'Your product';
+
+  @override
+  String get changeLanguageText => 'Change language';
+
+  @override
+  String get changeCountryText => 'Change country';
+
+  @override
+  String get logOut => 'Log out';
+
+  @override
+  String get favoriteText => 'Favorite';
+
+  @override
+  String get countryText => 'Country';
+
+  @override
+  String get nameText => 'Name';
+
+  @override
+  String get phoneText => 'Phone';
+
+  @override
+  String get paymentText => 'Payment';
+
+  @override
+  String get paymentDataText => 'Payment data';
+
+  @override
+  String get payNowText => 'Pay now';
 }

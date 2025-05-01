@@ -141,4 +141,46 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get yourFutureHouseText => 'منزلك المستقبلي';
+
+  @override
+  String get showProfileText => 'مشاهده الملف الشخصي';
+
+  @override
+  String get profileText => 'الملف الشخصي';
+
+  @override
+  String get aboutUsText => 'عنا';
+
+  @override
+  String get yourProductText => 'منتجاتك';
+
+  @override
+  String get changeLanguageText => 'تغيير اللغه';
+
+  @override
+  String get changeCountryText => 'تغيير المدينه';
+
+  @override
+  String get logOut => 'تسجيل خروج';
+
+  @override
+  String get favoriteText => 'المفضله';
+
+  @override
+  String get countryText => 'المدينه';
+
+  @override
+  String get nameText => 'الإسم';
+
+  @override
+  String get phoneText => 'موبايل';
+
+  @override
+  String get paymentText => 'الدفع';
+
+  @override
+  String get paymentDataText => 'بيانات الدفع';
+
+  @override
+  String get payNowText => 'ادفع الأن';
 }

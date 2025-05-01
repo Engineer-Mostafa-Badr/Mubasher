@@ -30,7 +30,6 @@ class ProfileOption extends StatelessWidget {
           fontFamily: "Lato",
           fontWeight: FontWeight.w500,
         ),
-        SizedBox(height: .5.h),
         Expanded(
           child: InkWell(
             onTap: onTap,
