@@ -10,7 +10,7 @@ class CustomHomeView extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 25.h,
+          height: 22.h,
           child: Padding(
             padding: const EdgeInsets.only(right: 20),
             child: Row(
@@ -185,7 +185,7 @@ class CustomHomeView extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return PropertyCard(
                     installment: index % 2 == 1,
-                    months: index == 3 ? "12 month" : null,
+                    // months: index == 3 ? "12 month" : null,
                   );
                 },
               ),

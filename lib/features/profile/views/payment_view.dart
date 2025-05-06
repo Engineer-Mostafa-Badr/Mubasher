@@ -1,6 +1,5 @@
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
 import 'package:mubasher_app/features/profile/views/components/custom_details_profile.dart';
-import 'package:mubasher_app/features/profile/views/components/custom_profile_field.dart';
 
 class PaymentView extends StatelessWidget {
   const PaymentView({super.key});
@@ -134,11 +133,7 @@ class PaymentView extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 20),
-                  ProfileField(
-                    title: context.lang.nameText,
-                    value: 'Sallem ahmed',
-                    isEditable: true,
-                  ),
+                  const PaymentInputField(label: "Phone number", value: ''),
                   const SizedBox(height: 14),
                   const PaymentInputField(label: "Phone number", value: ''),
                   const SizedBox(height: 14),
@@ -146,28 +141,10 @@ class PaymentView extends StatelessWidget {
                   const SizedBox(height: 14),
                   const PaymentInputField(label: "E mail", value: ''),
                   const SizedBox(height: 30),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 60,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFB88917),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                      child: AppText(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        textColor: Colors.white,
-                        text: context.lang.payNowText,
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),
+            ElevatedButtonManager(text: context.lang.payNowText),
           ],
         ),
       ),

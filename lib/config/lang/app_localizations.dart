@@ -146,7 +146,7 @@ abstract class AppLocalizations {
   /// No description provided for @passwordFormatText.
   ///
   /// In en, this message translates to:
-  /// **'Password must contain uppercase, lowercase, number and special character'**
+  /// **'Password must not be less than 6 digits'**
   String get passwordFormatText;
 
   /// No description provided for @loginText.

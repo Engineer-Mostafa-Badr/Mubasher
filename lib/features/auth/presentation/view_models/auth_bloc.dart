@@ -67,11 +67,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
     on<LogoutEvent>((event, emit) async {
       log('📤 LogoutEvent received');
-      emit(AuthLoading()); // لو حابب تظهر loading أثناء الـ logout
-      // مسح التوكن من الـ Secure Storage
+      emit(AuthLoggedOutLoading());
+
       await TokenStorageHelper.clearToken();
       log('🧹 Token cleared');
-      // إرسال حالة AuthLoggedOut بعد المسح
+
       emit(AuthLoggedOutSuccess());
     });
   }

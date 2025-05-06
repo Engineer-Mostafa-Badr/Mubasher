@@ -96,21 +96,25 @@ class _ActivateViewState extends State<ActivateView> {
             SizedBox(height: 2.h),
             AppText(text: context.lang.activeDescriptionText),
             SizedBox(height: 2.h),
-            _buildRadioTile(
-              context.lang.emailText,
-              SvgImagesManager.email,
-              context.lang.email,
-            ),
-            _buildRadioTile(
-              context.lang.smsCodeText,
-              SvgImagesManager.phone,
-              context.lang.phoneNumberText,
-            ),
-            _buildRadioTile(
-              context.lang.whatsappText,
-              SvgImagesManager.vector,
-              context.lang.whatsAppText,
-            ),
+            if (selectedMethod == context.lang.emailText)
+              _buildRadioTile(
+                context.lang.emailText,
+                SvgImagesManager.email,
+                context.lang.email,
+              ),
+            if (selectedMethod == context.lang.smsCodeText)
+              _buildRadioTile(
+                context.lang.smsCodeText,
+                SvgImagesManager.phone,
+                context.lang.phoneNumberText,
+              ),
+            if (selectedMethod == context.lang.whatsappText)
+              _buildRadioTile(
+                context.lang.whatsappText,
+                SvgImagesManager.vector,
+                context.lang.whatsAppText,
+              ),
+
             SizedBox(height: 2.h),
             AppText(
               text: context.lang.chooseMethodText,

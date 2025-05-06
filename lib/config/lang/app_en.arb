@@ -16,7 +16,7 @@
     }
   },
   "emailFormatText": "Email format is not correct",
-  "passwordFormatText": "Password must contain uppercase, lowercase, number and special character",
+  "passwordFormatText": "Password must not be less than 6 digits",
   "loginText": "Let’s ",
   "signInText": "Sign In",
   "descriptionLoginText": "quis nostrud exercitation ullamco laboris nisi ut",

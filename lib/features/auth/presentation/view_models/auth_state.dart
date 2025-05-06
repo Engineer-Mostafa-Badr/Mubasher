@@ -30,4 +30,6 @@ class AuthError extends AuthState {
   List<Object?> get props => [message];
 }
 
+class AuthLoggedOutLoading extends AuthState {}
+
 class AuthLoggedOutSuccess extends AuthState {}

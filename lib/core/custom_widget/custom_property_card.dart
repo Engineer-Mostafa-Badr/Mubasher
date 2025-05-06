@@ -9,6 +9,7 @@ class PropertyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 7.h,
       decoration: BoxDecoration(
         color: const Color(0xFFF8F7FB),
         borderRadius: BorderRadius.circular(15.px),

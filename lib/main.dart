@@ -4,6 +4,8 @@ import 'package:mubasher_app/core/helpers/token_storage_helper.dart';
 import 'package:mubasher_app/config/lang/app_localizations.dart';
 import 'package:mubasher_app/core/route/routes_generator.dart';
 import 'config/app_controller/cubit/app_controller_cubit.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:mubasher_app/core/helpers/app_notifier.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:mubasher_app/core/route/routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,6 +15,7 @@ import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initDI();
+  AppNotifier.configLoading();
 
   String? token;
   try {
@@ -26,12 +29,8 @@ void main() async {
       providers: [
         BlocProvider<AuthBloc>(
           create:
-              (_) => AuthBloc(
-                loginUseCase: getIt(), // أو حسب DI عندك
-                registerUseCase: getIt(),
-              ),
+              (_) => AuthBloc(loginUseCase: getIt(), registerUseCase: getIt()),
         ),
-        // ممكن تضيف Blocs تانية هنا
       ],
       child: MubasherApp(
         initialRoute:
@@ -55,6 +54,7 @@ class MubasherApp extends StatelessWidget {
           create: (context) => AppControllerCubit(),
           child: BlocBuilder<AppControllerCubit, AppControllerState>(
             builder: (context, state) {
+              // final isArabic = state.appLang.languageCode == 'ar';
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'Mubasher App',
@@ -68,6 +68,17 @@ class MubasherApp extends StatelessWidget {
                 ),
                 initialRoute: initialRoute,
                 onGenerateRoute: RoutesGenerator.onGenerateRoutes,
+                localeResolutionCallback: (locale, supportedLocales) {
+                  return locale?.languageCode == 'ar'
+                      ? const Locale('ar')
+                      : const Locale('en');
+                },
+                builder: (context, child) {
+                  return Directionality(
+                    textDirection: TextDirection.ltr, // هنا بيتثبت الاتجاه
+                    child: EasyLoading.init()(context, child),
+                  );
+                },
               );
             },
           ),

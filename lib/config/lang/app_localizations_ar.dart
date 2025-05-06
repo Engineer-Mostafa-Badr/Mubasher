@@ -35,7 +35,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get emailFormatText => 'البريد الالكتروني غير صحيح';
 
   @override
-  String get passwordFormatText => 'كلمه السر يجب ان تحتوي على حروف كبيرة وصغيرة ورقم ورمز خاص';
+  String get passwordFormatText => 'كلمه السر يجب أن لا تقل عن 6 ارقام';
 
   @override
   String get loginText => 'دعنا ';

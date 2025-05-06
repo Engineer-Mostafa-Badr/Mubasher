@@ -11,8 +11,10 @@ class CustomPasswordTextFormField extends StatelessWidget {
               previous.isShowPasswrd != current.isShowPasswrd,
       builder: (context, state) {
         return AppTextFormField(
+          keyboardType: TextInputType.number,
           textEditingController: state.passwordController,
           hinText: context.lang.password,
+          labelText: context.lang.password,
           color: ColorManager.grey,
           validate:
               (password) => context.read<RegistrationCubit>().validatePassword(

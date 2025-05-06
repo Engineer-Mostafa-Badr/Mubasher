@@ -1,3 +1,4 @@
+import 'package:mubasher_app/features/auth/presentation/views/forgot_password.dart';
 import 'package:mubasher_app/features/splash/on_boarding/views/on_boarding_three.dart';
 import 'package:mubasher_app/features/splash/on_boarding/views/on_boarding_two.dart';
 import 'package:mubasher_app/features/auth/active_account/views/enter_otp_view.dart';
@@ -86,6 +87,11 @@ class RoutesGenerator {
       case PageRouteName.paymentRoute:
         return MaterialPageRoute(
           builder: (context) => const PaymentView(),
+          settings: settings,
+        );
+      case PageRouteName.forgotPasswordRoute:
+        return MaterialPageRoute(
+          builder: (context) => const ForgotPassword(),
           settings: settings,
         );
       default:

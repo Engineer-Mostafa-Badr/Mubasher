@@ -1,6 +1,6 @@
-import 'dart:async';
 import 'package:mubasher_app/core/route/routes.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class EnterOTPView extends StatefulWidget {
   const EnterOTPView({super.key});
@@ -18,6 +18,7 @@ class _EnterOTPViewState extends State<EnterOTPView> {
   bool _showSuccessBox = false;
   int _secondsRemaining = 30;
   Timer? _timer;
+
   @override
   void initState() {
     super.initState();
@@ -44,6 +45,8 @@ class _EnterOTPViewState extends State<EnterOTPView> {
       setState(() {
         _showSuccessBox = true;
       });
+      // إخفاء لوحة المفاتيح بعد إدخال الأرقام الأربعة
+      FocusScope.of(context).unfocus();
     }
   }
 
@@ -63,9 +66,10 @@ class _EnterOTPViewState extends State<EnterOTPView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F8F8),
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          Padding(
+          SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 60),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,7 +192,7 @@ class _EnterOTPViewState extends State<EnterOTPView> {
                   horizontal: 30,
                   vertical: 40,
                 ),
-                height: MediaQuery.of(context).size.height * .70,
+                height: 500,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(

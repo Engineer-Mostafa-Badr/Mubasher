@@ -1,9 +1,11 @@
+import 'package:mubasher_app/config/app_controller/cubit/app_controller_cubit.dart';
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
 import 'package:mubasher_app/features/profile/views/components/custom_details_profile.dart';
 import 'package:mubasher_app/features/profile/views/components/custom_profile_options.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_event.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_state.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_bloc.dart';
+import 'package:mubasher_app/core/helpers/app_notifier.dart';
 
 class ProfileOptionsView extends StatelessWidget {
   const ProfileOptionsView({super.key});
@@ -12,12 +14,14 @@ class ProfileOptionsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
+        if (state is AuthLoggedOutLoading) {
+          AppNotifier().showLoading();
+        } else {
+          AppNotifier().hideLoading();
+        }
         if (state is AuthLoggedOutSuccess) {
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            PageRouteName.signInRoute,
-            (route) => false,
-          );
+          AppNotifier().showSuccess(context, "LogOut Successfully");
+          Navigator.pushReplacementNamed(context, PageRouteName.signInRoute);
         }
       },
       child: Scaffold(
@@ -87,6 +91,24 @@ class ProfileOptionsView extends StatelessWidget {
                           assetPath: AssetsManager.englishToArabicIcon,
                           backgroundAsset: SvgImagesManager.boxIconProfile,
                           label: 'Change language',
+
+                          onTap: () {
+                            final currentLangCode =
+                                context
+                                    .read<AppControllerCubit>()
+                                    .state
+                                    .appLang
+                                    .languageCode;
+
+                            final newLang =
+                                currentLangCode == 'ar'
+                                    ? const Locale('en')
+                                    : const Locale('ar');
+
+                            context.read<AppControllerCubit>().changeLang(
+                              newLang,
+                            );
+                          },
                         ),
                         ProfileOption(
                           iconAsset: SvgImagesManager.internetIcon,

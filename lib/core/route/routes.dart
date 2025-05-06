@@ -13,4 +13,5 @@ class PageRouteName {
   static const String profileOptionsRoute = '/profile_options';
   static const String favoriteRoute = '/favorite';
   static const String paymentRoute = '/payment';
+  static const String forgotPasswordRoute = '/forgot_password';
 }

@@ -15,7 +15,7 @@
     }
   },
   "emailFormatText": "البريد الالكتروني غير صحيح",
-  "passwordFormatText": "كلمه السر يجب ان تحتوي على حروف كبيرة وصغيرة ورقم ورمز خاص",
+  "passwordFormatText": "كلمه السر يجب أن لا تقل عن 6 ارقام",
   "loginText": "دعنا ",
   "signInText": "نسجل الدخول",
   "descriptionLoginText": " أي شخص يمارس أي نوع من العمل إلا من أجل",

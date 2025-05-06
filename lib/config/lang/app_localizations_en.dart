@@ -35,7 +35,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emailFormatText => 'Email format is not correct';
 
   @override
-  String get passwordFormatText => 'Password must contain uppercase, lowercase, number and special character';
+  String get passwordFormatText => 'Password must not be less than 6 digits';
 
   @override
   String get loginText => 'Let’s ';

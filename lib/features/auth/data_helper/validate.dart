@@ -22,9 +22,7 @@ mixin Validate {
     required String? password,
     required BuildContext context,
   }) {
-    RegExp passwordRegExp = RegExp(
-      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$',
-    );
+    RegExp passwordRegExp = RegExp(r'^.{6,}$');
     if (password?.isEmpty ?? true) {
       return context.lang.emty(context.lang.password);
     } else if (!passwordRegExp.hasMatch(password!)) {

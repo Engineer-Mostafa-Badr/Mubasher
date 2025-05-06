@@ -1,7 +1,7 @@
-import 'app_text_manager.dart';
-import '../resources/app_color_manager.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../resources/app_color_manager.dart';
 import 'package:flutter/material.dart';
+import 'app_text_manager.dart';
 
 class ElevatedButtonManager extends StatelessWidget {
   const ElevatedButtonManager({super.key, required this.text, this.onPressed});
