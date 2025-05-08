@@ -16,42 +16,40 @@ abstract class AssetsManager {
 }
 
 abstract class SvgImagesManager {
-  static const String profile = "assets/svg_images/Profile.svg";
-  static const String email = "assets/svg_images/Email.svg";
-  static const String lock = "assets/svg_images/Lock.svg";
-  static const String phone = "assets/svg_images/phone.svg";
-  static const String vector = "assets/svg_images/Vector.svg";
-  static const String arrowLeft = "assets/svg_images/arrow-left-line.svg";
-  static const String group21 = "assets/svg_images/Group 21.svg";
-  static const String arrowBack = "assets/svg_images/Arrow-back.svg";
-  static const String location = "assets/svg_images/Location.svg";
-  static const String search = "assets/svg_images/Search.svg";
-  static const String heart = "assets/svg_images/Heart.svg";
-  static const String arrowRight = "assets/svg_images/arrow-right-line.svg";
-  static const String ellipse = "assets/svg_images/Ellipse.svg";
-  static const String home = "assets/svg_images/Active - Home.svg";
-  static const String home2 = "assets/svg_images/Active - Home2.svg";
-  static const String group22 = "assets/svg_images/Group 22.svg";
+  static const String profile = "assets/svg/Profile.svg";
+  static const String email = "assets/svg/Email.svg";
+  static const String lock = "assets/svg/Lock.svg";
+  static const String phone = "assets/svg/phone.svg";
+  static const String vector = "assets/svg/Vector.svg";
+  static const String arrowLeft = "assets/svg/arrow-left-line.svg";
+  static const String group21 = "assets/svg/Group 21.svg";
+  static const String arrowBack = "assets/svg/Arrow-back.svg";
+  static const String location = "assets/svg/Location.svg";
+  static const String search = "assets/svg/Search.svg";
+  static const String heart = "assets/svg/Heart.svg";
+  static const String arrowRight = "assets/svg/arrow-right-line.svg";
+  static const String ellipse = "assets/svg/Ellipse.svg";
+  static const String home = "assets/svg/Active - Home.svg";
+  static const String home2 = "assets/svg/Active - Home2.svg";
+  static const String group22 = "assets/svg/Group 22.svg";
   static const String notificationsOutline =
-      "assets/svg_images/ion_notifications-outline.svg";
-  static const String micActive = "assets/svg_images/Mic - Active.svg";
-  static const String notification = "assets/svg_images/Notification.svg";
-  static const String starSmall = "assets/svg_images/Star - Small.svg";
+      "assets/svg/ion_notifications-outline.svg";
+  static const String micActive = "assets/svg/Mic - Active.svg";
+  static const String notification = "assets/svg/Notification.svg";
+  static const String starSmall = "assets/svg/Star - Small.svg";
   static const String arrowBackBackground =
-      "assets/svg_images/Arrow-back-background.svg";
-  static const String skipButton = "assets/svg_images/Skip-Button.svg";
-  static const String backgroundAppBar =
-      "assets/svg_images/background-appbar.svg";
-  static const String arrowRightIcon = "assets/svg_images/arrow_right_icon.svg";
-  static const String editIcon = "assets/svg_images/tabler_edit.svg";
-  static const String yourProductIcon =
-      "assets/svg_images/your-product-icon.svg";
-  static const String showOutlineIcon = "assets/svg_images/show-outline.svg";
-  static const String logoutIcon = "assets/svg_images/logout-solid.svg";
-  static const String internetIcon = "assets/svg_images/internet.svg";
-  static const String boxIconProfile = "assets/svg_images/Box-icon-profile.svg";
-  static const String editFilledIcon = "assets/svg_images/edit-filled.svg";
-  static const String heart2 = "assets/svg_images/Heart2.svg";
-  static const String dotIcon = "assets/svg_images/dot-icon.svg";
-  static const String shapeBigSale = "assets/svg_images/Shape-big-sale.svg";
+      "assets/svg/Arrow-back-background.svg";
+  static const String skipButton = "assets/svg/Skip-Button.svg";
+  static const String backgroundAppBar = "assets/svg/background-appbar.svg";
+  static const String arrowRightIcon = "assets/svg/arrow_right_icon.svg";
+  static const String editIcon = "assets/svg/tabler_edit.svg";
+  static const String yourProductIcon = "assets/svg/your-product-icon.svg";
+  static const String showOutlineIcon = "assets/svg/show-outline.svg";
+  static const String logoutIcon = "assets/svg/logout-solid.svg";
+  static const String internetIcon = "assets/svg/internet.svg";
+  static const String boxIconProfile = "assets/svg/Box-icon-profile.svg";
+  static const String editFilledIcon = "assets/svg/edit-filled.svg";
+  static const String heart2 = "assets/svg/Heart2.svg";
+  static const String dotIcon = "assets/svg/dot-icon.svg";
+  static const String shapeBigSale = "assets/svg/Shape-big-sale.svg";
 }

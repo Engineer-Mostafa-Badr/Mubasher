@@ -9,7 +9,6 @@ class PropertyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 7.h,
       decoration: BoxDecoration(
         color: const Color(0xFFF8F7FB),
         borderRadius: BorderRadius.circular(15.px),
@@ -19,63 +18,61 @@ class PropertyCard extends StatelessWidget {
         children: [
           AspectRatio(
             aspectRatio: 1.1,
-            child: Expanded(
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15.px),
-                      topRight: Radius.circular(15.px),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15.px),
-                        child: Image.asset(
-                          AssetsManager.shape,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                        ),
+            child: Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15.px),
+                    topRight: Radius.circular(15.px),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15.px),
+                      child: Image.asset(
+                        AssetsManager.shape,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
-                  Positioned(
-                    top: 10,
-                    right: 10,
-                    child: CircleAvatar(
-                      backgroundColor: const Color(0xFFD9B777),
-                      radius: 16,
-                      child: const Icon(
-                        Icons.favorite,
-                        size: 16,
+                ),
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: CircleAvatar(
+                    backgroundColor: const Color(0xFFD9B777),
+                    radius: 16,
+                    child: const Icon(
+                      Icons.favorite,
+                      size: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 10,
+                  right: 10,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF2D4D59),
+                      borderRadius: BorderRadius.circular(15.px),
+                    ),
+                    child: const Text(
+                      "\$ 220/month",
+                      style: TextStyle(
+                        fontSize: 12,
                         color: Colors.white,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
-                  Positioned(
-                    bottom: 10,
-                    right: 10,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF2D4D59),
-                        borderRadius: BorderRadius.circular(15.px),
-                      ),
-                      child: const Text(
-                        "\$ 220/month",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           SizedBox(height: 1.h),

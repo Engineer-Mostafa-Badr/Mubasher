@@ -7,6 +7,13 @@ import 'package:mubasher_app/core/helpers/app_notifier.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
+  String normalizeNumber(String code, String number) {
+    final cleaned =
+        number.trim().startsWith('0')
+            ? number.trim().substring(1)
+            : number.trim();
+    return "$code$cleaned";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -230,6 +237,14 @@ class SignUpView extends StatelessWidget {
                               text: context.lang.register,
                               onPressed: () {
                                 if (regState.formKey.currentState!.validate()) {
+                                  final fullPhone = normalizeNumber(
+                                    regState.selectedPhoneCode,
+                                    regState.phoneController.text,
+                                  );
+                                  final fullWhatsApp = normalizeNumber(
+                                    regState.selectedWhatsAppCode,
+                                    regState.whatsAppController.text,
+                                  );
                                   context.read<AuthBloc>().add(
                                     RegisterEvent(
                                       username:
@@ -242,11 +257,8 @@ class SignUpView extends StatelessWidget {
                                       confirmPassword:
                                           regState.passwordController.text
                                               .trim(),
-                                      phone:
-                                          regState.phoneController.text.trim(),
-                                      whatsapp:
-                                          regState.whatsAppController.text
-                                              .trim(),
+                                      phone: fullPhone,
+                                      whatsapp: fullWhatsApp,
                                     ),
                                   );
                                 }

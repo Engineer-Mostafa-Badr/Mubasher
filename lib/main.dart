@@ -16,6 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initDI();
   AppNotifier.configLoading();
+  // debugPaintSizeEnabled = true;
 
   String? token;
   try {

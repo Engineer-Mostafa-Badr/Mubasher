@@ -137,6 +137,7 @@ class CustomHomeView extends StatelessWidget {
                                 width: 270.px,
                                 fit: BoxFit.cover,
                               ),
+
                               Positioned(
                                 bottom: 6.h,
                                 child: ElevatedButton(
