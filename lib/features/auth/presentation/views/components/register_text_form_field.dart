@@ -10,14 +10,15 @@ class RegisterTextFormField extends StatelessWidget {
     this.keyboardType,
     this.color,
     this.labelText,
+    this.suffix,
   });
   final TextEditingController controller;
   final String hintText;
   final String? labelText;
   final String prefixIconPath;
+  final Widget? suffix;
   final String? Function(String?)? validate;
   final TextInputType? keyboardType;
-
   final Color? color;
 
   @override
@@ -29,6 +30,7 @@ class RegisterTextFormField extends StatelessWidget {
       hinText: hintText,
       labelText: labelText,
       color: color,
+      suffix: suffix,
       prefix: SvgPicture.asset(
         prefixIconPath,
         fit: BoxFit.scaleDown,

@@ -1,3 +1,4 @@
+import 'package:mubasher_app/features/auth/presentation/views/components/phone_whatsapp_choice_dial_code.dart';
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_state.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_event.dart';
@@ -43,7 +44,16 @@ class SignUpView extends StatelessWidget {
               return BlocBuilder<RegistrationCubit, RegistrationState>(
                 buildWhen:
                     (previous, current) =>
-                        previous.isShowPasswrd != current.isShowPasswrd,
+                        previous.isShowPassword != current.isShowPassword ||
+                        previous.selectedPhoneCode !=
+                            current.selectedPhoneCode ||
+                        previous.selectedPhoneFlag !=
+                            current.selectedPhoneFlag ||
+                        previous.selectedWhatsAppCode !=
+                            current.selectedWhatsAppCode ||
+                        previous.selectedWhatsAppFlag !=
+                            current.selectedWhatsAppFlag,
+
                 builder: (context, regState) {
                   return Form(
                     key: regState.formKey,
@@ -110,12 +120,43 @@ class SignUpView extends StatelessWidget {
                               color: ColorManager.grey,
                               prefixIconPath: SvgImagesManager.phone,
                               keyboardType: TextInputType.phone,
+                              suffix: GestureDetector(
+                                onTap: () async {
+                                  await showModalBottomSheet(
+                                    context: context,
+                                    builder: (_) {
+                                      return CountryListWidget(
+                                        onCountrySelected: (code, flag) {
+                                          cubit.updatePhoneCode(code, flag);
+                                          Navigator.pop(context);
+                                        },
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      '${regState.selectedPhoneFlag} ${regState.selectedPhoneCode}',
+                                      style: TextStyle(
+                                        color: ColorManager.primaryColor,
+                                      ),
+                                    ),
+                                    Icon(
+                                      Icons.arrow_drop_down,
+                                      color: ColorManager.primaryColor,
+                                    ),
+                                    SizedBox(width: 8),
+                                  ],
+                                ),
+                              ),
                             ),
                             RegisterTextFormField(
                               validate:
-                                  (whatsApp) => cubit.validateWhatsApp(
+                                  (whatapp) => cubit.validateWhatsApp(
                                     context: context,
-                                    whatsAppNumber: whatsApp,
+                                    whatsAppNumber: whatapp,
                                   ),
                               controller: regState.whatsAppController,
                               hintText: context.lang.whatsAppText,
@@ -123,6 +164,37 @@ class SignUpView extends StatelessWidget {
                               color: ColorManager.grey,
                               prefixIconPath: SvgImagesManager.vector,
                               keyboardType: TextInputType.phone,
+                              suffix: GestureDetector(
+                                onTap: () async {
+                                  await showModalBottomSheet(
+                                    context: context,
+                                    builder: (_) {
+                                      return CountryListWidget(
+                                        onCountrySelected: (code, flag) {
+                                          cubit.updateWhatsAppCode(code, flag);
+                                          Navigator.pop(context);
+                                        },
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      '${regState.selectedWhatsAppFlag} ${regState.selectedWhatsAppCode}',
+                                      style: TextStyle(
+                                        color: ColorManager.primaryColor,
+                                      ),
+                                    ),
+                                    Icon(
+                                      Icons.arrow_drop_down,
+                                      color: ColorManager.primaryColor,
+                                    ),
+                                    SizedBox(width: 8),
+                                  ],
+                                ),
+                              ),
                             ),
                             CustomPasswordTextFormField(),
                             SizedBox(height: 2.h),
@@ -142,7 +214,7 @@ class SignUpView extends StatelessWidget {
                                   },
                                   child: AppText(
                                     text:
-                                        regState.isShowPasswrd
+                                        regState.isShowPassword
                                             ? context.lang.showPasswordText
                                             : context.lang.hidePasswordText,
                                     textColor: ColorManager.black,

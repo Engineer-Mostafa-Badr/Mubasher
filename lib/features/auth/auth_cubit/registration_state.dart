@@ -8,7 +8,11 @@ class RegistrationState extends Equatable {
     required this.whatsAppController,
     required this.passwordController,
     required this.formKey,
-    this.isShowPasswrd = true,
+    this.isShowPassword = true,
+    this.selectedPhoneCode = '+20',
+    this.selectedWhatsAppCode = '+20',
+    this.selectedPhoneFlag = '🇪🇬',
+    this.selectedWhatsAppFlag = '🇪🇬',
   });
 
   final TextEditingController nameController;
@@ -17,7 +21,11 @@ class RegistrationState extends Equatable {
   final TextEditingController whatsAppController;
   final TextEditingController passwordController;
   final GlobalKey<FormState> formKey;
-  final bool isShowPasswrd;
+  final bool isShowPassword;
+  final String selectedPhoneCode;
+  final String selectedWhatsAppCode;
+  final String selectedPhoneFlag;
+  final String selectedWhatsAppFlag;
 
   RegistrationState copyWith({
     TextEditingController? nameController,
@@ -25,16 +33,24 @@ class RegistrationState extends Equatable {
     TextEditingController? phoneController,
     TextEditingController? whatsAppController,
     TextEditingController? passwordController,
-    bool? isShowPasswrd,
+    bool? isShowPassword,
     GlobalKey<FormState>? formKey,
+    String? selectedPhoneCode,
+    String? selectedWhatsAppCode,
+    String? selectedPhoneFlag,
+    String? selectedWhatsAppFlag,
   }) => RegistrationState(
     nameController: nameController ?? this.nameController,
     emailController: emailController ?? this.emailController,
     phoneController: phoneController ?? this.phoneController,
     whatsAppController: whatsAppController ?? this.whatsAppController,
     passwordController: passwordController ?? this.passwordController,
-    isShowPasswrd: isShowPasswrd ?? this.isShowPasswrd,
+    isShowPassword: isShowPassword ?? this.isShowPassword,
     formKey: formKey ?? this.formKey,
+    selectedPhoneCode: selectedPhoneCode ?? this.selectedPhoneCode,
+    selectedWhatsAppCode: selectedWhatsAppCode ?? this.selectedWhatsAppCode,
+    selectedPhoneFlag: selectedPhoneFlag ?? this.selectedPhoneFlag,
+    selectedWhatsAppFlag: selectedWhatsAppFlag ?? this.selectedWhatsAppFlag,
   );
 
   @override
@@ -44,7 +60,11 @@ class RegistrationState extends Equatable {
     phoneController,
     whatsAppController,
     passwordController,
-    isShowPasswrd,
+    isShowPassword,
     formKey,
+    selectedPhoneCode,
+    selectedWhatsAppCode,
+    selectedPhoneFlag,
+    selectedWhatsAppFlag,
   ];
 }

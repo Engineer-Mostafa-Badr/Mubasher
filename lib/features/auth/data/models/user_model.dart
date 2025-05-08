@@ -42,10 +42,10 @@ class UserModel extends UserEntity {
       location: json['locationn'] ?? '',
       address: json['adress'] ?? '',
       avatar: json['user_avater'] ?? '',
-      isActive: json['is_active'] ?? false,
+      isActive: json['is_active'] ?? true,
       isSeller: json['is_seller'] ?? false,
       isAdmin: json['is_admin'] ?? false,
-      isUser: json['is_user'] ?? true,
+      isUser: json['is_user'] ?? false,
       userType: json['user_type'] ?? 0,
       accessToken: token,
     );

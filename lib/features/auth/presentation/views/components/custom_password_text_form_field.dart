@@ -8,10 +8,10 @@ class CustomPasswordTextFormField extends StatelessWidget {
     return BlocBuilder<RegistrationCubit, RegistrationState>(
       buildWhen:
           (previous, current) =>
-              previous.isShowPasswrd != current.isShowPasswrd,
+              previous.isShowPassword != current.isShowPassword,
       builder: (context, state) {
         return AppTextFormField(
-          keyboardType: TextInputType.number,
+          keyboardType: TextInputType.visiblePassword,
           textEditingController: state.passwordController,
           hinText: context.lang.password,
           labelText: context.lang.password,
@@ -21,7 +21,7 @@ class CustomPasswordTextFormField extends StatelessWidget {
                 context: context,
                 password: password,
               ),
-          isShowContent: state.isShowPasswrd,
+          isShowContent: state.isShowPassword,
           prefix: SvgPicture.asset(
             SvgImagesManager.lock,
             fit: BoxFit.scaleDown,

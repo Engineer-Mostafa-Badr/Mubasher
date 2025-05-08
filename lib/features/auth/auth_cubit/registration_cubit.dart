@@ -1,5 +1,4 @@
 import 'package:mubasher_app/features/auth/data_helper/validate.dart';
-import 'package:mubasher_app/core/route/routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -19,19 +18,17 @@ class RegistrationCubit extends Cubit<RegistrationState> with Validate {
       );
 
   void showHidePassword() {
-    emit(state.copyWith(isShowPasswrd: !state.isShowPasswrd));
+    emit(state.copyWith(isShowPassword: !state.isShowPassword));
   }
 
-  void login(BuildContext context) {
-    if (state.formKey.currentState!.validate()) {
-      Navigator.pushReplacementNamed(context, PageRouteName.homeRoute);
-    }
+  void updatePhoneCode(String code, String flag) {
+    emit(state.copyWith(selectedPhoneCode: code, selectedPhoneFlag: flag));
   }
 
-  void signUp(BuildContext context) {
-    if (state.formKey.currentState!.validate()) {
-      Navigator.pushReplacementNamed(context, PageRouteName.activateRoute);
-    }
+  void updateWhatsAppCode(String code, String flag) {
+    emit(
+      state.copyWith(selectedWhatsAppCode: code, selectedWhatsAppFlag: flag),
+    );
   }
 
   @override

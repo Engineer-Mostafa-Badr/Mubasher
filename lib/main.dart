@@ -54,7 +54,6 @@ class MubasherApp extends StatelessWidget {
           create: (context) => AppControllerCubit(),
           child: BlocBuilder<AppControllerCubit, AppControllerState>(
             builder: (context, state) {
-              // final isArabic = state.appLang.languageCode == 'ar';
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'Mubasher App',
@@ -75,7 +74,7 @@ class MubasherApp extends StatelessWidget {
                 },
                 builder: (context, child) {
                   return Directionality(
-                    textDirection: TextDirection.ltr, // هنا بيتثبت الاتجاه
+                    textDirection: TextDirection.ltr,
                     child: EasyLoading.init()(context, child),
                   );
                 },
