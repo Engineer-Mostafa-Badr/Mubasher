@@ -16,8 +16,8 @@ abstract class ColorManager {
   static const Color darkBlue = Color(0xff06004F);
   static const Color yellow = Color(0xFFFDD835);
 
-  static const Color grey1 = Color(0xff707070);
-  static const Color grey2 = Color(0xff797979);
+  static const Color greyLabelText = Color(0xFFF5F4F8);
+  static const Color grey2 = Color(0xFF2A2B2E);
   static const Color white = Color(0xFFF7F6FB);
   static const Color red = Color(0xffe61f34);
   static const Color backgroundContainerProfile = Color(0xFFFFF6E9);

@@ -53,13 +53,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountText => 'account';
 
   @override
-  String get fullNameText => 'Full Name';
+  String get fullNameText => 'Full name';
 
   @override
-  String get phoneNumberText => 'Phone Number';
+  String get phoneNumberText => 'Phone number';
 
   @override
-  String get whatsAppText => 'WhatsApp';
+  String get whatsAppText => 'Whatsapp';
 
   @override
   String get nameFormatText => 'Name format is not correct';
@@ -183,4 +183,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get payNowText => 'Pay now';
+
+  @override
+  String get userText => 'User';
+
+  @override
+  String get sellerText => 'Seller';
+
+  @override
+  String get didnotReceiveTheOTPText => 'Didn’t receive the OTP? ';
+
+  @override
+  String get resendOTPText => 'Resend OTP';
+
+  @override
+  String get descriptionEnterCodeText => 'Lorem ipsum dolor sit amet, consectetur.';
+
+  @override
+  String get accountEnterCodeText => 'Account ';
+
+  @override
+  String get successfullyText => 'successfully';
+
+  @override
+  String get createdText => 'created';
+
+  @override
+  String get finishText => 'Finish';
+
+  @override
+  String get enterTheText => 'Enter the ';
+
+  @override
+  String get codeText => 'code';
+
+  @override
+  String get descriptionEnterViewText => 'Enter the 4 digit code that we just sent to';
 }

@@ -182,19 +182,19 @@ abstract class AppLocalizations {
   /// No description provided for @fullNameText.
   ///
   /// In en, this message translates to:
-  /// **'Full Name'**
+  /// **'Full name'**
   String get fullNameText;
 
   /// No description provided for @phoneNumberText.
   ///
   /// In en, this message translates to:
-  /// **'Phone Number'**
+  /// **'Phone number'**
   String get phoneNumberText;
 
   /// No description provided for @whatsAppText.
   ///
   /// In en, this message translates to:
-  /// **'WhatsApp'**
+  /// **'Whatsapp'**
   String get whatsAppText;
 
   /// No description provided for @nameFormatText.
@@ -442,6 +442,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Pay now'**
   String get payNowText;
+
+  /// No description provided for @userText.
+  ///
+  /// In en, this message translates to:
+  /// **'User'**
+  String get userText;
+
+  /// No description provided for @sellerText.
+  ///
+  /// In en, this message translates to:
+  /// **'Seller'**
+  String get sellerText;
+
+  /// No description provided for @didnotReceiveTheOTPText.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn’t receive the OTP? '**
+  String get didnotReceiveTheOTPText;
+
+  /// No description provided for @resendOTPText.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend OTP'**
+  String get resendOTPText;
+
+  /// No description provided for @descriptionEnterCodeText.
+  ///
+  /// In en, this message translates to:
+  /// **'Lorem ipsum dolor sit amet, consectetur.'**
+  String get descriptionEnterCodeText;
+
+  /// No description provided for @accountEnterCodeText.
+  ///
+  /// In en, this message translates to:
+  /// **'Account '**
+  String get accountEnterCodeText;
+
+  /// No description provided for @successfullyText.
+  ///
+  /// In en, this message translates to:
+  /// **'successfully'**
+  String get successfullyText;
+
+  /// No description provided for @createdText.
+  ///
+  /// In en, this message translates to:
+  /// **'created'**
+  String get createdText;
+
+  /// No description provided for @finishText.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get finishText;
+
+  /// No description provided for @enterTheText.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the '**
+  String get enterTheText;
+
+  /// No description provided for @codeText.
+  ///
+  /// In en, this message translates to:
+  /// **'code'**
+  String get codeText;
+
+  /// No description provided for @descriptionEnterViewText.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 4 digit code that we just sent to'**
+  String get descriptionEnterViewText;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

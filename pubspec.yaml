@@ -92,7 +92,6 @@ flutter:
   assets:
     - assets/images/
     - assets/svg/
-    - assets/svg_images/
     - assets/icons/
     - assets/fonts/
 
@@ -123,6 +122,15 @@ flutter:
         - asset: assets/fonts/raleway/Raleway-Italic.ttf
         - asset: assets/fonts/raleway/Raleway-Light.ttf
         - asset: assets/fonts/raleway/Raleway-ExtraBold.ttf
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/montserrat/Montserrat-Black.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Bold.ttf
+        - asset: assets/fonts/montserrat/Montserrat-ExtraBold.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Italic.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Medium.ttf
+        - asset: assets/fonts/montserrat/Montserrat-Regular.ttf
+        - asset: assets/fonts/montserrat/Montserrat-SemiBold.ttf
 
   #   - family: Trajan Pro
   #     fonts:

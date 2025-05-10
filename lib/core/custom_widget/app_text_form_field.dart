@@ -6,7 +6,7 @@ class AppTextFormField extends StatelessWidget {
   const AppTextFormField({
     super.key,
     required this.textEditingController,
-    this.color,
+    this.colorHintText,
     this.hinText,
     this.labelText,
     this.isFill = true,
@@ -17,10 +17,12 @@ class AppTextFormField extends StatelessWidget {
     this.verticalPadding,
     this.isShowContent = false,
     this.keyboardType,
+    this.colorLableText,
   });
 
   final TextEditingController textEditingController;
-  final Color? color;
+  final Color? colorHintText;
+  final Color? colorLableText;
   final String? hinText;
   final String? labelText;
   final bool isFill;
@@ -58,12 +60,13 @@ class AppTextFormField extends StatelessWidget {
           suffixIcon: suffix,
           hintText: hinText,
           hintStyle: TextStyle(
-            color: color ?? ColorManager.primaryColor,
+            color: colorHintText ?? ColorManager.grey,
             fontSize: 14.px,
             fontWeight: FontWeight.w400,
             fontFamily: "Lato",
           ),
           labelText: labelText,
+          labelStyle: TextStyle(color: colorLableText ?? ColorManager.grey),
           filled: isFill,
           errorMaxLines: 2,
           fillColor: ColorManager.white,
@@ -71,6 +74,10 @@ class AppTextFormField extends StatelessWidget {
           focusedBorder: border(context: context),
           border: border(context: context),
           errorBorder: border(isErrorBorder: true, context: context),
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 3.h,
+            // horizontal: 2.w,
+          ),
         ),
       ),
     );

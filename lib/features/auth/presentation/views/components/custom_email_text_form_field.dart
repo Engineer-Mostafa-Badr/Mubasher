@@ -12,7 +12,7 @@ class CustomEmailTextFormField extends StatelessWidget {
           textEditingController: state.emailController,
           hinText: context.lang.email,
           labelText: context.lang.email,
-          color: ColorManager.grey,
+          colorHintText: ColorManager.grey,
           validate:
               (email) => context.read<RegistrationCubit>().validateEmail(
                 context: context,

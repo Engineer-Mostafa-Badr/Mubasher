@@ -1,6 +1,16 @@
+import 'package:mubasher_app/core/custom_widget/arrow_back_leading_appbar.dart';
+import 'package:mubasher_app/core/custom_widget/elevated_button_manager.dart';
+import 'package:mubasher_app/core/custom_widget/text_span_manager.dart';
+import 'package:mubasher_app/core/custom_widget/app_text_manager.dart';
+import 'package:mubasher_app/core/resources/app_assets_manager.dart';
+import 'package:mubasher_app/core/resources/app_color_manager.dart';
+import 'package:mubasher_app/core/extension/context.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:mubasher_app/core/route/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'dart:async';
+import 'dart:ui';
 
 class EnterOTPView extends StatefulWidget {
   const EnterOTPView({super.key});
@@ -45,7 +55,6 @@ class _EnterOTPViewState extends State<EnterOTPView> {
       setState(() {
         _showSuccessBox = true;
       });
-      // إخفاء لوحة المفاتيح بعد إدخال الأرقام الأربعة
       FocusScope.of(context).unfocus();
     }
   }
@@ -65,65 +74,58 @@ class _EnterOTPViewState extends State<EnterOTPView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F8F8),
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 60),
+            padding: EdgeInsets.symmetric(horizontal: 7.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.arrow_back_ios_new,
-                    color: Color(0xFFB98A38),
-                  ),
+                SizedBox(height: 5.h),
+                ArrowBackLeadingAppbar(
+                  onTap: () {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      PageRouteName.signUpRoute,
+                    );
+                  },
                 ),
-                const SizedBox(height: 20),
-                const Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "Enter the ",
-                        style: TextStyle(
-                          fontSize: 30,
-                          color: Color(0xFFB98A38),
-                        ),
-                      ),
-                      TextSpan(
-                        text: "code",
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
+                SizedBox(height: 5.h),
+                TextSpanManager(
+                  textAlign: TextAlign.start,
+                  textOne: context.lang.enterTheText,
+                  fontSizeTextOne: 25.px,
+                  fontWeightTextOne: FontWeight.w400,
+                  colorTextOne: ColorManager.primaryColor,
+                  latterSpaceTextOne: 0.5,
+                  fontFamilyTextOne: "Lato",
+                  textTwo: context.lang.codeText,
+                  fontSizeTextTwo: 25.px,
+                  fontWeightTextTwo: FontWeight.w900,
+                  colorTextTwo: ColorManager.black,
+                  fontFamilyTextTwo: "Lato",
+                  latterSpaceTextTwo: 0.5,
                 ),
-                const SizedBox(height: 10),
-                const Text(
-                  "Enter the 4 digit code that we just sent to",
-                  style: TextStyle(fontSize: 16),
+                SizedBox(height: 3.h),
+                AppText(
+                  fontSize: 14.px,
+                  fontWeight: FontWeight.w400,
+                  text: context.lang.descriptionEnterViewText,
                 ),
-                const Text(
-                  "jonathan@email.com",
-                  style: TextStyle(color: Color(0xFFB98A38), fontSize: 16),
+                AppText(
+                  textColor: ColorManager.primaryColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  text: 'jonathan@email.com',
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  "$_secondsRemaining s",
-                  style: const TextStyle(fontSize: 16, color: Colors.black),
-                ),
-                const SizedBox(height: 30),
+                SizedBox(height: 12.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(4, (index) {
                     return SizedBox(
-                      width: 60,
-                      height: 70,
+                      width: 20.w,
+                      height: 10.h,
                       child: TextField(
                         controller: _controllers[index],
                         focusNode: _focusNodes[index],
@@ -132,21 +134,23 @@ class _EnterOTPViewState extends State<EnterOTPView> {
                         keyboardType: TextInputType.number,
                         style: const TextStyle(
                           fontSize: 24,
-                          color: Color(0xFFB98A38),
+                          color: ColorManager.primaryColor,
                         ),
                         decoration: InputDecoration(
                           counterText: '',
                           filled: true,
-                          fillColor: const Color(0xFFF7F5F9),
+                          fillColor: ColorManager.greyLabelText,
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(2.w),
                             borderSide: const BorderSide(
                               color: Colors.transparent,
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(2.w),
+                            borderSide: const BorderSide(
+                              color: ColorManager.black,
+                            ),
                           ),
                         ),
                         onChanged: (value) {
@@ -161,120 +165,140 @@ class _EnterOTPViewState extends State<EnterOTPView> {
                     );
                   }),
                 ),
-                const SizedBox(height: 60),
-                const Center(
-                  child: Text.rich(
-                    TextSpan(
-                      text: "Didn’t receive the OTP? ",
-                      style: TextStyle(color: Colors.black),
-                      children: [
-                        TextSpan(
-                          text: "Resend OTP",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFFB98A38),
+                SizedBox(height: 30.h),
+                Center(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(7.w),
+                    child: Container(
+                      height: 6.h,
+                      width: 22.w,
+                      color: ColorManager.greyLabelText,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            SvgImagesManager.timer,
+                            fit: BoxFit.scaleDown,
+                            width: 2.w,
+                            height: 3.5.h,
                           ),
-                        ),
-                      ],
+                          AppText(
+                            text:
+                                '00:${_secondsRemaining.toString().padLeft(2, '0')}',
+                            fontFamily: 'Mantserrat',
+                            fontSize: 14.px,
+                            fontWeight: FontWeight.w500,
+                            textColor: ColorManager.primaryColor,
+                            latterSpace: .5,
+                          ),
+                        ],
+                      ),
                     ),
+                  ),
+                ),
+                SizedBox(height: 3.h),
+                Center(
+                  child: TextSpanManager(
+                    textAlign: TextAlign.start,
+                    textOne: context.lang.didnotReceiveTheOTPText,
+                    fontSizeTextOne: 12.px,
+                    fontWeightTextOne: FontWeight.w400,
+                    colorTextOne: ColorManager.grey2,
+                    latterSpaceTextOne: 0.5,
+                    fontFamilyTextOne: "Releway",
+                    textTwo: context.lang.resendOTPText,
+                    fontSizeTextTwo: 12.px,
+                    fontWeightTextTwo: FontWeight.w700,
+                    colorTextTwo: ColorManager.black,
+                    fontFamilyTextTwo: "Releway",
+                    latterSpaceTextTwo: 0.5,
                   ),
                 ),
               ],
             ),
           ),
           if (_showSuccessBox)
-            Opacity(opacity: 0.6, child: Container(color: Colors.black)),
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+              child: Container(
+                // ignore: deprecated_member_use
+                color: ColorManager.black.withOpacity(0.5),
+              ),
+            ),
           if (_showSuccessBox)
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 30,
-                  vertical: 40,
-                ),
-                height: 500,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+                height: 63.h,
+                decoration: BoxDecoration(
+                  color: ColorManager.white,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    topRight: Radius.circular(50),
+                    topLeft: Radius.circular(14.w),
+                    topRight: Radius.circular(14.w),
                   ),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(height: 10),
+                    SizedBox(height: 5),
                     Container(
-                      width: 120,
+                      width: 15.w,
                       height: 4,
                       decoration: BoxDecoration(
                         color: const Color(0xFF3C4460),
                         borderRadius: BorderRadius.circular(2),
                       ),
                     ),
-                    const SizedBox(height: 30),
-                    Container(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: LinearGradient(
-                          colors: [Color(0xFF375C4A), Color(0xFF78BF34)],
+                    SizedBox(height: 4.h),
+                    SvgPicture.asset(
+                      SvgImagesManager.alertSuccess,
+                      width: 5.w,
+                      height: 20.h,
+                    ),
+                    SizedBox(height: 2.h),
+                    Column(
+                      children: [
+                        TextSpanManager(
+                          textAlign: TextAlign.start,
+                          textOne: context.lang.accountEnterCodeText,
+                          fontSizeTextOne: 25.px,
+                          fontWeightTextOne: FontWeight.w500,
+                          colorTextOne: ColorManager.black,
+                          latterSpaceTextOne: 0.5,
+                          fontFamilyTextOne: "Releway",
+                          textTwo: context.lang.successfullyText,
+                          fontSizeTextTwo: 25.px,
+                          fontWeightTextTwo: FontWeight.w600,
+                          colorTextTwo: ColorManager.primaryColor,
+                          fontFamilyTextTwo: "Releway",
+                          latterSpaceTextTwo: 0.5,
                         ),
-                      ),
-                      padding: const EdgeInsets.all(30),
-                      child: const Icon(
-                        Icons.check,
-                        size: 40,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 30),
-                    const Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "Account ",
-                            style: TextStyle(fontSize: 26),
-                          ),
-                          TextSpan(
-                            text: "successfully\n",
-                            style: TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFB98A38),
-                            ),
-                          ),
-                          TextSpan(
-                            text: "created",
-                            style: TextStyle(fontSize: 26),
-                          ),
-                        ],
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      "Lorem ipsum dolor sit amet, consectetur.",
-                      style: TextStyle(color: Color(0xFF3C4460), fontSize: 14),
-                    ),
-                    const SizedBox(height: 30),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFB98A38),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                        AppText(
+                          text: context.lang.createdText,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 25.px,
+                          fontFamily: "Releway",
                         ),
-                        minimumSize: const Size.fromHeight(50),
-                      ),
+                      ],
+                    ),
+                    SizedBox(height: 2.h),
+                    AppText(
+                      textColor: Color(0xFF3C4460),
+                      fontSize: 14,
+                      text: context.lang.descriptionEnterCodeText,
+                    ),
+                    SizedBox(height: 3.h),
+                    ElevatedButtonManager(
+                      text: context.lang.finishText,
+                      color: ColorManager.primaryColor,
                       onPressed: () {
-                        Navigator.pushReplacementNamed(
+                        Navigator.pushNamedAndRemoveUntil(
                           context,
                           PageRouteName.homeRoute,
+                          ModalRoute.withName(PageRouteName.splashRoute),
                         );
                       },
-                      child: const Text(
-                        "Finish",
-                        style: TextStyle(color: Colors.white),
-                      ),
                     ),
                   ],
                 ),

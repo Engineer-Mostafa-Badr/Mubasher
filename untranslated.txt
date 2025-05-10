@@ -1,5 +1,17 @@
 {
   "ar": [
-    "signUp"
+    "signUp",
+    "userText",
+    "sellerText",
+    "didnotReceiveTheOTPText",
+    "resendOTPText",
+    "descriptionEnterCodeText",
+    "accountEnterCodeText",
+    "successfullyText",
+    "createdText",
+    "finishText",
+    "enterTheText",
+    "codeText",
+    "descriptionEnterViewText"
   ]
 }

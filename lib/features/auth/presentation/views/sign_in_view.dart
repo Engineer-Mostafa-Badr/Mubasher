@@ -39,7 +39,6 @@ class SignInView extends StatelessWidget {
                 });
               }
             },
-
             child: Form(
               key: registrationCubit.state.formKey,
               child: Scaffold(
@@ -53,7 +52,7 @@ class SignInView extends StatelessWidget {
                           height: 20.h,
                         ),
                       ),
-                      SizedBox(height: 5.h),
+                      SizedBox(height: 10.h),
                       TextSpanManager(
                         textAlign: TextAlign.start,
                         textOne: context.lang.loginText,

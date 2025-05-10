@@ -29,7 +29,7 @@ class RegisterTextFormField extends StatelessWidget {
       textEditingController: controller,
       hinText: hintText,
       labelText: labelText,
-      color: color,
+      colorHintText: color,
       suffix: suffix,
       prefix: SvgPicture.asset(
         prefixIconPath,

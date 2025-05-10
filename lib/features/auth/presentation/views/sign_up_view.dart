@@ -77,7 +77,7 @@ class SignUpView extends StatelessWidget {
                                 );
                               },
                             ),
-                            SizedBox(height: 4.h),
+                            SizedBox(height: 2.h),
                             TextSpanManager(
                               textAlign: TextAlign.start,
                               textOne: context.lang.createyourText,
@@ -100,7 +100,44 @@ class SignUpView extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                               fontSize: 16.px,
                             ),
-                            SizedBox(height: 3.5.h),
+                            SizedBox(height: 2.h),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Container(
+                                  height: 9.h,
+                                  width: 37.w,
+                                  color: ColorManager.greyLabelText,
+                                  child: Column(
+                                    children: [
+                                      SvgPicture.asset(
+                                        SvgImagesManager.profileUserSeller,
+                                        fit: BoxFit.contain,
+                                        height: 5.h,
+                                      ),
+                                      AppText(text: context.lang.userText),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(width: 5.w),
+                                Container(
+                                  height: 9.h,
+                                  width: 37.w,
+                                  color: ColorManager.greyLabelText,
+                                  child: Column(
+                                    children: [
+                                      SvgPicture.asset(
+                                        SvgImagesManager.profileUserSeller,
+                                        fit: BoxFit.contain,
+                                        height: 5.h,
+                                      ),
+                                      AppText(text: context.lang.sellerText),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 1.h),
                             RegisterTextFormField(
                               validate:
                                   (name) => cubit.validateName(
@@ -234,6 +271,7 @@ class SignUpView extends StatelessWidget {
                             ),
                             SizedBox(height: 3.h),
                             ElevatedButtonManager(
+                              color: ColorManager.primaryColor,
                               text: context.lang.register,
                               onPressed: () {
                                 if (regState.formKey.currentState!.validate()) {
@@ -264,6 +302,7 @@ class SignUpView extends StatelessWidget {
                                 }
                               },
                             ),
+                            SizedBox(height: 3.h),
                           ],
                         ),
                       ),

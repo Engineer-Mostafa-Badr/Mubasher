@@ -52,4 +52,7 @@ abstract class SvgImagesManager {
   static const String heart2 = "assets/svg/Heart2.svg";
   static const String dotIcon = "assets/svg/dot-icon.svg";
   static const String shapeBigSale = "assets/svg/Shape-big-sale.svg";
+  static const String profileUserSeller = "assets/svg/Profile-user-seller.svg";
+  static const String timer = "assets/svg/Timer.svg";
+  static const String alertSuccess = "assets/svg/Alert - Success.svg";
 }

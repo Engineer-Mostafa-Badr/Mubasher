@@ -4,9 +4,15 @@ import 'package:flutter/material.dart';
 import 'app_text_manager.dart';
 
 class ElevatedButtonManager extends StatelessWidget {
-  const ElevatedButtonManager({super.key, required this.text, this.onPressed});
+  const ElevatedButtonManager({
+    super.key,
+    required this.text,
+    this.onPressed,
+    this.color,
+  });
 
   final String text;
+  final Color? color;
   final Function()? onPressed;
 
   @override
@@ -17,7 +23,7 @@ class ElevatedButtonManager extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 4.w),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: ColorManager.primaryColor,
+            backgroundColor: color ?? ColorManager.primaryColor,
             padding: EdgeInsets.symmetric(vertical: 5.5.w),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4.w),

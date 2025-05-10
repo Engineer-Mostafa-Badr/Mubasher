@@ -40,7 +40,7 @@ class _ActivateViewState extends State<ActivateView> {
         ),
         AppTextFormField(
           textEditingController: TextEditingController(),
-          color: ColorManager.primaryColor,
+          colorHintText: ColorManager.primaryColor,
           hinText: hintText,
           isFill: true,
           validate: (value) {

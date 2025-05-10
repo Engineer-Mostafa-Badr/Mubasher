@@ -44,7 +44,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get signInText => 'نسجل الدخول';
 
   @override
-  String get descriptionLoginText => ' أي شخص يمارس أي نوع من العمل إلا من أجل';
+  String get descriptionLoginText => '';
 
   @override
   String get createyourText => 'قم بإنشاء ';
@@ -183,4 +183,40 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get payNowText => 'ادفع الأن';
+
+  @override
+  String get userText => 'User';
+
+  @override
+  String get sellerText => 'Seller';
+
+  @override
+  String get didnotReceiveTheOTPText => 'Didn’t receive the OTP? ';
+
+  @override
+  String get resendOTPText => 'Resend OTP';
+
+  @override
+  String get descriptionEnterCodeText => 'Lorem ipsum dolor sit amet, consectetur.';
+
+  @override
+  String get accountEnterCodeText => 'Account ';
+
+  @override
+  String get successfullyText => 'successfully';
+
+  @override
+  String get createdText => 'created';
+
+  @override
+  String get finishText => 'Finish';
+
+  @override
+  String get enterTheText => 'Enter the ';
+
+  @override
+  String get codeText => 'code';
+
+  @override
+  String get descriptionEnterViewText => 'Enter the 4 digit code that we just sent to';
 }
