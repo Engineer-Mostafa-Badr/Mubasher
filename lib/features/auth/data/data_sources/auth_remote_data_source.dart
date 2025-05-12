@@ -14,6 +14,7 @@ abstract class AuthRemoteDataSource {
     required String confirmPassword,
     required String phone,
     required String whatsapp,
+    required bool isSeller,
   });
 }
 
@@ -56,6 +57,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String confirmPassword,
     required String phone,
     required String whatsapp,
+    required bool isSeller,
   }) async {
     try {
       final response = await apiService.post(
@@ -64,9 +66,22 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           'user_name': username,
           'email': email,
           'phoneno': phone,
+          'mobileno': phone,
           'password': password,
-          'confirm_Password': confirmPassword,
+          'confirm_Password': password,
           'whatsapp': whatsapp,
+          'is_active': true,
+          'is_seller': isSeller,
+          'is_admin': false,
+          'is_user': !isSeller,
+          'locationn': '',
+          'user_type': isSeller ? 2 : 1,
+          'adress': '',
+          'facebook': '',
+          'user_avater': '',
+          'country_id': 1,
+          'region_id': 1,
+          'city_id': 1,
         },
       );
 
@@ -75,7 +90,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           response.data['datac'] is List &&
           (response.data['datac'] as List).isNotEmpty) {
         log('Register successful: ${response.data}');
-        // Save the accessToken securely
         final accessTokenField = response.data['datac'][0]['accessToken'];
         final token =
             accessTokenField is Map

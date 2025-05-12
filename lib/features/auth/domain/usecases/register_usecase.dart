@@ -14,14 +14,16 @@ class RegisterUseCase {
     required String confirmPassword,
     required String phone,
     required String whatsapp,
+    required bool isSeller,
   }) {
     return repository.register(
       username: username,
       email: email,
       password: password,
-      confirmPassword: confirmPassword,
+      confirmPassword: password,
       phone: phone,
       whatsapp: whatsapp,
+      isSeller: isSeller,
     );
   }
 }

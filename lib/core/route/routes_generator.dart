@@ -1,9 +1,10 @@
-import 'package:mubasher_app/features/auth/presentation/views/forgot_password.dart';
 import 'package:mubasher_app/features/splash/on_boarding/views/on_boarding_three.dart';
 import 'package:mubasher_app/features/splash/on_boarding/views/on_boarding_two.dart';
 import 'package:mubasher_app/features/auth/active_account/views/enter_otp_view.dart';
 import 'package:mubasher_app/features/splash/on_boarding/views/on_boarding_one.dart';
 import 'package:mubasher_app/features/auth/active_account/views/activate_view.dart';
+import 'package:mubasher_app/features/auth/presentation/views/forgot_password.dart';
+import 'package:mubasher_app/features/auth/domain/entities/user_entity.dart';
 import 'package:mubasher_app/features/profile/views/profile_options.dart';
 import 'package:mubasher_app/features/favorite/views/favorite_view.dart';
 import 'package:mubasher_app/features/profile/views/edit_profile.dart';
@@ -40,15 +41,23 @@ class RoutesGenerator {
           settings: settings,
         );
       case PageRouteName.activateRoute:
-        return MaterialPageRoute(
-          builder: (context) => const ActivateView(),
-          settings: settings,
-        );
+        final args = settings.arguments;
+        if (args is UserEntity) {
+          return MaterialPageRoute(builder: (_) => ActivateView(user: args));
+        } else {
+          debugPrint('❗ Error: Expected UserEntity but got $args');
+          return MaterialPageRoute(
+            builder:
+                (_) =>
+                    Scaffold(body: Center(child: Text("Invalid user data."))),
+          );
+        }
       case PageRouteName.enterOTPRoute:
+        final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
-          builder: (context) => EnterOTPView(),
-          settings: settings,
+          builder: (_) => EnterOTPView(user: args['user']),
         );
+
       case PageRouteName.onBoardingOneRoute:
         return MaterialPageRoute(
           builder: (context) => const OnboardingOneView(),

@@ -14,5 +14,6 @@ abstract class AuthRepository {
     required String confirmPassword,
     required String phone,
     required String whatsapp,
+    required bool isSeller,
   });
 }

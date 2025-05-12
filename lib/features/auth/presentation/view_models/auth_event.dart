@@ -24,6 +24,7 @@ class RegisterEvent extends AuthEvent {
   final String confirmPassword;
   final String phone;
   final String whatsapp;
+  final bool isSeller;
 
   const RegisterEvent({
     required this.username,
@@ -32,7 +33,9 @@ class RegisterEvent extends AuthEvent {
     required this.confirmPassword,
     required this.phone,
     required this.whatsapp,
+    required this.isSeller,
   });
+
   @override
   List<Object?> get props => [
     username,
@@ -41,6 +44,7 @@ class RegisterEvent extends AuthEvent {
     confirmPassword,
     phone,
     whatsapp,
+    isSeller,
   ];
 }
 

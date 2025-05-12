@@ -13,6 +13,8 @@ class RegistrationState extends Equatable {
     this.selectedWhatsAppCode = '+20',
     this.selectedPhoneFlag = '🇪🇬',
     this.selectedWhatsAppFlag = '🇪🇬',
+    this.isSeller = false,
+    this.isUser = false,
   });
 
   final TextEditingController nameController;
@@ -26,6 +28,8 @@ class RegistrationState extends Equatable {
   final String selectedWhatsAppCode;
   final String selectedPhoneFlag;
   final String selectedWhatsAppFlag;
+  final bool isSeller;
+  final bool isUser;
 
   RegistrationState copyWith({
     TextEditingController? nameController,
@@ -39,6 +43,8 @@ class RegistrationState extends Equatable {
     String? selectedWhatsAppCode,
     String? selectedPhoneFlag,
     String? selectedWhatsAppFlag,
+    bool? isUser,
+    bool? isSeller,
   }) => RegistrationState(
     nameController: nameController ?? this.nameController,
     emailController: emailController ?? this.emailController,
@@ -51,6 +57,8 @@ class RegistrationState extends Equatable {
     selectedWhatsAppCode: selectedWhatsAppCode ?? this.selectedWhatsAppCode,
     selectedPhoneFlag: selectedPhoneFlag ?? this.selectedPhoneFlag,
     selectedWhatsAppFlag: selectedWhatsAppFlag ?? this.selectedWhatsAppFlag,
+    isUser: isUser ?? this.isUser,
+    isSeller: isSeller ?? this.isSeller,
   );
 
   @override
@@ -66,5 +74,7 @@ class RegistrationState extends Equatable {
     selectedWhatsAppCode,
     selectedPhoneFlag,
     selectedWhatsAppFlag,
+    isUser,
+    isSeller,
   ];
 }

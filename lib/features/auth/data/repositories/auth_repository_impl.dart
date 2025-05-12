@@ -4,6 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'dart:developer';
 
 const String accessTokenKey = 'accessToken';
 
@@ -27,15 +28,11 @@ class AuthRepositoryImpl implements AuthRepository {
         password: password,
       );
 
-      // تخزين التوكن بشكل آمن
       await secureStorage.write(key: accessTokenKey, value: user.accessToken);
-
       return Right(user);
     } on DioException catch (dioError) {
-      // التعامل مع الأخطاء الخاصة بـ Dio
       return Left('Dio error: ${dioError.message}');
     } catch (e) {
-      // التعامل مع الأخطاء العامة
       return Left('An error occurred: ${e.toString()}');
     }
   }
@@ -48,25 +45,26 @@ class AuthRepositoryImpl implements AuthRepository {
     required String confirmPassword,
     required String phone,
     required String whatsapp,
+    required bool isSeller,
   }) async {
     try {
       final result = await remoteDataSource.register(
         username: username,
         email: email,
         password: password,
-        confirmPassword: confirmPassword,
+        confirmPassword: password,
         phone: phone,
         whatsapp: whatsapp,
+        isSeller: isSeller,
       );
 
       final user = result;
-
-      // استخراج التوكن
+      if (user.accessToken.isEmpty) {
+        log('🚨 User is null or accessToken is missing');
+        return Left('Registration failed: Invalid user data received');
+      }
       final token = _extractToken(user.accessToken);
-
-      // تخزين التوكن بشكل آمن
       await secureStorage.write(key: accessTokenKey, value: token);
-
       return Right(user);
     } on DioException catch (dioError) {
       if (dioError.response?.statusCode == 400 &&
@@ -84,7 +82,6 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
-  // دالة لاستخراج التوكن من الاستجابة
   String _extractToken(String rawToken) {
     final match = RegExp(r'token\s*=\s*(.*)').firstMatch(rawToken);
     return match != null ? match.group(1)!.trim() : rawToken.trim();

@@ -55,4 +55,6 @@ abstract class SvgImagesManager {
   static const String profileUserSeller = "assets/svg/Profile-user-seller.svg";
   static const String timer = "assets/svg/Timer.svg";
   static const String alertSuccess = "assets/svg/Alert - Success.svg";
+  static const String arrowDown = "assets/svg/iconoir_nav-arrow-down.svg";
+  static const String chooseMethodIcon = "assets/svg/Ellipse 60.svg";
 }

@@ -21,7 +21,6 @@ class SignInView extends StatelessWidget {
               } else {
                 AppNotifier().hideLoading();
               }
-
               if (state is AuthError) {
                 AppNotifier().showError(
                   context,

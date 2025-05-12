@@ -5,8 +5,11 @@ class UserModel extends UserEntity {
     required super.id,
     required super.userName,
     required super.email,
-    required super.mobileNo,
+    required super.password,
+    required super.confirmPassword,
+    required super.phoneno,
     required super.whatsapp,
+    required super.mobileNo,
     required super.facebook,
     required super.location,
     required super.address,
@@ -17,9 +20,9 @@ class UserModel extends UserEntity {
     required super.isUser,
     required super.userType,
     required super.accessToken,
-    required super.phoneno,
-    required super.password,
-    required super.confirmPassword,
+    required super.countryId,
+    required super.regionId,
+    required super.cityId,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -34,7 +37,7 @@ class UserModel extends UserEntity {
       userName: json['user_name'] ?? '',
       email: json['email'] ?? '',
       password: json['password'] ?? '',
-      confirmPassword: json['confirm_password'] ?? '',
+      confirmPassword: json['confirm_Password'] ?? '',
       phoneno: json['phoneno'] ?? '',
       whatsapp: json['whatsapp'] ?? '',
       mobileNo: json['mobileno'] ?? '',
@@ -48,6 +51,9 @@ class UserModel extends UserEntity {
       isUser: json['is_user'] ?? false,
       userType: json['user_type'] ?? 0,
       accessToken: token,
+      countryId: json['country_id'] ?? 0,
+      regionId: json['region_id'] ?? 0,
+      cityId: json['city_id'] ?? 0,
     );
   }
 }

@@ -33,19 +33,13 @@ void main() async {
               (_) => AuthBloc(loginUseCase: getIt(), registerUseCase: getIt()),
         ),
       ],
-      child: MubasherApp(
-        initialRoute:
-            token != null && token.isNotEmpty
-                ? PageRouteName.homeRoute
-                : PageRouteName.splashRoute,
-      ),
+      child: MubasherApp(),
     ),
   );
 }
 
 class MubasherApp extends StatelessWidget {
-  final String initialRoute;
-  const MubasherApp({super.key, required this.initialRoute});
+  const MubasherApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +60,7 @@ class MubasherApp extends StatelessWidget {
                     seedColor: Colors.deepPurple,
                   ),
                 ),
-                initialRoute: initialRoute,
+                initialRoute: PageRouteName.splashRoute,
                 onGenerateRoute: RoutesGenerator.onGenerateRoutes,
                 localeResolutionCallback: (locale, supportedLocales) {
                   return locale?.languageCode == 'ar'

@@ -60,7 +60,7 @@ class AppTextFormField extends StatelessWidget {
           suffixIcon: suffix,
           hintText: hinText,
           hintStyle: TextStyle(
-            color: colorHintText ?? ColorManager.grey,
+            color: colorHintText ?? ColorManager.greyLabelText,
             fontSize: 14.px,
             fontWeight: FontWeight.w400,
             fontFamily: "Lato",
@@ -69,7 +69,7 @@ class AppTextFormField extends StatelessWidget {
           labelStyle: TextStyle(color: colorLableText ?? ColorManager.grey),
           filled: isFill,
           errorMaxLines: 2,
-          fillColor: ColorManager.white,
+          fillColor: ColorManager.greyTextFormField,
           enabledBorder: border(context: context),
           focusedBorder: border(context: context),
           border: border(context: context),

@@ -31,6 +31,10 @@ class RegistrationCubit extends Cubit<RegistrationState> with Validate {
     );
   }
 
+  void selectUserType({required bool isSeller}) {
+    emit(state.copyWith(isSeller: isSeller, isUser: !isSeller));
+  }
+
   @override
   Future<void> close() {
     state.nameController.dispose();

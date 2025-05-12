@@ -1,9 +1,9 @@
-import 'package:mubasher_app/features/auth/presentation/views/components/phone_whatsapp_choice_dial_code.dart';
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_state.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_event.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_bloc.dart';
 import 'package:mubasher_app/core/helpers/app_notifier.dart';
+import 'components/phone_whatsapp_choice_dial_code.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
@@ -29,7 +29,6 @@ class SignUpView extends StatelessWidget {
               } else {
                 AppNotifier().hideLoading();
               }
-
               if (state is AuthError) {
                 AppNotifier().showError(
                   context,
@@ -43,6 +42,7 @@ class SignUpView extends StatelessWidget {
                     // ignore: use_build_context_synchronously
                     context,
                     PageRouteName.activateRoute,
+                    arguments: state.user,
                   );
                 });
               }
@@ -59,12 +59,15 @@ class SignUpView extends StatelessWidget {
                         previous.selectedWhatsAppCode !=
                             current.selectedWhatsAppCode ||
                         previous.selectedWhatsAppFlag !=
-                            current.selectedWhatsAppFlag,
+                            current.selectedWhatsAppFlag ||
+                        previous.isUser != current.isUser ||
+                        previous.isSeller != current.isSeller,
 
                 builder: (context, regState) {
                   return Form(
                     key: regState.formKey,
                     child: Scaffold(
+                      backgroundColor: ColorManager.white,
                       body: SafeArea(
                         child: ListView(
                           padding: EdgeInsets.symmetric(horizontal: 6.w),
@@ -104,39 +107,75 @@ class SignUpView extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Container(
-                                  height: 9.h,
-                                  width: 37.w,
-                                  color: ColorManager.greyLabelText,
-                                  child: Column(
-                                    children: [
-                                      SvgPicture.asset(
-                                        SvgImagesManager.profileUserSeller,
-                                        fit: BoxFit.contain,
-                                        height: 5.h,
-                                      ),
-                                      AppText(text: context.lang.userText),
-                                    ],
+                                GestureDetector(
+                                  onTap:
+                                      () =>
+                                          cubit.selectUserType(isSeller: false),
+                                  child: Container(
+                                    height: 9.h,
+                                    width: 37.w,
+                                    decoration: BoxDecoration(
+                                      color:
+                                          regState.isUser
+                                              ? ColorManager.green
+                                              : ColorManager.greyTextFormField,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SvgPicture.asset(
+                                          SvgImagesManager.profileUserSeller,
+                                          height: 5.h,
+                                        ),
+                                        AppText(
+                                          text: context.lang.userText,
+                                          textColor:
+                                              regState.isUser
+                                                  ? ColorManager.primaryColor
+                                                  : ColorManager.black,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                                SizedBox(width: 5.w),
-                                Container(
-                                  height: 9.h,
-                                  width: 37.w,
-                                  color: ColorManager.greyLabelText,
-                                  child: Column(
-                                    children: [
-                                      SvgPicture.asset(
-                                        SvgImagesManager.profileUserSeller,
-                                        fit: BoxFit.contain,
-                                        height: 5.h,
-                                      ),
-                                      AppText(text: context.lang.sellerText),
-                                    ],
+                                GestureDetector(
+                                  onTap:
+                                      () =>
+                                          cubit.selectUserType(isSeller: true),
+                                  child: Container(
+                                    height: 9.h,
+                                    width: 37.w,
+                                    decoration: BoxDecoration(
+                                      color:
+                                          regState.isSeller
+                                              ? ColorManager.green
+                                              : ColorManager.greyTextFormField,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SvgPicture.asset(
+                                          SvgImagesManager.profileUserSeller,
+                                          height: 5.h,
+                                        ),
+                                        AppText(
+                                          text: context.lang.sellerText,
+                                          textColor:
+                                              regState.isSeller
+                                                  ? ColorManager.primaryColor
+                                                  : ColorManager.black,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
+
                             SizedBox(height: 1.h),
                             RegisterTextFormField(
                               validate:
@@ -274,6 +313,14 @@ class SignUpView extends StatelessWidget {
                               color: ColorManager.primaryColor,
                               text: context.lang.register,
                               onPressed: () {
+                                if (!regState.isUser && !regState.isSeller) {
+                                  AppNotifier().showError(
+                                    context,
+                                    "يجب اختيار نوع الحساب",
+                                  );
+                                  return;
+                                }
+
                                 if (regState.formKey.currentState!.validate()) {
                                   final fullPhone = normalizeNumber(
                                     regState.selectedPhoneCode,
@@ -283,6 +330,7 @@ class SignUpView extends StatelessWidget {
                                     regState.selectedWhatsAppCode,
                                     regState.whatsAppController.text,
                                   );
+
                                   context.read<AuthBloc>().add(
                                     RegisterEvent(
                                       username:
@@ -297,11 +345,13 @@ class SignUpView extends StatelessWidget {
                                               .trim(),
                                       phone: fullPhone,
                                       whatsapp: fullWhatsApp,
+                                      isSeller: regState.isSeller,
                                     ),
                                   );
                                 }
                               },
                             ),
+
                             SizedBox(height: 3.h),
                           ],
                         ),

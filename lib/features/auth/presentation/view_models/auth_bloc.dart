@@ -32,11 +32,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           log('✅ Login success: ${user.email}');
           await TokenStorageHelper.saveToken(user.accessToken);
           log('🔐 Token saved: ${user.accessToken}');
-          if (!emit.isDone) emit(AuthLoaded(user));
+          if (!emit.isDone) emit(AuthLoaded(user: user));
         }
       }
     });
-
     on<RegisterEvent>((event, emit) async {
       log('📩 RegisterEvent received');
       emit(AuthLoading());
@@ -49,6 +48,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         confirmPassword: event.confirmPassword,
         phone: event.phone,
         whatsapp: event.whatsapp,
+        isSeller: event.isSeller,
       );
 
       if (result.isLeft()) {
@@ -61,10 +61,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           log('✅ Register success: ${user.email}');
           await TokenStorageHelper.saveToken(user.accessToken);
           log('🔐 Token saved: ${user.accessToken}');
-          if (!emit.isDone) emit(AuthLoaded(user));
+          if (!emit.isDone) emit(AuthLoaded(user: user));
+        } else {
+          log('❌ Register returned null user');
+          emit(AuthError("Registration failed: No user returned"));
+          log('🔎 user == null ? ${user == null}');
         }
       }
     });
+
     on<LogoutEvent>((event, emit) async {
       log('📤 LogoutEvent received');
       emit(AuthLoggedOutLoading());

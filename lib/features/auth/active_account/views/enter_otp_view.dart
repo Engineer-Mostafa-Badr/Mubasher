@@ -1,19 +1,10 @@
-import 'package:mubasher_app/core/custom_widget/arrow_back_leading_appbar.dart';
-import 'package:mubasher_app/core/custom_widget/elevated_button_manager.dart';
-import 'package:mubasher_app/core/custom_widget/text_span_manager.dart';
-import 'package:mubasher_app/core/custom_widget/app_text_manager.dart';
-import 'package:mubasher_app/core/resources/app_assets_manager.dart';
-import 'package:mubasher_app/core/resources/app_color_manager.dart';
-import 'package:mubasher_app/core/extension/context.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:mubasher_app/core/route/routes.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
 import 'dart:async';
 import 'dart:ui';
 
 class EnterOTPView extends StatefulWidget {
-  const EnterOTPView({super.key});
+  const EnterOTPView({super.key, required this.user});
+  final String user;
 
   @override
   State<EnterOTPView> createState() => _EnterOTPViewState();
@@ -74,6 +65,7 @@ class _EnterOTPViewState extends State<EnterOTPView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorManager.white,
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
@@ -87,7 +79,7 @@ class _EnterOTPViewState extends State<EnterOTPView> {
                   onTap: () {
                     Navigator.pushReplacementNamed(
                       context,
-                      PageRouteName.signUpRoute,
+                      PageRouteName.activateRoute,
                     );
                   },
                 ),
@@ -117,7 +109,7 @@ class _EnterOTPViewState extends State<EnterOTPView> {
                   textColor: ColorManager.primaryColor,
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
-                  text: 'jonathan@email.com',
+                  text: widget.user,
                 ),
                 SizedBox(height: 12.h),
                 Row(
@@ -139,9 +131,9 @@ class _EnterOTPViewState extends State<EnterOTPView> {
                         decoration: InputDecoration(
                           counterText: '',
                           filled: true,
-                          fillColor: ColorManager.greyLabelText,
+                          fillColor: ColorManager.greyTextFormField,
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(2.w),
+                            borderRadius: BorderRadius.circular(3.w),
                             borderSide: const BorderSide(
                               color: Colors.transparent,
                             ),
@@ -172,7 +164,7 @@ class _EnterOTPViewState extends State<EnterOTPView> {
                     child: Container(
                       height: 6.h,
                       width: 22.w,
-                      color: ColorManager.greyLabelText,
+                      color: ColorManager.greyTextFormField,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

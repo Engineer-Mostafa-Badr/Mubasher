@@ -15,7 +15,7 @@ class AuthLoading extends AuthState {}
 class AuthLoaded extends AuthState {
   final UserEntity user;
 
-  const AuthLoaded(this.user);
+  const AuthLoaded({required this.user});
 
   @override
   List<Object?> get props => [user];
