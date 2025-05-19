@@ -21,6 +21,7 @@
   "signInText": "Sign In",
   "descriptionLoginText": "quis nostrud exercitation ullamco laboris nisi ut",
   "createyourText": "Create your ",
+  "createYourSellerText": "Create your Seller ",
   "accountText": "account",
   "fullNameText": "Full name",
   "phoneNumberText": "Phone number",
@@ -77,5 +78,15 @@
   "finishText": "Finish",
   "enterTheText": "Enter the ",
   "codeText": "code",
-  "descriptionEnterViewText": "Enter the 4 digit code that we just sent to"
+  "descriptionEnterViewText": "Enter the 4 digit code that we just sent to",
+  "facebookText": "Facebook",
+  "profilePictureText": "Profile picture",
+  "documentsText": "Documents",
+  "cityText": "City",
+  "chooseAccountText": "You must choose the type of account.",
+  "facebookFormatText": "Please! enter valied facebook url",
+  "profilePictureFormatText": "Please! choose your profile picture",
+  "documentsFormatText": "Please! enter your documents",
+  "countryFormatText": "Please! enter your country",
+  "cityFormatText": "Please! enter your city"
 }

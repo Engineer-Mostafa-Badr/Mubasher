@@ -1,7 +1,8 @@
 class PageRouteName {
   static const String splashRoute = '/splash';
   static const String signInRoute = '/sign_in';
-  static const String signUpRoute = '/sign_up';
+  static const String signUpSellerRoute = '/sign_up_seller';
+  static const String signUpUserRoute = '/sign_up_user';
   static const String homeRoute = '/home';
   static const String activateRoute = '/activate';
   static const String enterOTPRoute = '/enter_otp';
@@ -14,4 +15,5 @@ class PageRouteName {
   static const String favoriteRoute = '/favorite';
   static const String paymentRoute = '/payment';
   static const String forgotPasswordRoute = '/forgot_password';
+  static const String productRoute = '/product';
 }

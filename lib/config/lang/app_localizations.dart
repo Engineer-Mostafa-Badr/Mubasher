@@ -173,6 +173,12 @@ abstract class AppLocalizations {
   /// **'Create your '**
   String get createyourText;
 
+  /// No description provided for @createYourSellerText.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your Seller '**
+  String get createYourSellerText;
+
   /// No description provided for @accountText.
   ///
   /// In en, this message translates to:
@@ -514,6 +520,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter the 4 digit code that we just sent to'**
   String get descriptionEnterViewText;
+
+  /// No description provided for @facebookText.
+  ///
+  /// In en, this message translates to:
+  /// **'Facebook'**
+  String get facebookText;
+
+  /// No description provided for @profilePictureText.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile picture'**
+  String get profilePictureText;
+
+  /// No description provided for @documentsText.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents'**
+  String get documentsText;
+
+  /// No description provided for @cityText.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get cityText;
+
+  /// No description provided for @chooseAccountText.
+  ///
+  /// In en, this message translates to:
+  /// **'You must choose the type of account.'**
+  String get chooseAccountText;
+
+  /// No description provided for @facebookFormatText.
+  ///
+  /// In en, this message translates to:
+  /// **'Please! enter valied facebook url'**
+  String get facebookFormatText;
+
+  /// No description provided for @profilePictureFormatText.
+  ///
+  /// In en, this message translates to:
+  /// **'Please! choose your profile picture'**
+  String get profilePictureFormatText;
+
+  /// No description provided for @documentsFormatText.
+  ///
+  /// In en, this message translates to:
+  /// **'Please! enter your documents'**
+  String get documentsFormatText;
+
+  /// No description provided for @countryFormatText.
+  ///
+  /// In en, this message translates to:
+  /// **'Please! enter your country'**
+  String get countryFormatText;
+
+  /// No description provided for @cityFormatText.
+  ///
+  /// In en, this message translates to:
+  /// **'Please! enter your city'**
+  String get cityFormatText;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

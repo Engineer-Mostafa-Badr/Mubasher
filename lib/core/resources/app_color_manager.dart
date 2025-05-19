@@ -11,7 +11,7 @@ abstract class ColorManager {
   static const Color lightGrey = Color(0xff9E9E9E);
   static const Color black = Color(0xff000000);
   static const Color containerGray = Color(0xffDBE4ED);
-  static const Color transparent = Colors.transparent;
+  static const Color editProfileFieldColor = Color(0XFFFFFAF0);
 
   static const Color starRateColor = Color(0XFFFDD835);
   static const Color darkBlue = Color(0xff06004F);
@@ -25,4 +25,5 @@ abstract class ColorManager {
   static const Color backgroundContainerProfile = Color(0xFFFFF6E9);
   static const Color iconProfileColor = Color(0xFF704116);
   static const Color boxProfileColor = Color(0xFFE7BABD);
+  static const Color backgroundEditBoxColor = Color(0xFFFEE7BA);
 }

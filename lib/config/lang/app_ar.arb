@@ -64,5 +64,6 @@
   "phoneText": "موبايل",
   "paymentText": "الدفع",
   "paymentDataText": "بيانات الدفع",
-  "payNowText": "ادفع الأن"
+  "payNowText": "ادفع الأن",
+  "chooseAccountText": "يجب اختيار نوع الحساب"
 }

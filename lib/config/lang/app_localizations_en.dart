@@ -50,6 +50,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createyourText => 'Create your ';
 
   @override
+  String get createYourSellerText => 'Create your Seller ';
+
+  @override
   String get accountText => 'account';
 
   @override
@@ -219,4 +222,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get descriptionEnterViewText => 'Enter the 4 digit code that we just sent to';
+
+  @override
+  String get facebookText => 'Facebook';
+
+  @override
+  String get profilePictureText => 'Profile picture';
+
+  @override
+  String get documentsText => 'Documents';
+
+  @override
+  String get cityText => 'City';
+
+  @override
+  String get chooseAccountText => 'You must choose the type of account.';
+
+  @override
+  String get facebookFormatText => 'Please! enter valied facebook url';
+
+  @override
+  String get profilePictureFormatText => 'Please! choose your profile picture';
+
+  @override
+  String get documentsFormatText => 'Please! enter your documents';
+
+  @override
+  String get countryFormatText => 'Please! enter your country';
+
+  @override
+  String get cityFormatText => 'Please! enter your city';
 }

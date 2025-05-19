@@ -1,6 +1,7 @@
 import 'package:mubasher_app/features/auth/domain/entities/user_entity.dart';
 import '../repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
+import 'dart:io';
 
 class RegisterUseCase {
   final AuthRepository repository;
@@ -15,6 +16,12 @@ class RegisterUseCase {
     required String phone,
     required String whatsapp,
     required bool isSeller,
+    required bool isUser,
+    String? facebook,
+    String? documents,
+    String? country,
+    String? city,
+    File? profileImage,
   }) {
     return repository.register(
       username: username,
@@ -24,6 +31,11 @@ class RegisterUseCase {
       phone: phone,
       whatsapp: whatsapp,
       isSeller: isSeller,
+      facebook: facebook,
+      documents: documents,
+      country: country,
+      city: city,
+      profileImage: profileImage,
     );
   }
 }

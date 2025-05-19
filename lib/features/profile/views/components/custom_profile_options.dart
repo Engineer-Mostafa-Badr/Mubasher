@@ -39,20 +39,16 @@ class ProfileOption extends StatelessWidget {
                 isChangeLanguage
                     ? Image.asset(
                       assetPath ?? '',
-                      width: 30,
-                      height: 30,
+                      width: 12.w,
+                      height: 10.h,
                       color: ColorManager.iconProfileColor,
                     )
                     : SvgPicture.asset(
                       iconAsset ?? '',
-                      width: 30,
-                      height: 30,
-                      colorFilter: ColorFilter.mode(
-                        ColorManager.iconProfileColor,
-                        BlendMode.srcIn,
-                      ),
+                      width: 5.w,
+                      height: 4.h,
                     ),
-                SvgPicture.asset(backgroundAsset, width: 70, height: 70),
+                SvgPicture.asset(backgroundAsset, width: 10.w, height: 12.h),
               ],
             ),
           ),

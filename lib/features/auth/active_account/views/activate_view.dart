@@ -1,5 +1,8 @@
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
+import 'package:mubasher_app/features/auth/presentation/view_models/auth_event.dart';
+import 'package:mubasher_app/features/auth/presentation/view_models/auth_bloc.dart';
 import 'package:mubasher_app/features/auth/domain/entities/user_entity.dart';
+import 'package:mubasher_app/core/helpers/app_notifier.dart';
 
 class ActivateView extends StatefulWidget {
   const ActivateView({super.key, required this.user});
@@ -10,13 +13,15 @@ class ActivateView extends StatefulWidget {
 }
 
 class _ActivateViewState extends State<ActivateView> {
-  String? selectedMethod;
+  String? selectedSendMethod;
+  String? selectedBindMethod;
   late TextEditingController _textEditingController;
 
   @override
   void initState() {
     super.initState();
     _textEditingController = TextEditingController();
+    selectedBindMethod = 'Email';
   }
 
   @override
@@ -86,7 +91,7 @@ class _ActivateViewState extends State<ActivateView> {
     String svgPath,
     String hintText,
   ) {
-    final isSelected = selectedMethod == label;
+    final isSelected = selectedSendMethod == label;
 
     String? getUserField(String label) {
       if (label == context.lang.emailText) return widget.user.email;
@@ -98,7 +103,7 @@ class _ActivateViewState extends State<ActivateView> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          selectedMethod = label;
+          selectedSendMethod = label;
           _textEditingController.text = getUserField(label) ?? '';
         });
       },
@@ -150,7 +155,7 @@ class _ActivateViewState extends State<ActivateView> {
               onTap: () {
                 Navigator.pushReplacementNamed(
                   context,
-                  PageRouteName.signUpRoute,
+                  PageRouteName.signUpUserRoute,
                 );
               },
             ),
@@ -178,7 +183,7 @@ class _ActivateViewState extends State<ActivateView> {
               fontWeight: FontWeight.w400,
             ),
             SizedBox(height: 2.h),
-            if (selectedMethod == null) ...[
+            if (selectedSendMethod == null) ...[
               _buildSelectableRadioTile(
                 context.lang.emailText,
                 SvgImagesManager.email,
@@ -198,9 +203,9 @@ class _ActivateViewState extends State<ActivateView> {
               ),
             ] else ...[
               _buildRadioTile(
-                selectedMethod!,
-                methodIcons[selectedMethod]!,
-                _getHintForMethod(selectedMethod!),
+                selectedSendMethod!,
+                methodIcons[selectedSendMethod!]!,
+                _getHintForMethod(selectedSendMethod!),
               ),
             ],
             SizedBox(height: 3.h),
@@ -211,93 +216,149 @@ class _ActivateViewState extends State<ActivateView> {
               fontWeight: FontWeight.w700,
             ),
             SizedBox(height: 1.h),
-            GestureDetector(
-              onTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(6.w),
-                    ),
+            Theme(
+              data: Theme.of(
+                context,
+              ).copyWith(canvasColor: ColorManager.greyTextFormField),
+              child: DropdownButtonFormField<String>(
+                value: selectedBindMethod,
+                borderRadius: BorderRadius.circular(6.w),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: ColorManager.greyTextFormField,
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 3.w,
+                    vertical: 3.h,
                   ),
-                  builder: (context) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5.h),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children:
-                            methodIcons.keys.map((method) {
-                              return ListTile(
-                                leading: Radio<String>(
-                                  value: method,
-                                  groupValue: selectedMethod,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedMethod = value!;
-                                    });
-                                    Navigator.pop(context);
-                                  },
-                                  activeColor: ColorManager.primaryColor,
-                                ),
-                                title: Row(
-                                  children: [
-                                    SvgPicture.asset(methodIcons[method]!),
-                                    SizedBox(width: 2.w),
-                                    AppText(
-                                      fontSize: 14.px,
-                                      text: method,
-                                      fontFamily: 'Lato',
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ],
-                                ),
-                                onTap: () {
-                                  setState(() {
-                                    selectedMethod = method;
-                                  });
-                                  Navigator.pop(context);
-                                },
-                              );
-                            }).toList(),
-                      ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(4.w),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(4.w),
+                  ),
+                ),
+                icon: const Icon(Icons.arrow_drop_down),
+                items:
+                    ['Email', 'Phone'].map((method) {
+                      String iconPath =
+                          method == 'Email'
+                              ? SvgImagesManager.email
+                              : SvgImagesManager.phone;
+                      return DropdownMenuItem<String>(
+                        value: method,
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              iconPath,
+                              height: 2.h,
+                              width: 6.w,
+                              colorFilter: const ColorFilter.mode(
+                                ColorManager.primaryColor,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                            SizedBox(width: 3.w),
+                            AppText(
+                              text: method,
+                              fontSize: 14.px,
+                              fontFamily: 'Lato',
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    selectedBindMethod = value;
+                  });
+                },
+                selectedItemBuilder: (context) {
+                  return ['Email', 'Phone'].map((method) {
+                    String iconPath =
+                        method == 'Email'
+                            ? SvgImagesManager.email
+                            : SvgImagesManager.phone;
+                    return Row(
+                      children: [
+                        SvgPicture.asset(
+                          iconPath,
+                          height: 2.h,
+                          width: 6.w,
+                          colorFilter: const ColorFilter.mode(
+                            ColorManager.primaryColor,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                        SizedBox(width: 3.w),
+                        AppText(
+                          text: method,
+                          fontSize: 14.px,
+                          fontFamily: 'Lato',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ],
                     );
-                  },
-                );
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 3.h),
-                decoration: BoxDecoration(
-                  color: ColorManager.greyTextFormField,
-                  borderRadius: BorderRadius.circular(4.w),
-                ),
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      methodIcons[selectedMethod] ?? SvgImagesManager.email,
-                    ),
-                    SizedBox(width: 2.w),
-                    AppText(
-                      text: selectedMethod ?? context.lang.email,
-                      textColor: ColorManager.greyLabelText,
-                      fontSize: 14.px,
-                      fontFamily: 'Lato',
-                      fontWeight: FontWeight.w400,
-                    ),
-                    const Spacer(),
-                    SvgPicture.asset(SvgImagesManager.arrowDown),
-                  ],
-                ),
+                  }).toList();
+                },
               ),
             ),
+
             SizedBox(height: 5.h),
             ElevatedButtonManager(
               text: context.lang.sendotpText,
               onPressed: () {
-                if (selectedMethod != null) {
+                if (selectedSendMethod != null && selectedBindMethod != null) {
+                  String email = '';
+                  String phone = '';
+                  String whatsapp = '';
+
+                  if (selectedSendMethod == context.lang.emailText) {
+                    email = widget.user.email;
+                  } else if (selectedSendMethod == context.lang.smsCodeText) {
+                    phone = widget.user.phoneno;
+                  } else if (selectedSendMethod == context.lang.whatsappText) {
+                    whatsapp = widget.user.whatsapp;
+                  }
+
+                  final method = selectedSendMethod!;
+                  String sendTo = '';
+
+                  if (method == context.lang.emailText) {
+                    sendTo = email;
+                  } else if (method == context.lang.smsCodeText) {
+                    sendTo = phone;
+                  } else if (method == context.lang.whatsappText) {
+                    sendTo = whatsapp;
+                  }
+
+                  context.read<AuthBloc>().add(
+                    ActivateAccountEvent(
+                      email: email,
+                      phone: phone,
+                      whatsapp: whatsapp,
+                      methodResponse: selectedSendMethod!,
+                      otp: '',
+                    ),
+                  );
                   Navigator.pushReplacementNamed(
                     context,
                     PageRouteName.enterOTPRoute,
-                    arguments: {'user': _textEditingController.text},
+                    arguments: {
+                      'user': sendTo,
+                      'bindMethod': selectedBindMethod,
+                      'sendMethod': selectedSendMethod,
+                      'email': email,
+                      'phone': phone,
+                      'whatsapp': whatsapp,
+                    },
+                  );
+                } else {
+                  AppNotifier().showError(
+                    context,
+                    'يرجى اختيار وسيلة الإرسال وطريقة ربط الحساب',
                   );
                 }
               },

@@ -1,6 +1,7 @@
 {
   "ar": [
     "signUp",
+    "createYourSellerText",
     "userText",
     "sellerText",
     "didnotReceiveTheOTPText",
@@ -12,6 +13,15 @@
     "finishText",
     "enterTheText",
     "codeText",
-    "descriptionEnterViewText"
+    "descriptionEnterViewText",
+    "facebookText",
+    "profilePictureText",
+    "documentsText",
+    "cityText",
+    "facebookFormatText",
+    "profilePictureFormatText",
+    "documentsFormatText",
+    "countryFormatText",
+    "cityFormatText"
   ]
 }

@@ -184,9 +184,16 @@ class CustomHomeView extends StatelessWidget {
                   mainAxisSpacing: 16,
                 ),
                 itemBuilder: (context, index) {
-                  return PropertyCard(
-                    installment: index % 2 == 1,
-                    // months: index == 3 ? "12 month" : null,
+                  return GestureDetector(
+                    onTap:
+                        () => Navigator.pushReplacementNamed(
+                          context,
+                          PageRouteName.productRoute,
+                        ),
+                    child: PropertyCard(
+                      installment: index % 2 == 1,
+                      // months: index == 3 ? "12 month" : null,
+                    ),
                   );
                 },
               ),

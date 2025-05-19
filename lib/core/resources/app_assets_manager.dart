@@ -11,6 +11,7 @@ abstract class AssetsManager {
   static const String rectangle = "assets/images/Rectangle 20.png";
   static const String shape = "assets/images/Shape.png";
   static const String paymentView = "assets/images/payment-view.png";
+  static const String backgroundView = "assets/images/Background.png";
   static const String englishToArabicIcon =
       "assets/images/English to Arabic.png";
 }
@@ -57,4 +58,8 @@ abstract class SvgImagesManager {
   static const String alertSuccess = "assets/svg/Alert - Success.svg";
   static const String arrowDown = "assets/svg/iconoir_nav-arrow-down.svg";
   static const String chooseMethodIcon = "assets/svg/Ellipse 60.svg";
+  static const String facebookIcon = "assets/svg/Facebook.svg";
+  static const String profilePictureIcon = "assets/svg/Profile-Picture.svg";
+  static const String documentsIcon = "assets/svg/Documents.svg";
+  static const String countryCityIcon = "assets/svg/Country-City.svg";
 }

@@ -7,7 +7,13 @@ class RegistrationState extends Equatable {
     required this.phoneController,
     required this.whatsAppController,
     required this.passwordController,
+    required this.facebookController,
+    required this.profilePictureController,
+    required this.documentsController,
+    required this.countryController,
+    required this.cityController,
     required this.formKey,
+    required this.profileImage,
     this.isShowPassword = true,
     this.selectedPhoneCode = '+20',
     this.selectedWhatsAppCode = '+20',
@@ -15,6 +21,7 @@ class RegistrationState extends Equatable {
     this.selectedWhatsAppFlag = '🇪🇬',
     this.isSeller = false,
     this.isUser = false,
+    this.isProfileImageValid = true,
   });
 
   final TextEditingController nameController;
@@ -22,6 +29,11 @@ class RegistrationState extends Equatable {
   final TextEditingController phoneController;
   final TextEditingController whatsAppController;
   final TextEditingController passwordController;
+  final TextEditingController facebookController;
+  final TextEditingController profilePictureController;
+  final TextEditingController documentsController;
+  final TextEditingController countryController;
+  final TextEditingController cityController;
   final GlobalKey<FormState> formKey;
   final bool isShowPassword;
   final String selectedPhoneCode;
@@ -30,6 +42,8 @@ class RegistrationState extends Equatable {
   final String selectedWhatsAppFlag;
   final bool isSeller;
   final bool isUser;
+  final File? profileImage;
+  final bool isProfileImageValid;
 
   RegistrationState copyWith({
     TextEditingController? nameController,
@@ -37,6 +51,11 @@ class RegistrationState extends Equatable {
     TextEditingController? phoneController,
     TextEditingController? whatsAppController,
     TextEditingController? passwordController,
+    TextEditingController? facebookController,
+    TextEditingController? profilePictureController,
+    TextEditingController? documentsController,
+    TextEditingController? countryController,
+    TextEditingController? cityController,
     bool? isShowPassword,
     GlobalKey<FormState>? formKey,
     String? selectedPhoneCode,
@@ -45,12 +64,20 @@ class RegistrationState extends Equatable {
     String? selectedWhatsAppFlag,
     bool? isUser,
     bool? isSeller,
+    File? profileImage,
+    bool? isProfileImageValid,
   }) => RegistrationState(
     nameController: nameController ?? this.nameController,
     emailController: emailController ?? this.emailController,
     phoneController: phoneController ?? this.phoneController,
     whatsAppController: whatsAppController ?? this.whatsAppController,
     passwordController: passwordController ?? this.passwordController,
+    facebookController: facebookController ?? this.facebookController,
+    profilePictureController:
+        profilePictureController ?? this.profilePictureController,
+    documentsController: documentsController ?? this.documentsController,
+    countryController: countryController ?? this.countryController,
+    cityController: cityController ?? this.cityController,
     isShowPassword: isShowPassword ?? this.isShowPassword,
     formKey: formKey ?? this.formKey,
     selectedPhoneCode: selectedPhoneCode ?? this.selectedPhoneCode,
@@ -59,15 +86,22 @@ class RegistrationState extends Equatable {
     selectedWhatsAppFlag: selectedWhatsAppFlag ?? this.selectedWhatsAppFlag,
     isUser: isUser ?? this.isUser,
     isSeller: isSeller ?? this.isSeller,
+    profileImage: profileImage ?? this.profileImage,
+    isProfileImageValid: isProfileImageValid ?? this.isProfileImageValid,
   );
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
     nameController,
     emailController,
     phoneController,
     whatsAppController,
     passwordController,
+    facebookController,
+    profilePictureController,
+    documentsController,
+    countryController,
+    cityController,
     isShowPassword,
     formKey,
     selectedPhoneCode,
@@ -76,5 +110,6 @@ class RegistrationState extends Equatable {
     selectedWhatsAppFlag,
     isUser,
     isSeller,
+    profileImage,
   ];
 }

@@ -1,5 +1,6 @@
 import 'package:mubasher_app/features/profile/views/components/custom_details_profile.dart';
 import 'package:mubasher_app/features/profile/views/components/custom_profile_field.dart';
+import 'package:mubasher_app/core/resources/app_color_manager.dart';
 import 'package:mubasher_app/core/extension/context.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:mubasher_app/core/route/routes.dart';
@@ -11,6 +12,7 @@ class EditProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorManager.white,
       body: SafeArea(
         child: ListView(
           children: [
@@ -25,7 +27,7 @@ class EditProfileView extends StatelessWidget {
             ),
             SizedBox(height: 1.h),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 6.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -55,8 +57,8 @@ class EditProfileView extends StatelessWidget {
                     isEditable: true,
                   ),
                   ProfileField(
-                    title: context.lang.password,
-                    value: '',
+                    title: '',
+                    value: context.lang.password,
                     isPassword: true,
                   ),
                 ],

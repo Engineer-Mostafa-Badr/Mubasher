@@ -1,4 +1,5 @@
 import 'package:mubasher_app/features/splash/on_boarding/views/on_boarding_three.dart';
+import 'package:mubasher_app/features/auth/presentation/views/sign_up_user_view.dart';
 import 'package:mubasher_app/features/splash/on_boarding/views/on_boarding_two.dart';
 import 'package:mubasher_app/features/auth/active_account/views/enter_otp_view.dart';
 import 'package:mubasher_app/features/splash/on_boarding/views/on_boarding_one.dart';
@@ -6,13 +7,14 @@ import 'package:mubasher_app/features/auth/active_account/views/activate_view.da
 import 'package:mubasher_app/features/auth/presentation/views/forgot_password.dart';
 import 'package:mubasher_app/features/auth/domain/entities/user_entity.dart';
 import 'package:mubasher_app/features/profile/views/profile_options.dart';
+import '../../features/auth/presentation/views/sign_up_seller_view.dart';
 import 'package:mubasher_app/features/favorite/views/favorite_view.dart';
+import 'package:mubasher_app/features/products/views/product_view.dart';
 import 'package:mubasher_app/features/profile/views/edit_profile.dart';
 import 'package:mubasher_app/features/profile/views/payment_view.dart';
 import 'package:mubasher_app/features/profile/views/profile_view.dart';
 import 'package:mubasher_app/features/splash/views/splash_view.dart';
 import '../../features/auth/presentation/views/sign_in_view.dart';
-import '../../features/auth/presentation/views/sign_up_view.dart';
 import 'package:mubasher_app/features/home/views/home_view.dart';
 import 'package:mubasher_app/core/route/routes.dart';
 import 'package:flutter/material.dart';
@@ -30,9 +32,14 @@ class RoutesGenerator {
           builder: (context) => SignInView(),
           settings: settings,
         );
-      case PageRouteName.signUpRoute:
+      case PageRouteName.signUpSellerRoute:
         return MaterialPageRoute(
-          builder: (context) => const SignUpView(),
+          builder: (context) => const SignUpSellerView(),
+          settings: settings,
+        );
+      case PageRouteName.signUpUserRoute:
+        return MaterialPageRoute(
+          builder: (context) => const SignUpUserView(),
           settings: settings,
         );
       case PageRouteName.homeRoute:
@@ -55,7 +62,8 @@ class RoutesGenerator {
       case PageRouteName.enterOTPRoute:
         final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
-          builder: (_) => EnterOTPView(user: args['user']),
+          builder:
+              (_) => EnterOTPView(user: args['user'], email: args['email']),
         );
 
       case PageRouteName.onBoardingOneRoute:
@@ -101,6 +109,11 @@ class RoutesGenerator {
       case PageRouteName.forgotPasswordRoute:
         return MaterialPageRoute(
           builder: (context) => const ForgotPassword(),
+          settings: settings,
+        );
+      case PageRouteName.productRoute:
+        return MaterialPageRoute(
+          builder: (context) => const ProductView(),
           settings: settings,
         );
       default:

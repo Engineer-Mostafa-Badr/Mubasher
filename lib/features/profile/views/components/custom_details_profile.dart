@@ -22,10 +22,11 @@ class CustomDetailsProfile extends StatelessWidget {
             children: [
               ArrowBackLeadingAppbar(onTap: onTap),
               Padding(
-                padding: EdgeInsets.only(left: 25.w),
+                padding: EdgeInsets.only(left: 26.w),
                 child: AppText(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 16.px,
+                  fontFamily: 'Lato',
+                  fontWeight: FontWeight.w800,
                   textColor: ColorManager.primaryColor,
                   text: text,
                 ),
@@ -45,9 +46,10 @@ class CustomDetailsProfile extends StatelessWidget {
                 SizedBox(height: 1.h),
                 Center(
                   child: AppText(
-                    fontSize: 20,
+                    fontSize: 16.px,
+                    fontFamily: 'Lato',
                     textColor: ColorManager.primaryColor,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w700,
                     text: 'Sallem ahmed',
                   ),
                 ),

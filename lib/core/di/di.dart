@@ -1,6 +1,7 @@
 import 'package:mubasher_app/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:mubasher_app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:mubasher_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:mubasher_app/features/auth/domain/usecases/active_user_account_usecase.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_bloc.dart';
 import 'package:mubasher_app/features/auth/domain/usecases/register_usecase.dart';
 import 'package:mubasher_app/features/auth/domain/usecases/login_usecase.dart';
@@ -78,9 +79,17 @@ void initDI() {
   /// Use Cases
   getIt.registerLazySingleton<LoginUseCase>(() => LoginUseCase(getIt()));
   getIt.registerLazySingleton<RegisterUseCase>(() => RegisterUseCase(getIt()));
+  getIt.registerLazySingleton<ActivateAccountUseCase>(
+    () => ActivateAccountUseCase(getIt()),
+  );
 
   /// Bloc
   getIt.registerFactory<AuthBloc>(
-    () => AuthBloc(loginUseCase: getIt(), registerUseCase: getIt()),
+    () => AuthBloc(
+      loginUseCase: getIt(),
+      registerUseCase: getIt(),
+      activateAccountUseCase: getIt(),
+      authRepository: getIt(),
+    ),
   );
 }

@@ -5,6 +5,7 @@ import '../../domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'dart:developer';
+import 'dart:io';
 
 const String accessTokenKey = 'accessToken';
 
@@ -46,19 +47,28 @@ class AuthRepositoryImpl implements AuthRepository {
     required String phone,
     required String whatsapp,
     required bool isSeller,
+    String? facebook,
+    String? documents,
+    String? country,
+    String? city,
+    File? profileImage,
   }) async {
     try {
-      final result = await remoteDataSource.register(
+      final user = await remoteDataSource.register(
         username: username,
         email: email,
         password: password,
-        confirmPassword: password,
+        confirmPassword: confirmPassword,
         phone: phone,
         whatsapp: whatsapp,
         isSeller: isSeller,
+        facebook: facebook,
+        documents: documents,
+        country: country,
+        city: city,
+        profileImage: profileImage,
       );
 
-      final user = result;
       if (user.accessToken.isEmpty) {
         log('🚨 User is null or accessToken is missing');
         return Left('Registration failed: Invalid user data received');
@@ -85,5 +95,47 @@ class AuthRepositoryImpl implements AuthRepository {
   String _extractToken(String rawToken) {
     final match = RegExp(r'token\s*=\s*(.*)').firstMatch(rawToken);
     return match != null ? match.group(1)!.trim() : rawToken.trim();
+  }
+
+  @override
+  Future<Either<String, String>> activateAccount({
+    required String email,
+    required String whatsapp,
+    required String phone,
+    required String methodResponse,
+    required String otp,
+  }) async {
+    try {
+      final message = await remoteDataSource.activateAccount(
+        email: email,
+        whatsapp: whatsapp,
+        phone: phone,
+        methodResponse: methodResponse,
+        otp: otp,
+      );
+      return Right(message);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  @override
+  Future<String> resendOtp({
+    required String email,
+    required String whatsapp,
+    required String phone,
+    required String methodResponse,
+  }) async {
+    try {
+      final message = await remoteDataSource.resendOtp(
+        email: email,
+        whatsapp: whatsapp,
+        phone: phone,
+        methodResponse: methodResponse,
+      );
+      return message;
+    } catch (e) {
+      throw Exception("Resend OTP failed: ${e.toString()}");
+    }
   }
 }

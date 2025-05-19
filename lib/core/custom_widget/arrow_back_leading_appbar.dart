@@ -11,16 +11,16 @@ class ArrowBackLeadingAppbar extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: SizedBox(
-          width: 40,
-          height: 40,
+          width: 13.w,
+          height: 6.h,
           child: Stack(
             alignment: Alignment.center,
             children: [
               SvgPicture.asset(
                 SvgImagesManager.arrowBackBackground,
                 fit: BoxFit.cover,
-                width: 40,
-                height: 40,
+                width: 6.w,
+                height: 6.h,
               ),
               SvgPicture.asset(
                 SvgImagesManager.arrowBack,
@@ -29,8 +29,8 @@ class ArrowBackLeadingAppbar extends StatelessWidget {
                   ColorManager.primaryColor,
                   BlendMode.srcIn,
                 ),
-                width: 24,
-                height: 24,
+                width: 3.w,
+                height: 5.h,
               ),
             ],
           ),

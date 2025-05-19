@@ -144,7 +144,10 @@ class PaymentView extends StatelessWidget {
                 ],
               ),
             ),
-            ElevatedButtonManager(text: context.lang.payNowText),
+            ElevatedButtonManager(
+              text: context.lang.payNowText,
+              onPressed: () {},
+            ),
           ],
         ),
       ),

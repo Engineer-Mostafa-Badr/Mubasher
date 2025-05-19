@@ -1,9 +1,9 @@
-import 'package:mubasher_app/config/app_controller/cubit/app_controller_cubit.dart';
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
 import 'package:mubasher_app/features/profile/views/components/custom_details_profile.dart';
 import 'package:mubasher_app/features/profile/views/components/custom_profile_options.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_event.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_state.dart';
+import 'package:mubasher_app/config/app_controller/cubit/app_controller_cubit.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_bloc.dart';
 import 'package:mubasher_app/core/helpers/app_notifier.dart';
 
@@ -25,6 +25,7 @@ class ProfileOptionsView extends StatelessWidget {
         }
       },
       child: Scaffold(
+        backgroundColor: ColorManager.white,
         body: SafeArea(
           child: Column(
             children: [
@@ -57,7 +58,7 @@ class ProfileOptionsView extends StatelessWidget {
                       crossAxisCount: 3,
                       crossAxisSpacing: 15,
                       mainAxisSpacing: 15,
-                      childAspectRatio: 0.75,
+                      childAspectRatio: 0.70,
                       children: [
                         ProfileOption(
                           iconAsset: SvgImagesManager.showOutlineIcon,
@@ -86,6 +87,7 @@ class ProfileOptionsView extends StatelessWidget {
                             );
                           },
                         ),
+
                         ProfileOption(
                           isChangeLanguage: true,
                           assetPath: AssetsManager.englishToArabicIcon,
@@ -104,7 +106,6 @@ class ProfileOptionsView extends StatelessWidget {
                                 currentLangCode == 'ar'
                                     ? const Locale('en')
                                     : const Locale('ar');
-
                             context.read<AppControllerCubit>().changeLang(
                               newLang,
                             );

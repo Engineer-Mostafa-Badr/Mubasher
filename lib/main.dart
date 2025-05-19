@@ -30,7 +30,12 @@ void main() async {
       providers: [
         BlocProvider<AuthBloc>(
           create:
-              (_) => AuthBloc(loginUseCase: getIt(), registerUseCase: getIt()),
+              (_) => AuthBloc(
+                loginUseCase: getIt(),
+                registerUseCase: getIt(),
+                activateAccountUseCase: getIt(),
+                authRepository: getIt(),
+              ),
         ),
       ],
       child: MubasherApp(),
@@ -68,8 +73,12 @@ class MubasherApp extends StatelessWidget {
                       : const Locale('en');
                 },
                 builder: (context, child) {
+                  final langCode = Localizations.localeOf(context).languageCode;
+                  final isArabic = langCode == 'ar';
+
                   return Directionality(
-                    textDirection: TextDirection.ltr,
+                    textDirection:
+                        isArabic ? TextDirection.rtl : TextDirection.ltr,
                     child: EasyLoading.init()(context, child),
                   );
                 },

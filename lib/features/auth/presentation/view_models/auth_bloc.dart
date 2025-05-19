@@ -1,3 +1,5 @@
+import 'package:mubasher_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:mubasher_app/features/auth/domain/usecases/active_user_account_usecase.dart';
 import 'package:mubasher_app/core/helpers/token_storage_helper.dart';
 import '../../domain/usecases/register_usecase.dart';
 import '../../domain/usecases/login_usecase.dart';
@@ -9,9 +11,15 @@ import 'dart:developer';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LoginUseCase loginUseCase;
   final RegisterUseCase registerUseCase;
+  final ActivateAccountUseCase activateAccountUseCase;
+  final AuthRepository authRepository;
 
-  AuthBloc({required this.loginUseCase, required this.registerUseCase})
-    : super(AuthInitial()) {
+  AuthBloc({
+    required this.loginUseCase,
+    required this.authRepository,
+    required this.registerUseCase,
+    required this.activateAccountUseCase,
+  }) : super(AuthInitial()) {
     on<LoginEvent>((event, emit) async {
       log('📩 LoginEvent received');
       emit(AuthLoading());
@@ -49,6 +57,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         phone: event.phone,
         whatsapp: event.whatsapp,
         isSeller: event.isSeller,
+        isUser: !event.isSeller,
+        facebook: event.facebook,
+        documents: event.documents,
+        country: event.country,
+        city: event.city,
+        profileImage: event.profileImage,
       );
 
       if (result.isLeft()) {
@@ -78,6 +92,34 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       log('🧹 Token cleared');
 
       emit(AuthLoggedOutSuccess());
+    });
+
+    on<ActivateAccountEvent>((event, emit) async {
+      emit(OtpVerifying());
+
+      final result = await activateAccountUseCase(
+        email: event.email,
+        whatsapp: event.whatsapp,
+        phone: event.phone,
+        methodResponse: event.methodResponse,
+        otp: event.otp,
+      );
+
+      result.fold((error) => emit(OtpError(error)), (_) => emit(OtpVerified()));
+    });
+
+    on<ResendOtpEvent>((event, emit) async {
+      try {
+        await authRepository.resendOtp(
+          email: event.email,
+          whatsapp: event.whatsapp,
+          phone: event.phone,
+          methodResponse: event.methodResponse,
+        );
+        emit(OtpResent());
+      } catch (e) {
+        emit(OtpResendError(e.toString()));
+      }
     });
   }
 }

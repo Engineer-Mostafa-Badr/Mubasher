@@ -3,10 +3,11 @@ import 'package:mubasher_app/features/auth/presentation/view_models/auth_state.d
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_event.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_bloc.dart';
 import 'package:mubasher_app/core/helpers/app_notifier.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'components/phone_whatsapp_choice_dial_code.dart';
 
-class SignUpView extends StatelessWidget {
-  const SignUpView({super.key});
+class SignUpSellerView extends StatelessWidget {
+  const SignUpSellerView({super.key});
   String normalizeNumber(String code, String number) {
     final cleaned =
         number.trim().startsWith('0')
@@ -60,9 +61,7 @@ class SignUpView extends StatelessWidget {
                             current.selectedWhatsAppCode ||
                         previous.selectedWhatsAppFlag !=
                             current.selectedWhatsAppFlag ||
-                        previous.isUser != current.isUser ||
-                        previous.isSeller != current.isSeller,
-
+                        previous.profileImage != current.profileImage,
                 builder: (context, regState) {
                   return Form(
                     key: regState.formKey,
@@ -83,7 +82,7 @@ class SignUpView extends StatelessWidget {
                             SizedBox(height: 2.h),
                             TextSpanManager(
                               textAlign: TextAlign.start,
-                              textOne: context.lang.createyourText,
+                              textOne: context.lang.createYourSellerText,
                               fontSizeTextOne: 25.px,
                               fontWeightTextOne: FontWeight.w500,
                               colorTextOne: ColorManager.primaryColor,
@@ -104,79 +103,7 @@ class SignUpView extends StatelessWidget {
                               fontSize: 16.px,
                             ),
                             SizedBox(height: 2.h),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                GestureDetector(
-                                  onTap:
-                                      () =>
-                                          cubit.selectUserType(isSeller: false),
-                                  child: Container(
-                                    height: 9.h,
-                                    width: 37.w,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          regState.isUser
-                                              ? ColorManager.green
-                                              : ColorManager.greyTextFormField,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        SvgPicture.asset(
-                                          SvgImagesManager.profileUserSeller,
-                                          height: 5.h,
-                                        ),
-                                        AppText(
-                                          text: context.lang.userText,
-                                          textColor:
-                                              regState.isUser
-                                                  ? ColorManager.primaryColor
-                                                  : ColorManager.black,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap:
-                                      () =>
-                                          cubit.selectUserType(isSeller: true),
-                                  child: Container(
-                                    height: 9.h,
-                                    width: 37.w,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          regState.isSeller
-                                              ? ColorManager.green
-                                              : ColorManager.greyTextFormField,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        SvgPicture.asset(
-                                          SvgImagesManager.profileUserSeller,
-                                          height: 5.h,
-                                        ),
-                                        AppText(
-                                          text: context.lang.sellerText,
-                                          textColor:
-                                              regState.isSeller
-                                                  ? ColorManager.primaryColor
-                                                  : ColorManager.black,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
 
-                            SizedBox(height: 1.h),
                             RegisterTextFormField(
                               validate:
                                   (name) => cubit.validateName(
@@ -196,6 +123,8 @@ class SignUpView extends StatelessWidget {
                                   (phone) => cubit.validatePhoneNumber(
                                     context: context,
                                     phoneNumber: phone,
+                                    selectedPhoneCode:
+                                        regState.selectedPhoneCode,
                                   ),
                               controller: regState.phoneController,
                               hintText: context.lang.phoneNumberText,
@@ -240,6 +169,8 @@ class SignUpView extends StatelessWidget {
                                   (whatapp) => cubit.validateWhatsApp(
                                     context: context,
                                     whatsAppNumber: whatapp,
+                                    selectedPhoneCode:
+                                        regState.selectedPhoneCode,
                                   ),
                               controller: regState.whatsAppController,
                               hintText: context.lang.whatsAppText,
@@ -279,6 +210,119 @@ class SignUpView extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            RegisterTextFormField(
+                              validate:
+                                  (facebook) => cubit.validateFacebook(
+                                    context: context,
+                                    facebook: facebook,
+                                  ),
+                              controller: regState.facebookController,
+                              hintText: context.lang.facebookText,
+                              labelText: context.lang.facebookText,
+                              color: ColorManager.grey,
+                              prefixIconPath: SvgImagesManager.facebookIcon,
+                              keyboardType: TextInputType.url,
+                            ),
+                            SizedBox(height: 1.h),
+                            GestureDetector(
+                              onTap: () async {
+                                await cubit.pickProfileImage();
+                                final path = cubit.state.profileImage?.path;
+                                if (path != null) {
+                                  final prefs =
+                                      await SharedPreferences.getInstance();
+                                  await prefs.setString(
+                                    'profile_image_path',
+                                    path,
+                                  );
+                                }
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: ColorManager.greyTextFormField,
+                                  borderRadius: BorderRadius.circular(4.w),
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 2.h,
+                                  horizontal: 3.w,
+                                ),
+                                child: Row(
+                                  children: [
+                                    if (cubit.state.profileImage != null)
+                                      CircleAvatar(
+                                        radius: 5.w,
+                                        backgroundImage: FileImage(
+                                          cubit.state.profileImage!,
+                                        ),
+                                      )
+                                    else
+                                      CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor: Colors.grey[300],
+                                        child: SvgPicture.asset(
+                                          SvgImagesManager.profilePictureIcon,
+                                          width: 7.w,
+                                          height: 2.h,
+                                        ),
+                                      ),
+                                    SizedBox(width: 4.w),
+                                    Expanded(
+                                      child: Text(
+                                        cubit.state.profileImage != null
+                                            ? cubit.state.profileImage!.path
+                                                .split('/')
+                                                .last
+                                            : context.lang.profilePictureText,
+                                        style: TextStyle(
+                                          color: ColorManager.grey,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 1.h),
+                            RegisterTextFormField(
+                              validate:
+                                  (documents) => cubit.validateDocuments(
+                                    context: context,
+                                    documents: documents,
+                                  ),
+                              controller: regState.documentsController,
+                              hintText: context.lang.documentsText,
+                              labelText: context.lang.documentsText,
+                              color: ColorManager.grey,
+                              prefixIconPath: SvgImagesManager.documentsIcon,
+                              keyboardType: TextInputType.text,
+                            ),
+                            RegisterTextFormField(
+                              validate:
+                                  (country) => cubit.validateCountry(
+                                    context: context,
+                                    country: country,
+                                  ),
+                              controller: regState.countryController,
+                              hintText: context.lang.countryText,
+                              labelText: context.lang.countryText,
+                              color: ColorManager.grey,
+                              prefixIconPath: SvgImagesManager.countryCityIcon,
+                              keyboardType: TextInputType.text,
+                            ),
+                            RegisterTextFormField(
+                              validate:
+                                  (city) => cubit.validateCity(
+                                    context: context,
+                                    city: city,
+                                  ),
+                              controller: regState.cityController,
+                              hintText: context.lang.cityText,
+                              labelText: context.lang.cityText,
+                              color: ColorManager.grey,
+                              prefixIconPath: SvgImagesManager.countryCityIcon,
+                              keyboardType: TextInputType.text,
+                            ),
                             CustomPasswordTextFormField(),
                             SizedBox(height: 2.h),
                             Row(
@@ -313,15 +357,18 @@ class SignUpView extends StatelessWidget {
                               color: ColorManager.primaryColor,
                               text: context.lang.register,
                               onPressed: () {
-                                if (!regState.isUser && !regState.isSeller) {
-                                  AppNotifier().showError(
-                                    context,
-                                    "يجب اختيار نوع الحساب",
+                                final isImageSelected =
+                                    regState.profileImage != null;
+                                if (!isImageSelected) {
+                                  // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
+                                  context.read<RegistrationCubit>().emit(
+                                    regState.copyWith(
+                                      isProfileImageValid: false,
+                                    ),
                                   );
-                                  return;
                                 }
-
-                                if (regState.formKey.currentState!.validate()) {
+                                if (regState.formKey.currentState!.validate() &&
+                                    isImageSelected) {
                                   final fullPhone = normalizeNumber(
                                     regState.selectedPhoneCode,
                                     regState.phoneController.text,
@@ -345,7 +392,19 @@ class SignUpView extends StatelessWidget {
                                               .trim(),
                                       phone: fullPhone,
                                       whatsapp: fullWhatsApp,
-                                      isSeller: regState.isSeller,
+                                      facebook:
+                                          regState.facebookController.text
+                                              .trim(),
+                                      documents:
+                                          regState.documentsController.text
+                                              .trim(),
+                                      country:
+                                          regState.countryController.text
+                                              .trim(),
+                                      city: regState.cityController.text.trim(),
+                                      isSeller: cubit.state.isSeller,
+                                      isUser: cubit.state.isUser,
+                                      profileImage: regState.profileImage!,
                                     ),
                                   );
                                 }

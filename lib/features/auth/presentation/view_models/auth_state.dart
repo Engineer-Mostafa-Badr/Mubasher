@@ -33,3 +33,21 @@ class AuthError extends AuthState {
 class AuthLoggedOutLoading extends AuthState {}
 
 class AuthLoggedOutSuccess extends AuthState {}
+
+class OtpState extends AuthState {}
+
+class OtpVerifying extends OtpState {}
+
+class OtpVerified extends OtpState {}
+
+class OtpError extends OtpState {
+  final String message;
+  OtpError(this.message);
+}
+
+class OtpResent extends OtpState {}
+
+class OtpResendError extends OtpState {
+  final String message;
+  OtpResendError(this.message);
+}

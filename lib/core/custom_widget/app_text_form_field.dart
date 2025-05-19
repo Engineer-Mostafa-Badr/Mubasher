@@ -74,10 +74,7 @@ class AppTextFormField extends StatelessWidget {
           focusedBorder: border(context: context),
           border: border(context: context),
           errorBorder: border(isErrorBorder: true, context: context),
-          contentPadding: EdgeInsets.symmetric(
-            vertical: 3.h,
-            // horizontal: 2.w,
-          ),
+          contentPadding: EdgeInsets.symmetric(vertical: 3.h),
         ),
       ),
     );
