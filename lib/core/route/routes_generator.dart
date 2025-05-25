@@ -5,6 +5,7 @@ import 'package:mubasher_app/features/auth/active_account/views/enter_otp_view.d
 import 'package:mubasher_app/features/splash/on_boarding/views/on_boarding_one.dart';
 import 'package:mubasher_app/features/auth/active_account/views/activate_view.dart';
 import 'package:mubasher_app/features/auth/presentation/views/forgot_password.dart';
+import 'package:mubasher_app/features/profile/views/change_password_view.dart';
 import 'package:mubasher_app/features/auth/domain/entities/user_entity.dart';
 import 'package:mubasher_app/features/profile/views/profile_options.dart';
 import '../../features/auth/presentation/views/sign_up_seller_view.dart';
@@ -88,7 +89,7 @@ class RoutesGenerator {
         );
       case PageRouteName.editProfileRoute:
         return MaterialPageRoute(
-          builder: (context) => const EditProfileView(),
+          builder: (context) => EditProfileView(),
           settings: settings,
         );
       case PageRouteName.profileOptionsRoute:
@@ -114,6 +115,11 @@ class RoutesGenerator {
       case PageRouteName.productRoute:
         return MaterialPageRoute(
           builder: (context) => const ProductView(),
+          settings: settings,
+        );
+      case PageRouteName.changePasswordRoute:
+        return MaterialPageRoute(
+          builder: (context) => const ChangePasswordView(),
           settings: settings,
         );
       default:

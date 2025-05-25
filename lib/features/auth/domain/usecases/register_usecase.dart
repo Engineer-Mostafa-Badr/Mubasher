@@ -31,6 +31,7 @@ class RegisterUseCase {
       phone: phone,
       whatsapp: whatsapp,
       isSeller: isSeller,
+      isUser: isUser,
       facebook: facebook,
       documents: documents,
       country: country,

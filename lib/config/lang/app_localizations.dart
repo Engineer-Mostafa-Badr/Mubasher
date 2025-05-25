@@ -95,41 +95,41 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
-  /// No description provided for @login.
+  /// No description provided for @loginText.
   ///
   /// In en, this message translates to:
   /// **'Login'**
-  String get login;
+  String get loginText;
 
-  /// No description provided for @email.
+  /// No description provided for @emailText.
   ///
   /// In en, this message translates to:
   /// **'Email'**
-  String get email;
+  String get emailText;
 
-  /// No description provided for @password.
+  /// No description provided for @passwordText.
   ///
   /// In en, this message translates to:
   /// **'Password'**
-  String get password;
+  String get passwordText;
 
-  /// No description provided for @notHaveAccount.
+  /// No description provided for @notHaveAccountText.
   ///
   /// In en, this message translates to:
   /// **'Don’t have an account?  '**
-  String get notHaveAccount;
+  String get notHaveAccountText;
 
-  /// No description provided for @signUp.
+  /// No description provided for @signUpText.
   ///
   /// In en, this message translates to:
   /// **'SignUp'**
-  String get signUp;
+  String get signUpText;
 
-  /// No description provided for @register.
+  /// No description provided for @registerText.
   ///
   /// In en, this message translates to:
   /// **'Register'**
-  String get register;
+  String get registerText;
 
   ///  Error message when the field is empty
   ///
@@ -149,11 +149,11 @@ abstract class AppLocalizations {
   /// **'Password must not be less than 6 digits'**
   String get passwordFormatText;
 
-  /// No description provided for @loginText.
+  /// No description provided for @letsText.
   ///
   /// In en, this message translates to:
   /// **'Let’s '**
-  String get loginText;
+  String get letsText;
 
   /// No description provided for @signInText.
   ///
@@ -263,11 +263,11 @@ abstract class AppLocalizations {
   /// **'Please select a method for confirming your identity'**
   String get activeDescriptionText;
 
-  /// No description provided for @emailText.
+  /// No description provided for @emailMethodText.
   ///
   /// In en, this message translates to:
   /// **'E mail'**
-  String get emailText;
+  String get emailMethodText;
 
   /// No description provided for @smsCodeText.
   ///
@@ -386,7 +386,7 @@ abstract class AppLocalizations {
   /// No description provided for @yourProductText.
   ///
   /// In en, this message translates to:
-  /// **'Your product'**
+  /// **'Your products'**
   String get yourProductText;
 
   /// No description provided for @changeLanguageText.
@@ -400,12 +400,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Change country'**
   String get changeCountryText;
-
-  /// No description provided for @logOut.
-  ///
-  /// In en, this message translates to:
-  /// **'Log out'**
-  String get logOut;
 
   /// No description provided for @favoriteText.
   ///
@@ -551,12 +545,6 @@ abstract class AppLocalizations {
   /// **'You must choose the type of account.'**
   String get chooseAccountText;
 
-  /// No description provided for @facebookFormatText.
-  ///
-  /// In en, this message translates to:
-  /// **'Please! enter valied facebook url'**
-  String get facebookFormatText;
-
   /// No description provided for @profilePictureFormatText.
   ///
   /// In en, this message translates to:
@@ -580,6 +568,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please! enter your city'**
   String get cityFormatText;
+
+  /// No description provided for @logOutText.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get logOutText;
+
+  /// No description provided for @searchHintText.
+  ///
+  /// In en, this message translates to:
+  /// **'Search House, Apartment, etc'**
+  String get searchHintText;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

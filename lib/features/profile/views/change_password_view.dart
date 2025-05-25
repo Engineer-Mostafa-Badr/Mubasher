@@ -4,15 +4,14 @@ import 'package:mubasher_app/features/auth/presentation/view_models/auth_bloc.da
 import 'package:mubasher_app/features/auth/domain/entities/user_entity.dart';
 import 'package:mubasher_app/core/helpers/app_notifier.dart';
 
-class ActivateView extends StatefulWidget {
-  const ActivateView({super.key, required this.user});
-  final UserEntity user;
-
+class ChangePasswordView extends StatefulWidget {
+  const ChangePasswordView({super.key, this.user});
+  final UserEntity? user;
   @override
-  State<ActivateView> createState() => _ActivateViewState();
+  State<ChangePasswordView> createState() => _ChangePasswordViewState();
 }
 
-class _ActivateViewState extends State<ActivateView> {
+class _ChangePasswordViewState extends State<ChangePasswordView> {
   String? selectedSendMethod;
   String? selectedBindMethod;
   late TextEditingController _textEditingController;
@@ -45,9 +44,9 @@ class _ActivateViewState extends State<ActivateView> {
 
   Widget _buildRadioTile(String label, String svgPath, String hintText) {
     String? getUserField(String label) {
-      if (label == context.lang.emailMethodText) return widget.user.email;
-      if (label == context.lang.smsCodeText) return widget.user.phoneno;
-      if (label == context.lang.whatsappText) return widget.user.whatsapp;
+      if (label == context.lang.emailMethodText) return widget.user!.email;
+      if (label == context.lang.smsCodeText) return widget.user!.phoneno;
+      if (label == context.lang.whatsappText) return widget.user!.whatsapp;
       return '';
     }
 
@@ -94,9 +93,9 @@ class _ActivateViewState extends State<ActivateView> {
     final isSelected = selectedSendMethod == label;
 
     String? getUserField(String label) {
-      if (label == context.lang.emailMethodText) return widget.user.email;
-      if (label == context.lang.smsCodeText) return widget.user.phoneno;
-      if (label == context.lang.whatsappText) return widget.user.whatsapp;
+      if (label == context.lang.emailMethodText) return widget.user!.email;
+      if (label == context.lang.smsCodeText) return widget.user!.phoneno;
+      if (label == context.lang.whatsappText) return widget.user!.whatsapp;
       return '';
     }
 
@@ -316,11 +315,11 @@ class _ActivateViewState extends State<ActivateView> {
                   String whatsapp = '';
 
                   if (selectedSendMethod == context.lang.emailMethodText) {
-                    email = widget.user.email;
+                    email = widget.user!.email;
                   } else if (selectedSendMethod == context.lang.smsCodeText) {
-                    phone = widget.user.phoneno;
+                    phone = widget.user!.phoneno;
                   } else if (selectedSendMethod == context.lang.whatsappText) {
-                    whatsapp = widget.user.whatsapp;
+                    whatsapp = widget.user!.whatsapp;
                   }
 
                   final method = selectedSendMethod!;

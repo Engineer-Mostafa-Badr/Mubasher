@@ -11,11 +11,16 @@ abstract class AuthEvent extends Equatable {
 class LoginEvent extends AuthEvent {
   final String username;
   final String password;
+  final bool isSeller;
 
-  const LoginEvent({required this.username, required this.password});
+  const LoginEvent({
+    required this.username,
+    required this.password,
+    required this.isSeller,
+  });
 
   @override
-  List<Object?> get props => [username, password];
+  List<Object?> get props => [username, password, isSeller];
 }
 
 class RegisterEvent extends AuthEvent {
@@ -103,3 +108,10 @@ class ResendOtpEvent extends AuthEvent {
     required this.methodResponse,
   });
 }
+
+class ChangeLanguageEvent extends AuthEvent {
+  final String languageCode;
+  const ChangeLanguageEvent(this.languageCode);
+}
+
+class ContinueWithoutLoginEvent extends AuthEvent {}

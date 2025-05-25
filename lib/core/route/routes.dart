@@ -16,4 +16,5 @@ class PageRouteName {
   static const String paymentRoute = '/payment';
   static const String forgotPasswordRoute = '/forgot_password';
   static const String productRoute = '/product';
+  static const String changePasswordRoute = '/change_password';
 }

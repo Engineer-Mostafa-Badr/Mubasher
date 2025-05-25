@@ -3,16 +3,8 @@ import 'package:mubasher_app/features/auth/presentation/views/components/auth_ex
 class ProfileField extends StatelessWidget {
   final String? title;
   final String value;
-  final bool isEditable;
-  final bool isPassword;
 
-  const ProfileField({
-    super.key,
-    this.title,
-    required this.value,
-    this.isEditable = false,
-    this.isPassword = false,
-  });
+  const ProfileField({super.key, this.title, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +24,7 @@ class ProfileField extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(vertical: 1.h),
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 2.h, vertical: .50.h),
+            padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: .50.h),
             decoration: BoxDecoration(
               color: ColorManager.editProfileFieldColor,
               borderRadius: BorderRadius.circular(15.w),
@@ -50,7 +42,6 @@ class ProfileField extends StatelessWidget {
                 Expanded(
                   child: TextFormField(
                     controller: controller,
-                    // obscureText: isPassword,
                     decoration: const InputDecoration(border: InputBorder.none),
                     style: TextStyle(
                       color: ColorManager.primaryColor,
@@ -60,18 +51,12 @@ class ProfileField extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (isEditable)
-                  SvgPicture.asset(
-                    SvgImagesManager.editIcon,
-                    height: 3.h,
-                    width: 7.w,
-                  )
-                else if (isPassword)
-                  SvgPicture.asset(
-                    SvgImagesManager.arrowRightIcon,
-                    height: 18,
-                    width: 18,
-                  ),
+
+                SvgPicture.asset(
+                  SvgImagesManager.editIcon,
+                  height: 3.h,
+                  width: 7.w,
+                ),
               ],
             ),
           ),

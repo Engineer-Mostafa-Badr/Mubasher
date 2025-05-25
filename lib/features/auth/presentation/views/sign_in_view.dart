@@ -128,7 +128,7 @@ class SignInView extends StatelessWidget {
                           SizedBox(height: 3.h),
                           TextSpanManager(
                             textAlign: TextAlign.start,
-                            textOne: context.lang.loginText,
+                            textOne: context.lang.letsText,
                             fontSizeTextOne: 25.px,
                             fontWeightTextOne: FontWeight.w500,
                             colorTextOne: ColorManager.primaryColor,
@@ -177,8 +177,15 @@ class SignInView extends StatelessWidget {
                           ),
                           SizedBox(height: 2.h),
                           ElevatedButtonManager(
-                            text: context.lang.login,
+                            text: context.lang.loginText,
                             onPressed: () {
+                              if (!regState.isUser && !regState.isSeller) {
+                                AppNotifier().showError(
+                                  context,
+                                  context.lang.chooseAccountText,
+                                );
+                                return;
+                              }
                               if (registrationCubit.state.formKey.currentState!
                                   .validate()) {
                                 context.read<AuthBloc>().add(
@@ -195,6 +202,7 @@ class SignInView extends StatelessWidget {
                                             .passwordController
                                             .text
                                             .trim(),
+                                    isSeller: regState.isSeller,
                                   ),
                                 );
                               }
@@ -202,9 +210,9 @@ class SignInView extends StatelessWidget {
                           ),
                           SizedBox(height: 2.h),
                           TextSpanManager(
-                            textOne: context.lang.notHaveAccount,
+                            textOne: context.lang.notHaveAccountText,
                             colorTextOne: ColorManager.grey,
-                            textTwo: context.lang.register,
+                            textTwo: context.lang.registerText,
                             colorTextTwo: ColorManager.primaryColor,
                             onTap: (value) {
                               if (regState.isSeller) {

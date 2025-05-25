@@ -9,22 +9,22 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get login => 'تسجيل الدخول';
+  String get loginText => 'تسجيل الدخول';
 
   @override
-  String get email => 'البريد الالكتروني';
+  String get emailText => 'البريد الالكتروني';
 
   @override
-  String get password => 'كلمه السر';
+  String get passwordText => 'كلمه السر';
 
   @override
-  String get notHaveAccount => 'لا يوجد لديك حساب ! ';
+  String get notHaveAccountText => 'لا يوجد لديك حساب ! ';
 
   @override
-  String get signUp => 'SignUp';
+  String get signUpText => 'نسجل حساب جديد';
 
   @override
-  String get register => 'إنشاء حساب';
+  String get registerText => 'إنشاء حساب';
 
   @override
   String emty(String value) {
@@ -38,7 +38,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get passwordFormatText => 'كلمه السر يجب أن لا تقل عن 6 ارقام';
 
   @override
-  String get loginText => 'دعنا ';
+  String get letsText => 'دعنا ';
 
   @override
   String get signInText => 'نسجل الدخول';
@@ -50,7 +50,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get createyourText => 'قم بإنشاء ';
 
   @override
-  String get createYourSellerText => 'Create your Seller ';
+  String get createYourSellerText => ' قم بإنشاء حساب  ';
 
   @override
   String get accountText => 'حسابك';
@@ -95,7 +95,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get activeDescriptionText => 'يرجى اختيار طريقة لتأكيد هويتك';
 
   @override
-  String get emailText => 'البريد الالكتروني';
+  String get emailMethodText => 'البريد الالكتروني';
 
   @override
   String get smsCodeText => 'رمز الرسائل القصيرة';
@@ -125,7 +125,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get goodPriceText => 'سعر جيد';
 
   @override
-  String get descriptionBordingViewsText => 'لوريم إيبسوم دولور سيت أميت، كونسكتتور\nأديبيسيسينغ إيليت، سيد.';
+  String get descriptionBordingViewsText => '';
 
   @override
   String get nextText => 'التالي';
@@ -164,9 +164,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get changeCountryText => 'تغيير المدينه';
 
   @override
-  String get logOut => 'تسجيل خروج';
-
-  @override
   String get favoriteText => 'المفضله';
 
   @override
@@ -188,68 +185,71 @@ class AppLocalizationsAr extends AppLocalizations {
   String get payNowText => 'ادفع الأن';
 
   @override
-  String get userText => 'User';
+  String get userText => 'مستخدم';
 
   @override
-  String get sellerText => 'Seller';
+  String get sellerText => 'مقدم خدمة';
 
   @override
-  String get didnotReceiveTheOTPText => 'Didn’t receive the OTP? ';
+  String get didnotReceiveTheOTPText => 'لم تستلم رمز التحقق';
 
   @override
-  String get resendOTPText => 'Resend OTP';
+  String get resendOTPText => 'إعادة إرسال الرمز';
 
   @override
   String get descriptionEnterCodeText => 'Lorem ipsum dolor sit amet, consectetur.';
 
   @override
-  String get accountEnterCodeText => 'Account ';
+  String get accountEnterCodeText => 'الحساب ';
 
   @override
-  String get successfullyText => 'successfully';
+  String get successfullyText => 'تم بنجاح';
 
   @override
-  String get createdText => 'created';
+  String get createdText => 'إنشاء';
 
   @override
-  String get finishText => 'Finish';
+  String get finishText => 'إنهاء';
 
   @override
-  String get enterTheText => 'Enter the ';
+  String get enterTheText => 'أدخل ';
 
   @override
-  String get codeText => 'code';
+  String get codeText => 'الرمز';
 
   @override
-  String get descriptionEnterViewText => 'Enter the 4 digit code that we just sent to';
+  String get descriptionEnterViewText => ' أدخل الرمز المكون من 4 أرقام الذي أرسلناه للتو إلى';
 
   @override
-  String get facebookText => 'Facebook';
+  String get facebookText => 'فيسبوك';
 
   @override
-  String get profilePictureText => 'Profile picture';
+  String get profilePictureText => 'صورة الملف الشخصي';
 
   @override
-  String get documentsText => 'Documents';
+  String get documentsText => 'المستندات';
 
   @override
-  String get cityText => 'City';
+  String get cityText => 'المدينة';
 
   @override
   String get chooseAccountText => 'يجب اختيار نوع الحساب';
 
   @override
-  String get facebookFormatText => 'Please! enter valied facebook url';
+  String get profilePictureFormatText => 'تنسيق صورة الملف الشخصي غير صحيح';
 
   @override
-  String get profilePictureFormatText => 'Please! choose your profile picture';
+  String get documentsFormatText => 'تنسيق المستندات غير صحيح';
 
   @override
-  String get documentsFormatText => 'Please! enter your documents';
+  String get countryFormatText => 'تنسيق المدينة غير صحيح';
 
   @override
-  String get countryFormatText => 'Please! enter your country';
+  String get cityFormatText => 'تنسيق المدينة غير صحيح';
 
   @override
-  String get cityFormatText => 'Please! enter your city';
+  String get logOutText => 'تسجيل خروج';
+
+  @override
+  String get searchHintText => 'البحث عن منزل، شقة، إلخ';
 }

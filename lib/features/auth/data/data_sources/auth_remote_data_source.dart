@@ -7,8 +7,13 @@ import 'dart:developer';
 import 'dart:io';
 
 abstract class AuthRemoteDataSource {
-  Future<UserModel> login({required String username, required String password});
+  Future<UserModel> login({
+    required String username,
+    required String password,
+    required String url,
+  });
   Future<UserModel> register({
+    required String url,
     required String username,
     required String email,
     required String password,
@@ -47,10 +52,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<UserModel> login({
     required String username,
     required String password,
+    required String url,
   }) async {
     try {
       final response = await apiService.post(
-        ApiConstants.login,
+        url,
         data: {'Username': username, 'Password': password},
       );
 
@@ -70,6 +76,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<UserModel> register({
+    required String url,
     required String username,
     required String email,
     required String password,
@@ -81,7 +88,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     String? documents,
     String? country,
     String? city,
-    File? profileImage, // هنتجاهله مؤقتًا
+    File? profileImage,
   }) async {
     try {
       final jsonData = {
@@ -110,7 +117,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       };
 
       final response = await apiService.post(
-        ApiConstants.register,
+        url,
         data: jsonData,
         headers: {
           "Content-Type": "application/json-patch+json",

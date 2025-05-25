@@ -1,3 +1,5 @@
+import 'package:mubasher_app/features/auth/presentation/view_models/auth_bloc.dart';
+import 'package:mubasher_app/features/auth/presentation/view_models/auth_event.dart';
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
 
 class OutlineButtonManager extends StatelessWidget {
@@ -19,6 +21,8 @@ class OutlineButtonManager extends StatelessWidget {
             ),
           ),
           onPressed: () {
+            context.read<AuthBloc>().add(ContinueWithoutLoginEvent());
+
             Navigator.pushNamed(context, PageRouteName.homeRoute);
           },
           child: AppText(

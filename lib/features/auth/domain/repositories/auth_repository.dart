@@ -6,6 +6,7 @@ abstract class AuthRepository {
   Future<Either<String, UserEntity>> login({
     required String username,
     required String password,
+    required String url,
   });
 
   Future<Either<String, UserEntity>> register({
@@ -16,6 +17,7 @@ abstract class AuthRepository {
     required String phone,
     required String whatsapp,
     required bool isSeller,
+    required bool isUser,
     String? facebook,
     String? documents,
     String? country,

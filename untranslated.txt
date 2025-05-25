@@ -1,27 +1,5 @@
 {
   "ar": [
-    "signUp",
-    "createYourSellerText",
-    "userText",
-    "sellerText",
-    "didnotReceiveTheOTPText",
-    "resendOTPText",
-    "descriptionEnterCodeText",
-    "accountEnterCodeText",
-    "successfullyText",
-    "createdText",
-    "finishText",
-    "enterTheText",
-    "codeText",
-    "descriptionEnterViewText",
-    "facebookText",
-    "profilePictureText",
-    "documentsText",
-    "cityText",
-    "facebookFormatText",
-    "profilePictureFormatText",
-    "documentsFormatText",
-    "countryFormatText",
-    "cityFormatText"
+    "descriptionEnterCodeText"
   ]
 }

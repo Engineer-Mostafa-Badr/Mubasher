@@ -8,6 +8,7 @@ import 'components/phone_whatsapp_choice_dial_code.dart';
 
 class SignUpSellerView extends StatelessWidget {
   const SignUpSellerView({super.key});
+
   String normalizeNumber(String code, String number) {
     final cleaned =
         number.trim().startsWith('0')
@@ -80,6 +81,7 @@ class SignUpSellerView extends StatelessWidget {
                               },
                             ),
                             SizedBox(height: 2.h),
+
                             TextSpanManager(
                               textAlign: TextAlign.start,
                               textOne: context.lang.createYourSellerText,
@@ -88,7 +90,10 @@ class SignUpSellerView extends StatelessWidget {
                               colorTextOne: ColorManager.primaryColor,
                               latterSpaceTextOne: 0.5,
                               fontFamilyTextOne: "Lato",
-                              textTwo: context.lang.accountText,
+                              textTwo:
+                                  context.isArabic
+                                      ? context.lang.sellerText
+                                      : context.lang.accountText,
                               fontSizeTextTwo: 25.px,
                               fontWeightTextTwo: FontWeight.w800,
                               colorTextTwo: ColorManager.black,
@@ -96,14 +101,15 @@ class SignUpSellerView extends StatelessWidget {
                               latterSpaceTextTwo: 0.5,
                             ),
                             SizedBox(height: 2.h),
-                            AppText(
-                              text: context.lang.descriptionLoginText,
-                              fontFamily: "Lato",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16.px,
-                            ),
-                            SizedBox(height: 2.h),
-
+                            if (!context.isArabic) ...[
+                              AppText(
+                                text: context.lang.descriptionLoginText,
+                                fontFamily: "Lato",
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.px,
+                              ),
+                              SizedBox(height: 2.h),
+                            ],
                             RegisterTextFormField(
                               validate:
                                   (name) => cubit.validateName(
@@ -211,11 +217,6 @@ class SignUpSellerView extends StatelessWidget {
                               ),
                             ),
                             RegisterTextFormField(
-                              validate:
-                                  (facebook) => cubit.validateFacebook(
-                                    context: context,
-                                    facebook: facebook,
-                                  ),
                               controller: regState.facebookController,
                               hintText: context.lang.facebookText,
                               labelText: context.lang.facebookText,
@@ -355,7 +356,7 @@ class SignUpSellerView extends StatelessWidget {
                             SizedBox(height: 3.h),
                             ElevatedButtonManager(
                               color: ColorManager.primaryColor,
-                              text: context.lang.register,
+                              text: context.lang.registerText,
                               onPressed: () {
                                 final isImageSelected =
                                     regState.profileImage != null;

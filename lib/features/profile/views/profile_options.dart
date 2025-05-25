@@ -24,116 +24,135 @@ class ProfileOptionsView extends StatelessWidget {
           Navigator.pushReplacementNamed(context, PageRouteName.signInRoute);
         }
       },
-      child: Scaffold(
-        backgroundColor: ColorManager.white,
-        body: SafeArea(
-          child: Column(
-            children: [
-              CustomDetailsProfile(
-                onTap: () {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    PageRouteName.homeRoute,
-                  );
-                },
-                text: context.lang.profileText,
-              ),
-              SizedBox(height: 2.5.h),
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: ColorManager.backgroundContainerProfile,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(14.w),
-                      topRight: Radius.circular(14.w),
+      child: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
+          final bool isContinueWithoutSignIn = state is AuthGuestState;
+          return Scaffold(
+            backgroundColor: ColorManager.white,
+            body: SafeArea(
+              child: Column(
+                children: [
+                  CustomDetailsProfile(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        PageRouteName.homeRoute,
+                      );
+                    },
+                    text: context.lang.profileText,
+                  ),
+                  SizedBox(height: 2.5.h),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: ColorManager.backgroundContainerProfile,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(14.w),
+                          topRight: Radius.circular(14.w),
+                        ),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.w,
+                        vertical: 8.h,
+                      ),
+                      child: Center(
+                        child: GridView.count(
+                          physics: NeverScrollableScrollPhysics(),
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 15,
+                          mainAxisSpacing: 15,
+                          childAspectRatio: 0.70,
+                          children: [
+                            ProfileOption(
+                              iconAsset: SvgImagesManager.showOutlineIcon,
+                              backgroundAsset: SvgImagesManager.boxIconProfile,
+                              label: context.lang.showProfileText,
+                              onTap: () {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  PageRouteName.editProfileRoute,
+                                );
+                              },
+                            ),
+                            ProfileOption(
+                              iconAsset: SvgImagesManager.editFilledIcon,
+                              backgroundAsset: SvgImagesManager.boxIconProfile,
+                              label: context.lang.aboutUsText,
+                            ),
+                            ProfileOption(
+                              iconAsset: SvgImagesManager.yourProductIcon,
+                              backgroundAsset: SvgImagesManager.boxIconProfile,
+                              label: context.lang.yourProductText,
+                              onTap: () {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  PageRouteName.paymentRoute,
+                                );
+                              },
+                            ),
+
+                            ProfileOption(
+                              isChangeLanguage: true,
+                              assetPath: AssetsManager.englishToArabicIcon,
+                              backgroundAsset: SvgImagesManager.boxIconProfile,
+                              label: context.lang.changeLanguageText,
+
+                              onTap: () {
+                                final currentLangCode =
+                                    context
+                                        .read<AppControllerCubit>()
+                                        .state
+                                        .appLang
+                                        .languageCode;
+
+                                final newLang =
+                                    currentLangCode == 'ar'
+                                        ? const Locale('en')
+                                        : const Locale('ar');
+                                context.read<AppControllerCubit>().changeLang(
+                                  newLang,
+                                );
+                              },
+                            ),
+                            ProfileOption(
+                              iconAsset: SvgImagesManager.internetIcon,
+                              backgroundAsset: SvgImagesManager.boxIconProfile,
+                              label: context.lang.changeCountryText,
+                            ),
+                            isContinueWithoutSignIn
+                                ? ProfileOption(
+                                  iconAsset: SvgImagesManager.logoutIcon,
+                                  backgroundAsset:
+                                      SvgImagesManager.boxIconProfile,
+                                  label: context.lang.loginText,
+                                  onTap: () {
+                                    Navigator.pushReplacementNamed(
+                                      context,
+                                      PageRouteName.signInRoute,
+                                    );
+                                  },
+                                )
+                                : ProfileOption(
+                                  iconAsset: SvgImagesManager.logoutIcon,
+                                  backgroundAsset:
+                                      SvgImagesManager.boxIconProfile,
+                                  label: context.lang.logOutText,
+                                  onTap: () {
+                                    BlocProvider.of<AuthBloc>(
+                                      context,
+                                    ).add(LogoutEvent());
+                                  },
+                                ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 10.w,
-                    vertical: 8.h,
-                  ),
-                  child: Center(
-                    child: GridView.count(
-                      physics: NeverScrollableScrollPhysics(),
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 15,
-                      mainAxisSpacing: 15,
-                      childAspectRatio: 0.70,
-                      children: [
-                        ProfileOption(
-                          iconAsset: SvgImagesManager.showOutlineIcon,
-                          backgroundAsset: SvgImagesManager.boxIconProfile,
-                          label: 'Show profile',
-                          onTap: () {
-                            Navigator.pushReplacementNamed(
-                              context,
-                              PageRouteName.editProfileRoute,
-                            );
-                          },
-                        ),
-                        ProfileOption(
-                          iconAsset: SvgImagesManager.editFilledIcon,
-                          backgroundAsset: SvgImagesManager.boxIconProfile,
-                          label: 'About us',
-                        ),
-                        ProfileOption(
-                          iconAsset: SvgImagesManager.yourProductIcon,
-                          backgroundAsset: SvgImagesManager.boxIconProfile,
-                          label: 'Your products',
-                          onTap: () {
-                            Navigator.pushReplacementNamed(
-                              context,
-                              PageRouteName.paymentRoute,
-                            );
-                          },
-                        ),
-
-                        ProfileOption(
-                          isChangeLanguage: true,
-                          assetPath: AssetsManager.englishToArabicIcon,
-                          backgroundAsset: SvgImagesManager.boxIconProfile,
-                          label: 'Change language',
-
-                          onTap: () {
-                            final currentLangCode =
-                                context
-                                    .read<AppControllerCubit>()
-                                    .state
-                                    .appLang
-                                    .languageCode;
-
-                            final newLang =
-                                currentLangCode == 'ar'
-                                    ? const Locale('en')
-                                    : const Locale('ar');
-                            context.read<AppControllerCubit>().changeLang(
-                              newLang,
-                            );
-                          },
-                        ),
-                        ProfileOption(
-                          iconAsset: SvgImagesManager.internetIcon,
-                          backgroundAsset: SvgImagesManager.boxIconProfile,
-                          label: 'Change country',
-                        ),
-                        ProfileOption(
-                          iconAsset: SvgImagesManager.logoutIcon,
-                          backgroundAsset: SvgImagesManager.boxIconProfile,
-                          label: 'Log out',
-                          onTap: () {
-                            BlocProvider.of<AuthBloc>(
-                              context,
-                            ).add(LogoutEvent());
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                ],
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

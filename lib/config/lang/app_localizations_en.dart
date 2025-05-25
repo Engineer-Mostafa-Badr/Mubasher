@@ -9,22 +9,22 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get login => 'Login';
+  String get loginText => 'Login';
 
   @override
-  String get email => 'Email';
+  String get emailText => 'Email';
 
   @override
-  String get password => 'Password';
+  String get passwordText => 'Password';
 
   @override
-  String get notHaveAccount => 'Don’t have an account?  ';
+  String get notHaveAccountText => 'Don’t have an account?  ';
 
   @override
-  String get signUp => 'SignUp';
+  String get signUpText => 'SignUp';
 
   @override
-  String get register => 'Register';
+  String get registerText => 'Register';
 
   @override
   String emty(String value) {
@@ -38,7 +38,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordFormatText => 'Password must not be less than 6 digits';
 
   @override
-  String get loginText => 'Let’s ';
+  String get letsText => 'Let’s ';
 
   @override
   String get signInText => 'Sign In';
@@ -95,7 +95,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get activeDescriptionText => 'Please select a method for confirming your identity';
 
   @override
-  String get emailText => 'E mail';
+  String get emailMethodText => 'E mail';
 
   @override
   String get smsCodeText => 'Sms code';
@@ -155,16 +155,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aboutUsText => 'About us';
 
   @override
-  String get yourProductText => 'Your product';
+  String get yourProductText => 'Your products';
 
   @override
   String get changeLanguageText => 'Change language';
 
   @override
   String get changeCountryText => 'Change country';
-
-  @override
-  String get logOut => 'Log out';
 
   @override
   String get favoriteText => 'Favorite';
@@ -239,9 +236,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chooseAccountText => 'You must choose the type of account.';
 
   @override
-  String get facebookFormatText => 'Please! enter valied facebook url';
-
-  @override
   String get profilePictureFormatText => 'Please! choose your profile picture';
 
   @override
@@ -252,4 +246,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cityFormatText => 'Please! enter your city';
+
+  @override
+  String get logOutText => 'Log out';
+
+  @override
+  String get searchHintText => 'Search House, Apartment, etc';
 }

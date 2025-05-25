@@ -1,3 +1,4 @@
+import 'package:mubasher_app/core/constants/api_constants.dart';
 import 'package:mubasher_app/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:mubasher_app/features/auth/domain/entities/user_entity.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -22,11 +23,13 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<String, UserEntity>> login({
     required String username,
     required String password,
+    required String url,
   }) async {
     try {
       final user = await remoteDataSource.login(
         username: username,
         password: password,
+        url: url,
       );
 
       await secureStorage.write(key: accessTokenKey, value: user.accessToken);
@@ -47,6 +50,7 @@ class AuthRepositoryImpl implements AuthRepository {
     required String phone,
     required String whatsapp,
     required bool isSeller,
+    required bool isUser,
     String? facebook,
     String? documents,
     String? country,
@@ -54,7 +58,10 @@ class AuthRepositoryImpl implements AuthRepository {
     File? profileImage,
   }) async {
     try {
+      final url =
+          isSeller ? ApiConstants.registerSeller : ApiConstants.registerUser;
       final user = await remoteDataSource.register(
+        url: url,
         username: username,
         email: email,
         password: password,

@@ -51,3 +51,10 @@ class OtpResendError extends OtpState {
   final String message;
   OtpResendError(this.message);
 }
+
+class LanguageChangedState extends AuthState {
+  final String languageCode;
+  const LanguageChangedState(this.languageCode);
+}
+
+class AuthGuestState extends AuthState {}

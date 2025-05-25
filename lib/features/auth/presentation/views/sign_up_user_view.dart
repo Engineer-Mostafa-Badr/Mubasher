@@ -94,13 +94,15 @@ class SignUpUserView extends StatelessWidget {
                               latterSpaceTextTwo: 0.5,
                             ),
                             SizedBox(height: 2.h),
-                            AppText(
-                              text: context.lang.descriptionLoginText,
-                              fontFamily: "Lato",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16.px,
-                            ),
-                            SizedBox(height: 2.h),
+                            if (!context.isArabic) ...[
+                              AppText(
+                                text: context.lang.descriptionLoginText,
+                                fontFamily: "Lato",
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.px,
+                              ),
+                              SizedBox(height: 2.h),
+                            ],
                             RegisterTextFormField(
                               validate:
                                   (name) => cubit.validateName(
@@ -240,7 +242,7 @@ class SignUpUserView extends StatelessWidget {
                             SizedBox(height: 3.h),
                             ElevatedButtonManager(
                               color: ColorManager.primaryColor,
-                              text: context.lang.register,
+                              text: context.lang.registerText,
                               onPressed: () {
                                 if (regState.formKey.currentState!.validate()) {
                                   final fullPhone = normalizeNumber(

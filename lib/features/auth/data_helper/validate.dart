@@ -12,7 +12,7 @@ mixin Validate {
     );
 
     if (email?.isEmpty ?? true) {
-      return context.lang.emty(context.lang.email);
+      return context.lang.emty(context.lang.emailText);
     } else if (!emailRegex.hasMatch(email!)) {
       return context.lang.emailFormatText;
     }
@@ -25,7 +25,7 @@ mixin Validate {
   }) {
     RegExp passwordRegExp = RegExp(r'^.{6,}$');
     if (password?.isEmpty ?? true) {
-      return context.lang.emty(context.lang.password);
+      return context.lang.emty(context.lang.passwordText);
     } else if (!passwordRegExp.hasMatch(password!)) {
       return context.lang.passwordFormatText;
     }
@@ -48,28 +48,6 @@ mixin Validate {
     if (profileImage == null) {
       return context.lang.profilePictureFormatText;
     }
-    return null;
-  }
-
-  String? validateFacebook({
-    required String? facebook,
-    required BuildContext context,
-  }) {
-    if (facebook?.isEmpty ?? true) {
-      return context.lang.emty(context.lang.facebookText);
-    } else if (facebook!.length < 3) {
-      return context.lang.facebookFormatText;
-    }
-
-    final facebookRegex = RegExp(
-      r'^(https?:\/\/)?([a-zA-Z0-9-]+\.)?facebook\.com\/[A-Za-z0-9\.]+\/?$',
-      caseSensitive: false,
-    );
-
-    if (!facebookRegex.hasMatch(facebook)) {
-      return context.lang.facebookFormatText;
-    }
-
     return null;
   }
 

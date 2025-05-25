@@ -6,22 +6,24 @@ class CustomSearchTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 5.w),
       child: Transform.translate(
-        offset: const Offset(0, -30),
+        offset: const Offset(0, -40),
         child: TextField(
           decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: 23.0,
-              horizontal: 16.0,
+            contentPadding: EdgeInsets.symmetric(
+              vertical: 4.h,
+              horizontal: 3.w,
             ),
-            hintText: 'Search House, Apartment, etc',
-            hintStyle: const TextStyle(
+            hintText: context.lang.searchHintText,
+            hintStyle: TextStyle(
               color: ColorManager.primaryColor,
-              fontSize: 14,
+              fontSize: 16.px,
+              fontFamily: "Raleway",
+              fontWeight: FontWeight.w400,
             ),
             prefixIcon: Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: EdgeInsets.all(3.w),
               child: SvgPicture.asset(
                 SvgImagesManager.search,
                 width: 2.2.h,
@@ -30,7 +32,7 @@ class CustomSearchTextFormField extends StatelessWidget {
               ),
             ),
             suffixIcon: Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: EdgeInsets.all(3.w),
               child: SvgPicture.asset(
                 SvgImagesManager.micActive,
                 width: 2.2.h,
@@ -39,9 +41,9 @@ class CustomSearchTextFormField extends StatelessWidget {
               ),
             ),
             filled: true,
-            fillColor: Colors.white,
+            fillColor: ColorManager.greyTextFormField,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(4.w),
               borderSide: BorderSide.none,
             ),
           ),
