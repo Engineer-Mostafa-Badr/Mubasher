@@ -1,4 +1,8 @@
 // ignore_for_file: avoid_print
+import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
+import 'package:mubasher_app/features/profile/presentation/view_models/profile_event.dart';
+import 'package:mubasher_app/features/profile/presentation/view_models/profile_bloc.dart';
+import 'package:mubasher_app/features/profile/profile_cubit/change_password_cubit.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_bloc.dart';
 import 'package:mubasher_app/core/helpers/language_storage_helper.dart';
 import 'package:mubasher_app/core/helpers/token_storage_helper.dart';
@@ -7,18 +11,12 @@ import 'package:mubasher_app/core/route/routes_generator.dart';
 import 'config/app_controller/cubit/app_controller_cubit.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:mubasher_app/core/helpers/app_notifier.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:mubasher_app/core/route/routes.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mubasher_app/core/di/di.dart';
-import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initDI();
   AppNotifier.configLoading();
-  // debugPaintSizeEnabled = true;
-
   String? token;
   String? savedLang;
   try {
@@ -27,13 +25,13 @@ void main() async {
   } catch (e) {
     print('❌ Error retrieving token: $e');
   }
-
   try {
     savedLang = await LanguageStorageHelper.getLang();
     print('🌍 Saved Language: $savedLang');
   } catch (e) {
     print('❌ Error retrieving language: $e');
   }
+
   final appLangLocale = Locale(savedLang ?? 'en');
   final appControllerCubit =
       AppControllerCubit()..updateLanguage(appLangLocale);
@@ -51,6 +49,11 @@ void main() async {
               ),
         ),
         BlocProvider<AppControllerCubit>.value(value: appControllerCubit),
+        BlocProvider(create: (_) => RegistrationCubit()),
+        BlocProvider(create: (_) => ChangePasswordCubit()),
+        BlocProvider(
+          create: (_) => getIt<ProfileBloc>()..add(LoadSavedUserProfile()),
+        ),
       ],
       child: const MubasherApp(),
     ),

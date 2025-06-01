@@ -1,6 +1,6 @@
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
 import 'package:mubasher_app/features/home/views/components/custom_home_view.dart';
-import 'package:mubasher_app/features/profile/views/profile_options.dart';
+import 'package:mubasher_app/features/profile/presentation/views/profile_options.dart';
 import 'package:mubasher_app/features/favorite/views/favorite_view.dart';
 import 'package:mubasher_app/features/search/views/search_view.dart';
 

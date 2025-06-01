@@ -252,4 +252,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get searchHintText => 'Search House, Apartment, etc';
+
+  @override
+  String get changePasswordText => 'Change password';
+
+  @override
+  String get descriptionChangePasswordText => 'Please Put in your new password';
+
+  @override
+  String get newPasswordText => 'New password';
+
+  @override
+  String get confirmNewPasswordText => 'Confirm New password';
+
+  @override
+  String get saveChangesText => 'Save changes';
+
+  @override
+  String get typeHereText => 'Type here...';
+
+  @override
+  String get oldPasswordText => 'Old password';
+
+  @override
+  String get pleaseLogInFirstText => 'Please log in first.';
+
+  @override
+  String get passwordChangedSuccessfullyText => 'The password has been changed successfully.';
+
+  @override
+  String get newPasswordDifferentFromOldText => 'The new password must be different from the old password.';
+
+  @override
+  String get confirmPasswordDifferentFromNewText => 'The confirmation password does not match the new password.';
+
+  @override
+  String get oldPasswordIncorrectText => 'The old password is incorrect.';
+
+  @override
+  String get unexpectedErrorText => 'An unexpected error occurred while changing the password.';
+
+  @override
+  String get serverConnectionErrorText => 'Error connecting to the server.';
+
+  @override
+  String get invalidResponseFromServerText => 'Invalid response from the server.';
 }

@@ -135,6 +135,13 @@ flutter:
         - asset: assets/fonts/montserrat/Montserrat-Medium.ttf
         - asset: assets/fonts/montserrat/Montserrat-Regular.ttf
         - asset: assets/fonts/montserrat/Montserrat-SemiBold.ttf
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter/Inter_18pt-Bold.ttf
+        - asset: assets/fonts/inter/Inter_18pt-ExtraBold.ttf
+        - asset: assets/fonts/inter/Inter_18pt-Medium.ttf
+        - asset: assets/fonts/inter/Inter_18pt-Regular.ttf
+        - asset: assets/fonts/inter/Inter_18pt-SemiBold.ttf
 
   #   - family: Trajan Pro
   #     fonts:

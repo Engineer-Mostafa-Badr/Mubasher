@@ -252,4 +252,49 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get searchHintText => 'البحث عن منزل، شقة، إلخ';
+
+  @override
+  String get changePasswordText => 'تغيير كلمة المرور';
+
+  @override
+  String get descriptionChangePasswordText => 'يرجى إدخال كلمة المرور الجديدة';
+
+  @override
+  String get newPasswordText => 'كلمة المرور الجديدة';
+
+  @override
+  String get confirmNewPasswordText => 'تأكيد كلمة المرور الجديدة';
+
+  @override
+  String get saveChangesText => 'حفظ التغييرات';
+
+  @override
+  String get typeHereText => ' اكتب هنا ...';
+
+  @override
+  String get oldPasswordText => 'كلمة المرور القديمة';
+
+  @override
+  String get pleaseLogInFirstText => 'برجاء تسجيل الدخول أولاً.';
+
+  @override
+  String get passwordChangedSuccessfullyText => 'تم تغيير كلمة المرور بنجاح.';
+
+  @override
+  String get newPasswordDifferentFromOldText => 'يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمة المرور القديمة.';
+
+  @override
+  String get confirmPasswordDifferentFromNewText => 'تأكيد كلمة المرور لا يتطابق مع كلمة المرور الجديدة.';
+
+  @override
+  String get oldPasswordIncorrectText => 'كلمة المرور القديمة غير صحيحة.';
+
+  @override
+  String get unexpectedErrorText => 'حدث خطأ غير متوقع أثناء تغيير كلمة المرور.';
+
+  @override
+  String get serverConnectionErrorText => 'خطأ في الاتصال بالخادم.';
+
+  @override
+  String get invalidResponseFromServerText => 'استجابة غير صالحة من الخادم.';
 }

@@ -6,7 +6,7 @@ class TextSpanManager extends StatelessWidget {
   const TextSpanManager({
     super.key,
     required this.textOne,
-    required this.textTwo,
+    this.textTwo,
     this.onTap,
     this.fontFamilyTextOne,
     this.fontFamilyTextTwo,
@@ -22,7 +22,7 @@ class TextSpanManager extends StatelessWidget {
   });
 
   final String textOne;
-  final String textTwo;
+  final String? textTwo;
   final String? fontFamilyTextOne;
   final String? fontFamilyTextTwo;
   final Color? colorTextOne;
@@ -62,7 +62,7 @@ class TextSpanManager extends StatelessWidget {
             recognizer:
                 TapGestureRecognizer()
                   ..onTap = () {
-                    onTap?.call(textTwo);
+                    onTap?.call(textTwo ?? '');
                   },
           ),
         ],

@@ -1,9 +1,10 @@
-import 'package:mubasher_app/features/profile/views/components/custom_details_profile.dart';
-import 'package:mubasher_app/features/profile/views/components/custom_profile_field.dart';
+import 'package:mubasher_app/features/profile/presentation/views/components/custom_details_profile.dart';
+import 'package:mubasher_app/features/profile/presentation/views/components/custom_profile_field.dart';
 import 'package:mubasher_app/features/auth/domain/entities/user_entity.dart';
 import 'package:mubasher_app/core/custom_widget/app_text_manager.dart';
 import 'package:mubasher_app/core/resources/app_assets_manager.dart';
 import 'package:mubasher_app/core/resources/app_color_manager.dart';
+import 'package:mubasher_app/core/helpers/app_notifier.dart';
 import 'package:mubasher_app/core/extension/context.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:mubasher_app/core/route/routes.dart';
@@ -16,6 +17,16 @@ class EditProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (user == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushReplacementNamed(
+          context,
+          PageRouteName.profileOptionsRoute,
+        );
+        AppNotifier().showError(context, context.lang.pleaseLogInFirstText);
+      });
+      return const SizedBox();
+    }
     return Scaffold(
       backgroundColor: ColorManager.white,
       body: SafeArea(
@@ -59,6 +70,7 @@ class EditProfileView extends StatelessWidget {
                       Navigator.pushNamed(
                         context,
                         PageRouteName.changePasswordRoute,
+                        arguments: user,
                       );
                     },
                     child: Container(
@@ -85,7 +97,7 @@ class EditProfileView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             AppText(
-                              text: context.lang.passwordText,
+                              text: context.lang.changePasswordText,
                               fontSize: 16.px,
                               fontFamily: 'Lato',
                               fontWeight: FontWeight.w700,

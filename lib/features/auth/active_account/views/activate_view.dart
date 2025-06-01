@@ -16,12 +16,23 @@ class _ActivateViewState extends State<ActivateView> {
   String? selectedSendMethod;
   String? selectedBindMethod;
   late TextEditingController _textEditingController;
+  Map<String, String> methodIcons = {};
 
   @override
   void initState() {
     super.initState();
     _textEditingController = TextEditingController();
     selectedBindMethod = 'Email';
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        methodIcons = {
+          context.lang.emailMethodText: SvgImagesManager.email,
+          context.lang.smsCodeText: SvgImagesManager.phone,
+          context.lang.whatsappText: SvgImagesManager.vector,
+        };
+      });
+    });
   }
 
   @override
@@ -29,12 +40,6 @@ class _ActivateViewState extends State<ActivateView> {
     _textEditingController.dispose();
     super.dispose();
   }
-
-  final Map<String, String> methodIcons = {
-    'E mail': SvgImagesManager.email,
-    'Sms code': SvgImagesManager.phone,
-    'Whatsapp code': SvgImagesManager.vector,
-  };
 
   String _getHintForMethod(String label) {
     if (label == context.lang.emailMethodText) return context.lang.emailText;
@@ -152,28 +157,21 @@ class _ActivateViewState extends State<ActivateView> {
           padding: EdgeInsets.symmetric(horizontal: 7.w),
           children: [
             ArrowBackLeadingAppbar(
-              onTap: () {
-                Navigator.pushReplacementNamed(
-                  context,
-                  PageRouteName.signUpUserRoute,
-                );
-              },
+              onTap:
+                  () => Navigator.pushReplacementNamed(
+                    context,
+                    PageRouteName.profileOptionsRoute,
+                  ),
             ),
             SizedBox(height: 4.h),
             TextSpanManager(
               textAlign: TextAlign.start,
-              textOne: context.lang.activeYourText,
+              textOne: context.lang.changePasswordText,
               fontSizeTextOne: 25.px,
               fontWeightTextOne: FontWeight.w500,
               colorTextOne: ColorManager.primaryColor,
               latterSpaceTextOne: 0.5,
-              fontFamilyTextOne: "Lato",
-              textTwo: context.lang.accountText,
-              fontSizeTextTwo: 25.px,
-              fontWeightTextTwo: FontWeight.w800,
-              colorTextTwo: ColorManager.black,
-              fontFamilyTextTwo: "Lato",
-              latterSpaceTextTwo: 0.5,
+              fontFamilyTextOne: "Inter",
             ),
             SizedBox(height: 2.h),
             AppText(
@@ -183,6 +181,7 @@ class _ActivateViewState extends State<ActivateView> {
               fontWeight: FontWeight.w400,
             ),
             SizedBox(height: 2.h),
+
             if (selectedSendMethod == null) ...[
               _buildSelectableRadioTile(
                 context.lang.emailMethodText,
@@ -201,14 +200,21 @@ class _ActivateViewState extends State<ActivateView> {
                 SvgImagesManager.vector,
                 context.lang.whatsAppText,
               ),
-            ] else ...[
+            ] else if (methodIcons.containsKey(selectedSendMethod)) ...[
               _buildRadioTile(
                 selectedSendMethod!,
                 methodIcons[selectedSendMethod!]!,
                 _getHintForMethod(selectedSendMethod!),
               ),
+            ] else ...[
+              AppText(
+                text: 'حدث خطأ في اختيار الوسيلة',
+                textColor: ColorManager.red,
+              ),
             ],
+
             SizedBox(height: 3.h),
+
             AppText(
               text: context.lang.chooseMethodText,
               fontSize: 14.px,
@@ -216,6 +222,7 @@ class _ActivateViewState extends State<ActivateView> {
               fontWeight: FontWeight.w700,
             ),
             SizedBox(height: 1.h),
+
             Theme(
               data: Theme.of(
                 context,
@@ -241,11 +248,13 @@ class _ActivateViewState extends State<ActivateView> {
                 ),
                 icon: const Icon(Icons.arrow_drop_down),
                 items:
-                    ['Email', 'Phone'].map((method) {
+                    ['Email', 'Phone', 'WhatsApp'].map((method) {
                       String iconPath =
                           method == 'Email'
                               ? SvgImagesManager.email
-                              : SvgImagesManager.phone;
+                              : method == 'Phone'
+                              ? SvgImagesManager.phone
+                              : SvgImagesManager.vector;
                       return DropdownMenuItem<String>(
                         value: method,
                         child: Row(
@@ -270,50 +279,18 @@ class _ActivateViewState extends State<ActivateView> {
                         ),
                       );
                     }).toList(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedBindMethod = value;
-                  });
-                },
-                selectedItemBuilder: (context) {
-                  return ['Email', 'Phone'].map((method) {
-                    String iconPath =
-                        method == 'Email'
-                            ? SvgImagesManager.email
-                            : SvgImagesManager.phone;
-                    return Row(
-                      children: [
-                        SvgPicture.asset(
-                          iconPath,
-                          height: 2.h,
-                          width: 6.w,
-                          colorFilter: const ColorFilter.mode(
-                            ColorManager.primaryColor,
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                        SizedBox(width: 3.w),
-                        AppText(
-                          text: method,
-                          fontSize: 14.px,
-                          fontFamily: 'Lato',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ],
-                    );
-                  }).toList();
-                },
+                onChanged:
+                    (value) => setState(() => selectedBindMethod = value),
               ),
             ),
 
             SizedBox(height: 5.h),
+
             ElevatedButtonManager(
               text: context.lang.sendotpText,
               onPressed: () {
                 if (selectedSendMethod != null && selectedBindMethod != null) {
-                  String email = '';
-                  String phone = '';
-                  String whatsapp = '';
+                  String email = '', phone = '', whatsapp = '';
 
                   if (selectedSendMethod == context.lang.emailMethodText) {
                     email = widget.user.email;
@@ -324,25 +301,23 @@ class _ActivateViewState extends State<ActivateView> {
                   }
 
                   final method = selectedSendMethod!;
-                  String sendTo = '';
-
-                  if (method == context.lang.emailMethodText) {
-                    sendTo = email;
-                  } else if (method == context.lang.smsCodeText) {
-                    sendTo = phone;
-                  } else if (method == context.lang.whatsappText) {
-                    sendTo = whatsapp;
-                  }
+                  String sendTo =
+                      method == context.lang.emailMethodText
+                          ? email
+                          : method == context.lang.smsCodeText
+                          ? phone
+                          : whatsapp;
 
                   context.read<AuthBloc>().add(
                     ActivateAccountEvent(
                       email: email,
                       phone: phone,
                       whatsapp: whatsapp,
-                      methodResponse: selectedSendMethod!,
+                      methodResponse: method,
                       otp: '',
                     ),
                   );
+
                   Navigator.pushReplacementNamed(
                     context,
                     PageRouteName.enterOTPRoute,

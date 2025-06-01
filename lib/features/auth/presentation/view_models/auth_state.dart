@@ -1,5 +1,5 @@
-import 'package:mubasher_app/features/auth/domain/entities/user_entity.dart';
 import 'package:equatable/equatable.dart';
+import 'package:mubasher_app/features/auth/domain/entities/user_entity.dart';
 
 abstract class AuthState extends Equatable {
   const AuthState();

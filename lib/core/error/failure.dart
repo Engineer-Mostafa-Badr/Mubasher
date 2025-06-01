@@ -1,9 +1,11 @@
-class Failure {
-  final String message;
+import 'package:mubasher_app/core/error/failure_type.dart';
 
-  Failure(this.message);
+class Failure {
+  final FailureType type;
+
+  Failure(this.type);
 }
 
 class ServerFailure extends Failure {
-  ServerFailure(super.message);
+  ServerFailure(super.type);
 }

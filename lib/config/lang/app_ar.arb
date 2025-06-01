@@ -87,5 +87,20 @@
   "documentsFormatText": "تنسيق المستندات غير صحيح",
   "countryFormatText": "تنسيق المدينة غير صحيح",
   "cityFormatText": "تنسيق المدينة غير صحيح",
-  "searchHintText": "البحث عن منزل، شقة، إلخ"
+  "searchHintText": "البحث عن منزل، شقة، إلخ",
+  "changePasswordText": "تغيير كلمة المرور",
+  "descriptionChangePasswordText": "يرجى إدخال كلمة المرور الجديدة",
+  "newPasswordText": "كلمة المرور الجديدة",
+  "confirmNewPasswordText": "تأكيد كلمة المرور الجديدة",
+  "saveChangesText": "حفظ التغييرات",
+  "typeHereText": " اكتب هنا ...",
+  "oldPasswordText": "كلمة المرور القديمة",
+  "pleaseLogInFirstText": "برجاء تسجيل الدخول أولاً.",
+  "passwordChangedSuccessfullyText": "تم تغيير كلمة المرور بنجاح.",
+  "newPasswordDifferentFromOldText": "يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمة المرور القديمة.",
+  "confirmPasswordDifferentFromNewText": "تأكيد كلمة المرور لا يتطابق مع كلمة المرور الجديدة.",
+  "oldPasswordIncorrectText": "كلمة المرور القديمة غير صحيحة.",
+  "unexpectedErrorText": "حدث خطأ غير متوقع أثناء تغيير كلمة المرور.",
+  "serverConnectionErrorText": "خطأ في الاتصال بالخادم.",
+  "invalidResponseFromServerText": "استجابة غير صالحة من الخادم."
 }

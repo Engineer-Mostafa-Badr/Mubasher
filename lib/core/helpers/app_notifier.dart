@@ -1,5 +1,5 @@
+import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter/material.dart';
 
 class AppNotifier {
   static final AppNotifier _instance = AppNotifier._internal();
@@ -58,15 +58,22 @@ class AppNotifier {
       SnackBar(
         content: Row(
           children: [
-            Icon(icon, color: Colors.white),
-            SizedBox(width: 8),
-            Expanded(child: Text(message)),
+            Icon(icon, color: ColorManager.white, size: 27.px),
+            SizedBox(width: 3.w),
+            Expanded(
+              child: AppText(
+                fontFamily: "Lato",
+                fontSize: 16.px,
+                text: message,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
           ],
         ),
         backgroundColor: backgroundColor,
         behavior: SnackBarBehavior.floating,
-        duration: Duration(seconds: 3),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        duration: Duration(seconds: 1),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.w)),
       ),
     );
   }

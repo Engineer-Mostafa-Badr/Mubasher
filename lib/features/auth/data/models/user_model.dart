@@ -37,7 +37,10 @@ class UserModel extends UserEntity {
       userName: json['user_name'] ?? '',
       email: json['email'] ?? '',
       password: json['password'] ?? '',
-      confirmPassword: json['confirm_Password'] ?? '',
+      confirmPassword:
+          json.containsKey('confirm_Password')
+              ? json['confirm_Password']?.toString() ?? ''
+              : '',
       phoneno: json['phoneno'] ?? '',
       whatsapp: json['whatsapp'] ?? '',
       mobileNo: json['mobileno'] ?? '',
@@ -55,5 +58,30 @@ class UserModel extends UserEntity {
       regionId: json['region_id'] ?? 0,
       cityId: json['city_id'] ?? 0,
     );
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'user_name': userName,
+      'email': email,
+      'password': password,
+      'confirm_Password': confirmPassword,
+      'phoneno': phoneno,
+      'whatsapp': whatsapp,
+      'mobileno': mobileNo,
+      'facebook': facebook,
+      'locationn': location,
+      'adress': address,
+      'user_avater': avatar,
+      'is_active': isActive,
+      'is_seller': isSeller,
+      'is_admin': isAdmin,
+      'is_user': isUser,
+      'user_type': userType,
+      'accessToken': accessToken,
+      'country_id': countryId,
+      'region_id': regionId,
+      'city_id': cityId,
+    };
   }
 }

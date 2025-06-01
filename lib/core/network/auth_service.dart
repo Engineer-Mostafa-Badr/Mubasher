@@ -9,7 +9,7 @@ class AuthService {
 
   Future<String?> getToken() async {
     try {
-      String? token = await _secureStorage.read(key: 'accessToken');
+      String? token = await _secureStorage.read(key: 'access_token');
       print('🔐 Token retrieved: $token');
       return token;
     } catch (e) {

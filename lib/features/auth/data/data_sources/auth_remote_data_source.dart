@@ -1,5 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mubasher_app/core/constants/api_constants.dart';
+import 'package:mubasher_app/features/auth/domain/entities/user_entity.dart';
 import '../../../../core/network/api_service.dart';
 import '../models/user_model.dart';
 import 'package:dio/dio.dart';
@@ -7,7 +8,7 @@ import 'dart:developer';
 import 'dart:io';
 
 abstract class AuthRemoteDataSource {
-  Future<UserModel> login({
+  Future<UserEntity> login({
     required String username,
     required String password,
     required String url,
@@ -49,7 +50,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl(this.apiService, this.secureStorage);
 
   @override
-  Future<UserModel> login({
+  Future<UserEntity> login({
     required String username,
     required String password,
     required String url,

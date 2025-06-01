@@ -38,7 +38,7 @@ class AppTextFormField extends StatelessWidget {
     bool isErrorBorder = false,
     required BuildContext context,
   }) => OutlineInputBorder(
-    borderRadius: BorderRadius.circular(4.w),
+    borderRadius: BorderRadius.circular(3.w),
     borderSide: BorderSide(
       color: isErrorBorder ? ColorManager.red : ColorManager.white,
     ),
@@ -74,7 +74,10 @@ class AppTextFormField extends StatelessWidget {
           focusedBorder: border(context: context),
           border: border(context: context),
           errorBorder: border(isErrorBorder: true, context: context),
-          contentPadding: EdgeInsets.symmetric(vertical: 3.h),
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 3.5.h,
+            horizontal: 5.w,
+          ),
         ),
       ),
     );

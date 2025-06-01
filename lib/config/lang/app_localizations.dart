@@ -580,6 +580,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search House, Apartment, etc'**
   String get searchHintText;
+
+  /// No description provided for @changePasswordText.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password'**
+  String get changePasswordText;
+
+  /// No description provided for @descriptionChangePasswordText.
+  ///
+  /// In en, this message translates to:
+  /// **'Please Put in your new password'**
+  String get descriptionChangePasswordText;
+
+  /// No description provided for @newPasswordText.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get newPasswordText;
+
+  /// No description provided for @confirmNewPasswordText.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm New password'**
+  String get confirmNewPasswordText;
+
+  /// No description provided for @saveChangesText.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get saveChangesText;
+
+  /// No description provided for @typeHereText.
+  ///
+  /// In en, this message translates to:
+  /// **'Type here...'**
+  String get typeHereText;
+
+  /// No description provided for @oldPasswordText.
+  ///
+  /// In en, this message translates to:
+  /// **'Old password'**
+  String get oldPasswordText;
+
+  /// No description provided for @pleaseLogInFirstText.
+  ///
+  /// In en, this message translates to:
+  /// **'Please log in first.'**
+  String get pleaseLogInFirstText;
+
+  /// No description provided for @passwordChangedSuccessfullyText.
+  ///
+  /// In en, this message translates to:
+  /// **'The password has been changed successfully.'**
+  String get passwordChangedSuccessfullyText;
+
+  /// No description provided for @newPasswordDifferentFromOldText.
+  ///
+  /// In en, this message translates to:
+  /// **'The new password must be different from the old password.'**
+  String get newPasswordDifferentFromOldText;
+
+  /// No description provided for @confirmPasswordDifferentFromNewText.
+  ///
+  /// In en, this message translates to:
+  /// **'The confirmation password does not match the new password.'**
+  String get confirmPasswordDifferentFromNewText;
+
+  /// No description provided for @oldPasswordIncorrectText.
+  ///
+  /// In en, this message translates to:
+  /// **'The old password is incorrect.'**
+  String get oldPasswordIncorrectText;
+
+  /// No description provided for @unexpectedErrorText.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred while changing the password.'**
+  String get unexpectedErrorText;
+
+  /// No description provided for @serverConnectionErrorText.
+  ///
+  /// In en, this message translates to:
+  /// **'Error connecting to the server.'**
+  String get serverConnectionErrorText;
+
+  /// No description provided for @invalidResponseFromServerText.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid response from the server.'**
+  String get invalidResponseFromServerText;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

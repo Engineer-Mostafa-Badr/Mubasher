@@ -1,5 +1,6 @@
 import 'package:mubasher_app/features/auth/domain/usecases/active_user_account_usecase.dart';
 import 'package:mubasher_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:mubasher_app/features/auth/data/models/user_model.dart';
 import 'package:mubasher_app/core/helpers/language_storage_helper.dart';
 import 'package:mubasher_app/core/helpers/token_storage_helper.dart';
 import '../../domain/usecases/register_usecase.dart';
@@ -40,7 +41,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final user = result.fold((l) => null, (r) => r);
         if (user != null) {
           log('✅ Login success: ${user.email}');
-          await TokenStorageHelper.saveToken(user.accessToken);
+          await TokenStorageHelper.saveToken((user as UserModel).accessToken);
+
           log('🔐 Token saved: ${user.accessToken}');
           if (!emit.isDone) emit(AuthLoaded(user: user));
         }

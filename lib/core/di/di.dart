@@ -1,7 +1,12 @@
+import 'package:mubasher_app/features/profile/data/data_sources/profile_remote_data_source.dart';
+import 'package:mubasher_app/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:mubasher_app/features/auth/domain/usecases/active_user_account_usecase.dart';
+import 'package:mubasher_app/features/profile/domain/usecases/change_password_usecase.dart';
+import 'package:mubasher_app/features/profile/domain/repositories/profile_repository.dart';
 import 'package:mubasher_app/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:mubasher_app/features/profile/presentation/view_models/profile_bloc.dart';
 import 'package:mubasher_app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:mubasher_app/features/auth/domain/repositories/auth_repository.dart';
-import 'package:mubasher_app/features/auth/domain/usecases/active_user_account_usecase.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_bloc.dart';
 import 'package:mubasher_app/features/auth/domain/usecases/register_usecase.dart';
 import 'package:mubasher_app/features/auth/domain/usecases/login_usecase.dart';
@@ -91,5 +96,21 @@ void initDI() {
       activateAccountUseCase: getIt(),
       authRepository: getIt(),
     ),
+  );
+  getIt.registerLazySingleton<ProfileRemoteDataSource>(
+    () => ProfileRemoteDataSourceImpl(getIt<ApiService>()),
+  );
+
+  // Repository
+  getIt.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepositoryImpl(getIt<ProfileRemoteDataSource>()),
+  );
+  getIt.registerFactory<ProfileBloc>(
+    () => ProfileBloc(getIt<ChangePasswordUseCase>()),
+  );
+
+  // UseCase
+  getIt.registerLazySingleton<ChangePasswordUseCase>(
+    () => ChangePasswordUseCase(getIt<ProfileRepository>()),
   );
 }

@@ -1,6 +1,6 @@
+import 'package:mubasher_app/features/profile/presentation/views/components/custom_details_profile.dart';
+import 'package:mubasher_app/features/profile/presentation/views/components/custom_profile_options.dart';
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
-import 'package:mubasher_app/features/profile/views/components/custom_details_profile.dart';
-import 'package:mubasher_app/features/profile/views/components/custom_profile_options.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_event.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_state.dart';
 import 'package:mubasher_app/config/app_controller/cubit/app_controller_cubit.dart';
@@ -68,10 +68,19 @@ class ProfileOptionsView extends StatelessWidget {
                               backgroundAsset: SvgImagesManager.boxIconProfile,
                               label: context.lang.showProfileText,
                               onTap: () {
-                                Navigator.pushReplacementNamed(
-                                  context,
-                                  PageRouteName.editProfileRoute,
-                                );
+                                final state = context.read<AuthBloc>().state;
+                                if (state is AuthLoaded) {
+                                  Navigator.pushReplacementNamed(
+                                    context,
+                                    PageRouteName.editProfileRoute,
+                                    arguments: state.user,
+                                  );
+                                } else {
+                                  AppNotifier().showError(
+                                    context,
+                                    context.lang.pleaseLogInFirstText,
+                                  );
+                                }
                               },
                             ),
                             ProfileOption(
@@ -121,7 +130,7 @@ class ProfileOptionsView extends StatelessWidget {
                             ),
                             isContinueWithoutSignIn
                                 ? ProfileOption(
-                                  iconAsset: SvgImagesManager.logoutIcon,
+                                  iconAsset: SvgImagesManager.arrowLeftIcon,
                                   backgroundAsset:
                                       SvgImagesManager.boxIconProfile,
                                   label: context.lang.loginText,

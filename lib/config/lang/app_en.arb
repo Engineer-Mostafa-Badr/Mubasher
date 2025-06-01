@@ -88,5 +88,20 @@
   "countryFormatText": "Please! enter your country",
   "cityFormatText": "Please! enter your city",
   "logOutText": "Log out",
-  "searchHintText": "Search House, Apartment, etc"
+  "searchHintText": "Search House, Apartment, etc",
+  "changePasswordText": "Change password",
+  "descriptionChangePasswordText": "Please Put in your new password",
+  "newPasswordText": "New password",
+  "confirmNewPasswordText": "Confirm New password",
+  "saveChangesText": "Save changes",
+  "typeHereText": "Type here...",
+  "oldPasswordText": "Old password",
+  "pleaseLogInFirstText": "Please log in first.",
+  "passwordChangedSuccessfullyText": "The password has been changed successfully.",
+  "newPasswordDifferentFromOldText": "The new password must be different from the old password.",
+  "confirmPasswordDifferentFromNewText": "The confirmation password does not match the new password.",
+  "oldPasswordIncorrectText": "The old password is incorrect.",
+  "unexpectedErrorText": "An unexpected error occurred while changing the password.",
+  "serverConnectionErrorText": "Error connecting to the server.",
+  "invalidResponseFromServerText": "Invalid response from the server."
 }

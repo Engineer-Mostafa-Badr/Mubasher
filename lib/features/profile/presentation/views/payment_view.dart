@@ -1,5 +1,5 @@
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
-import 'package:mubasher_app/features/profile/views/components/custom_details_profile.dart';
+import 'package:mubasher_app/features/profile/presentation/views/components/custom_details_profile.dart';
 
 class PaymentView extends StatelessWidget {
   const PaymentView({super.key});
