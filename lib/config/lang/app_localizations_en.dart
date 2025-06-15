@@ -44,7 +44,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signInText => 'Sign In';
 
   @override
-  String get descriptionLoginText => 'quis nostrud exercitation ullamco laboris nisi ut';
+  String get descriptionLoginText =>
+      'quis nostrud exercitation ullamco laboris nisi ut';
 
   @override
   String get createyourText => 'Create your ';
@@ -92,7 +93,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get activeYourText => 'Active your ';
 
   @override
-  String get activeDescriptionText => 'Please select a method for confirming your identity';
+  String get activeDescriptionText =>
+      'Please select a method for confirming your identity';
 
   @override
   String get emailMethodText => 'E mail';
@@ -125,7 +127,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get goodPriceText => 'good price';
 
   @override
-  String get descriptionBordingViewsText => 'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed.';
+  String get descriptionBordingViewsText =>
+      'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed.';
 
   @override
   String get nextText => 'Next';
@@ -197,7 +200,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resendOTPText => 'Resend OTP';
 
   @override
-  String get descriptionEnterCodeText => 'Lorem ipsum dolor sit amet, consectetur.';
+  String get descriptionEnterCodeText =>
+      'Lorem ipsum dolor sit amet, consectetur.';
 
   @override
   String get accountEnterCodeText => 'Account ';
@@ -218,7 +222,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get codeText => 'code';
 
   @override
-  String get descriptionEnterViewText => 'Enter the 4 digit code that we just sent to';
+  String get descriptionEnterViewText =>
+      'Enter the 4 digit code that we just sent to';
 
   @override
   String get facebookText => 'Facebook';
@@ -278,23 +283,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseLogInFirstText => 'Please log in first.';
 
   @override
-  String get passwordChangedSuccessfullyText => 'The password has been changed successfully.';
+  String get passwordChangedSuccessfullyText =>
+      'The password has been changed successfully.';
 
   @override
-  String get newPasswordDifferentFromOldText => 'The new password must be different from the old password.';
+  String get newPasswordDifferentFromOldText =>
+      'The new password must be different from the old password.';
 
   @override
-  String get confirmPasswordDifferentFromNewText => 'The confirmation password does not match the new password.';
+  String get confirmPasswordDifferentFromNewText =>
+      'The confirmation password does not match the new password.';
 
   @override
   String get oldPasswordIncorrectText => 'The old password is incorrect.';
 
   @override
-  String get unexpectedErrorText => 'An unexpected error occurred while changing the password.';
+  String get unexpectedErrorText =>
+      'An unexpected error occurred while changing the password.';
 
   @override
   String get serverConnectionErrorText => 'Error connecting to the server.';
 
   @override
-  String get invalidResponseFromServerText => 'Invalid response from the server.';
+  String get invalidResponseFromServerText =>
+      'Invalid response from the server.';
 }

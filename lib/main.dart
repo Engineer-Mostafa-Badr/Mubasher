@@ -3,7 +3,10 @@ import 'package:mubasher_app/features/auth/presentation/views/components/auth_ex
 import 'package:mubasher_app/features/profile/presentation/view_models/profile_event.dart';
 import 'package:mubasher_app/features/profile/presentation/view_models/profile_bloc.dart';
 import 'package:mubasher_app/features/profile/profile_cubit/change_password_cubit.dart';
+import 'package:mubasher_app/features/auth/presentation/view_models/auth_event.dart';
 import 'package:mubasher_app/features/auth/presentation/view_models/auth_bloc.dart';
+import 'package:mubasher_app/core/helpers/user_preferences_helper.dart';
+import 'package:mubasher_app/features/auth/data/models/user_model.dart';
 import 'package:mubasher_app/core/helpers/language_storage_helper.dart';
 import 'package:mubasher_app/core/helpers/token_storage_helper.dart';
 import 'package:mubasher_app/config/lang/app_localizations.dart';
@@ -32,6 +35,18 @@ void main() async {
     print('❌ Error retrieving language: $e');
   }
 
+  UserModel? savedUser;
+  try {
+    final savedUserMap = await UserPreferencesHelper.getUser();
+    if (savedUserMap != null) {
+      savedUser = UserModel.fromJson(savedUserMap);
+      print('🙋‍♂️ Saved user loaded: ${savedUser.email}');
+    } else {
+      print('ℹ️ No saved user found');
+    }
+  } catch (e) {
+    print('❌ Error loading saved user: $e');
+  }
   final appLangLocale = Locale(savedLang ?? 'en');
   final appControllerCubit =
       AppControllerCubit()..updateLanguage(appLangLocale);
@@ -40,14 +55,20 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider<AuthBloc>(
-          create:
-              (_) => AuthBloc(
-                loginUseCase: getIt(),
-                registerUseCase: getIt(),
-                activateAccountUseCase: getIt(),
-                authRepository: getIt(),
-              ),
+          create: (_) {
+            final bloc = AuthBloc(
+              loginUseCase: getIt(),
+              registerUseCase: getIt(),
+              activateAccountUseCase: getIt(),
+              authRepository: getIt(),
+            );
+            if (savedUser != null) {
+              bloc.add(LoadSavedUserEvent(savedUser));
+            }
+            return bloc;
+          },
         ),
+
         BlocProvider<AppControllerCubit>.value(value: appControllerCubit),
         BlocProvider(create: (_) => RegistrationCubit()),
         BlocProvider(create: (_) => ChangePasswordCubit()),

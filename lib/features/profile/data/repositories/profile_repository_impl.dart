@@ -1,6 +1,6 @@
-import 'package:mubasher_app/core/error/failure_type.dart';
 import 'package:mubasher_app/features/profile/data/data_sources/profile_remote_data_source.dart';
 import 'package:mubasher_app/features/profile/domain/repositories/profile_repository.dart';
+import 'package:mubasher_app/core/error/failure_type.dart';
 import 'package:mubasher_app/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -40,6 +40,26 @@ class ProfileRepositoryImpl implements ProfileRepository {
     } on DioException catch (_) {
       return Left(ServerFailure(FailureType.serverConnectionError));
     } catch (_) {
+      return Left(ServerFailure(FailureType.unexpectedError));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateUserProfile(
+    Map<String, dynamic> data,
+  ) async {
+    try {
+      final response = await remoteDataSource.updateUserProfile(data);
+
+      if (response.data['code'] == 200 && response.data['isSuccess'] == true) {
+        return Right(null);
+      } else {
+        final message = response.data?['message'] ?? 'حدث خطأ غير متوقع';
+        return Left(ServerFailure(message));
+      }
+    } on DioException catch (_) {
+      return Left(ServerFailure(FailureType.serverConnectionError));
+    } catch (e) {
       return Left(ServerFailure(FailureType.unexpectedError));
     }
   }

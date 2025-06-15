@@ -44,4 +44,30 @@ class UserEntity {
     required this.regionId,
     required this.cityId,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'userName': userName,
+      'email': email,
+      'password': password,
+      'confirmPassword': confirmPassword,
+      'phoneno': phoneno,
+      'whatsapp': whatsapp,
+      'mobileNo': mobileNo,
+      'facebook': facebook,
+      'location': location,
+      'address': address,
+      'avatar': avatar,
+      'isActive': isActive,
+      'isSeller': isSeller,
+      'isAdmin': isAdmin,
+      'isUser': isUser,
+      'userType': userType,
+      'accessToken': accessToken,
+      'countryId': countryId,
+      'regionId': regionId,
+      'cityId': cityId,
+    };
+  }
 }

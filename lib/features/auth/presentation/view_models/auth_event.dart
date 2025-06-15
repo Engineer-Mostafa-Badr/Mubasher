@@ -1,3 +1,4 @@
+import 'package:mubasher_app/features/auth/data/models/user_model.dart';
 import 'package:equatable/equatable.dart';
 import 'dart:io';
 
@@ -115,3 +116,9 @@ class ChangeLanguageEvent extends AuthEvent {
 }
 
 class ContinueWithoutLoginEvent extends AuthEvent {}
+
+class LoadSavedUserEvent extends AuthEvent {
+  final UserModel user;
+
+  const LoadSavedUserEvent(this.user);
+}

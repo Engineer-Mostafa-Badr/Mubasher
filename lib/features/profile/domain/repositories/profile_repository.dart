@@ -7,4 +7,5 @@ abstract class ProfileRepository {
     required String newPassword,
     required String confirmPassword,
   });
+  Future<Either<Failure, void>> updateUserProfile(Map<String, dynamic> data);
 }

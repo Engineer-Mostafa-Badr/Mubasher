@@ -22,4 +22,14 @@ class SubmitChangePasswordEvent extends ProfileEvent {
   List<Object?> get props => [oldPassword, newPassword, confirmPassword];
 }
 
-class LoadSavedUserProfile extends ProfileEvent {}
+class LoadSavedUserProfile extends ProfileEvent {
+  const LoadSavedUserProfile();
+}
+
+class SubmitUpdateUserProfileEvent extends ProfileEvent {
+  final Map<String, dynamic> userData;
+
+  const SubmitUpdateUserProfileEvent({required this.userData});
+  @override
+  List<Object?> get props => [userData];
+}

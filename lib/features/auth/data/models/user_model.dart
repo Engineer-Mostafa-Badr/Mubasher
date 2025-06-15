@@ -26,11 +26,13 @@ class UserModel extends UserEntity {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    final accessTokenField = json['accessToken'];
-    final token =
-        accessTokenField is Map
-            ? accessTokenField['token']?.toString() ?? ''
-            : accessTokenField?.toString() ?? '';
+    final rawAccessToken = json['accessToken']?.toString() ?? '';
+    print('💥 Raw accessToken from API: $rawAccessToken');
+    final tokenMatch = RegExp(
+      r'token\s*=\s*(.+?)\s*\}',
+    ).firstMatch(rawAccessToken);
+    final token = tokenMatch?.group(1)?.trim() ?? '';
+    print('✅ Extracted accessToken: $token');
 
     return UserModel(
       id: json['id'] ?? 0,
@@ -59,6 +61,8 @@ class UserModel extends UserEntity {
       cityId: json['city_id'] ?? 0,
     );
   }
+
+  @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,

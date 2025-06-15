@@ -4,6 +4,7 @@ import 'package:mubasher_app/features/auth/domain/usecases/active_user_account_u
 import 'package:mubasher_app/features/profile/domain/usecases/change_password_usecase.dart';
 import 'package:mubasher_app/features/profile/domain/repositories/profile_repository.dart';
 import 'package:mubasher_app/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:mubasher_app/features/profile/domain/usecases/update_profile_usecase.dart';
 import 'package:mubasher_app/features/profile/presentation/view_models/profile_bloc.dart';
 import 'package:mubasher_app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:mubasher_app/features/auth/domain/repositories/auth_repository.dart';
@@ -106,11 +107,17 @@ void initDI() {
     () => ProfileRepositoryImpl(getIt<ProfileRemoteDataSource>()),
   );
   getIt.registerFactory<ProfileBloc>(
-    () => ProfileBloc(getIt<ChangePasswordUseCase>()),
+    () => ProfileBloc(
+      getIt<ChangePasswordUseCase>(),
+      getIt<UpdateProfileUseCase>(),
+    ),
   );
 
   // UseCase
   getIt.registerLazySingleton<ChangePasswordUseCase>(
     () => ChangePasswordUseCase(getIt<ProfileRepository>()),
+  );
+  getIt.registerLazySingleton<UpdateProfileUseCase>(
+    () => UpdateProfileUseCase(getIt<ProfileRepository>()),
   );
 }

@@ -197,7 +197,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get resendOTPText => 'إعادة إرسال الرمز';
 
   @override
-  String get descriptionEnterCodeText => 'Lorem ipsum dolor sit amet, consectetur.';
+  String get descriptionEnterCodeText =>
+      'Lorem ipsum dolor sit amet, consectetur.';
 
   @override
   String get accountEnterCodeText => 'الحساب ';
@@ -218,7 +219,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get codeText => 'الرمز';
 
   @override
-  String get descriptionEnterViewText => ' أدخل الرمز المكون من 4 أرقام الذي أرسلناه للتو إلى';
+  String get descriptionEnterViewText =>
+      ' أدخل الرمز المكون من 4 أرقام الذي أرسلناه للتو إلى';
 
   @override
   String get facebookText => 'فيسبوك';
@@ -281,16 +283,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get passwordChangedSuccessfullyText => 'تم تغيير كلمة المرور بنجاح.';
 
   @override
-  String get newPasswordDifferentFromOldText => 'يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمة المرور القديمة.';
+  String get newPasswordDifferentFromOldText =>
+      'يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمة المرور القديمة.';
 
   @override
-  String get confirmPasswordDifferentFromNewText => 'تأكيد كلمة المرور لا يتطابق مع كلمة المرور الجديدة.';
+  String get confirmPasswordDifferentFromNewText =>
+      'تأكيد كلمة المرور لا يتطابق مع كلمة المرور الجديدة.';
 
   @override
   String get oldPasswordIncorrectText => 'كلمة المرور القديمة غير صحيحة.';
 
   @override
-  String get unexpectedErrorText => 'حدث خطأ غير متوقع أثناء تغيير كلمة المرور.';
+  String get unexpectedErrorText =>
+      'حدث خطأ غير متوقع أثناء تغيير كلمة المرور.';
 
   @override
   String get serverConnectionErrorText => 'خطأ في الاتصال بالخادم.';

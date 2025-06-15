@@ -2,14 +2,12 @@ import 'package:mubasher_app/features/auth/presentation/views/components/auth_ex
 
 class ProfileField extends StatelessWidget {
   final String? title;
-  final String value;
+  final TextEditingController controller;
 
-  const ProfileField({super.key, this.title, required this.value});
+  const ProfileField({super.key, this.title, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController(text: value);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -51,7 +49,6 @@ class ProfileField extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 SvgPicture.asset(
                   SvgImagesManager.editIcon,
                   height: 3.h,

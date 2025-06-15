@@ -48,3 +48,15 @@ class ChangePasswordFailure extends ProfileState {
   @override
   List<Object?> get props => [type];
 }
+
+class UpdateProfileLoading extends ProfileState {}
+
+class UpdateProfileSuccess extends ProfileState {}
+
+class UpdateProfileFailure extends ProfileState {
+  final FailureType failureType;
+
+  const UpdateProfileFailure(this.failureType);
+  @override
+  List<Object?> get props => [failureType];
+}
