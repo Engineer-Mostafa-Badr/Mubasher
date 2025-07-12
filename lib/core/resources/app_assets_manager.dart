@@ -63,4 +63,5 @@ abstract class SvgImagesManager {
   static const String documentsIcon = "assets/svg/Documents.svg";
   static const String countryCityIcon = "assets/svg/Country-City.svg";
   static const String arrowLeftIcon = "assets/svg/Arrow-left.svg";
+  static const String chatOutlineIcon = "assets/svg/mdi_chat-outline.svg";
 }

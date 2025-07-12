@@ -1,8 +1,9 @@
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
-import 'package:mubasher_app/features/home/views/components/custom_home_view.dart';
 import 'package:mubasher_app/features/profile/presentation/views/profile_options_view.dart';
+import 'package:mubasher_app/features/home/views/components/custom_home_view.dart';
 import 'package:mubasher_app/features/favorite/views/favorite_view.dart';
 import 'package:mubasher_app/features/search/views/search_view.dart';
+import 'package:mubasher_app/features/chat/views/chat_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -17,6 +18,7 @@ class HomeViewState extends State<HomeView> {
   final List<Widget> _pages = [
     const CustomHomeView(),
     const SearchView(),
+    const ChatView(),
     const FavoriteView(),
     const ProfileOptionsView(),
   ];
@@ -24,6 +26,7 @@ class HomeViewState extends State<HomeView> {
   final List<String> _iconPaths = [
     SvgImagesManager.home2,
     SvgImagesManager.search,
+    SvgImagesManager.chatOutlineIcon,
     SvgImagesManager.heart2,
     SvgImagesManager.profile,
   ];
@@ -33,11 +36,13 @@ class HomeViewState extends State<HomeView> {
     SvgImagesManager.dotIcon,
     SvgImagesManager.dotIcon,
     SvgImagesManager.dotIcon,
+    SvgImagesManager.dotIcon,
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorManager.white,
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -46,7 +51,7 @@ class HomeViewState extends State<HomeView> {
         unselectedItemColor: Colors.grey,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        items: List.generate(4, (index) {
+        items: List.generate(5, (index) {
           return BottomNavigationBarItem(
             icon: Stack(
               clipBehavior: Clip.none,

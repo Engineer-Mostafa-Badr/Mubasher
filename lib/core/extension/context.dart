@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:mubasher_app/config/lang/app_localizations.dart';
+import 'package:flutter/material.dart';
 
 extension AppContext on BuildContext {
   ThemeData get theme => Theme.of(this);

@@ -19,4 +19,6 @@ class PageRouteName {
   static const String changePasswordChooseMethodRoute =
       '/change_password_choose_method';
   static const String changePasswordRoute = '/change_password';
+  static const String chatRoute = '/chat';
+  static const String stateRoute = '/state';
 }

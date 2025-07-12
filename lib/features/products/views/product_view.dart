@@ -1,5 +1,7 @@
+import 'package:mubasher_app/core/custom_widget/arrow_back_leading_appbar.dart';
 import 'package:mubasher_app/core/resources/app_assets_manager.dart';
 import 'package:mubasher_app/core/resources/app_color_manager.dart';
+import 'package:mubasher_app/core/route/routes.dart';
 import 'package:flutter/material.dart';
 
 class ProductView extends StatelessWidget {
@@ -15,19 +17,19 @@ class ProductView extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
+                ArrowBackLeadingAppbar(
+                  onTap: () {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      PageRouteName.homeRoute,
+                    );
+                  },
+                ),
                 Stack(
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(24),
                       child: Image.asset(AssetsManager.backgroundView),
-                    ),
-                    Positioned(
-                      top: 12,
-                      left: 12,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white70,
-                        child: Icon(Icons.arrow_back, color: Colors.brown),
-                      ),
                     ),
                     Positioned(
                       top: 12,
@@ -137,7 +139,12 @@ class ProductView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          PageRouteName.paymentRoute,
+                        );
+                      },
                       child: Text(
                         "Pay now",
                         style: TextStyle(color: ColorManager.white),

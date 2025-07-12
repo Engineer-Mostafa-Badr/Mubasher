@@ -1,12 +1,16 @@
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
 
 class CustomSearchTextFormField extends StatelessWidget {
-  const CustomSearchTextFormField({super.key});
+  const CustomSearchTextFormField({super.key, this.isHomeView = false});
+  final bool isHomeView;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 5.w),
+      padding:
+          isHomeView
+              ? EdgeInsets.symmetric(horizontal: 5.w)
+              : EdgeInsets.symmetric(horizontal: 0.w),
       child: Transform.translate(
         offset: const Offset(0, -40),
         child: TextField(

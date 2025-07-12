@@ -51,7 +51,7 @@ class FavoriteView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return PropertyCard(
                           installment: index % 2 == 1,
-                          months: index == 3 ? "12 month" : null,
+                          // months: index == 3 ? "12 month" : null,
                         );
                       },
                     );

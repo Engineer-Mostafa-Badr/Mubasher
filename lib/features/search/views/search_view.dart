@@ -1,102 +1,108 @@
-import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
 import 'package:mubasher_app/core/custom_widget/custom_search_text_form_field.dart';
+import 'package:mubasher_app/core/custom_widget/arrow_back_leading_appbar.dart';
+import 'package:mubasher_app/core/resources/app_assets_manager.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:mubasher_app/core/route/routes.dart';
+import 'package:flutter/material.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5.h),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Row(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.sp, vertical: 16.sp),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 6.w),
-                  child: ArrowBackLeadingAppbar(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(
-                        context,
-                        PageRouteName.homeRoute,
-                      );
-                    },
-                  ),
+                /// Header with Back Arrow and Title
+                Row(
+                  children: [
+                    ArrowBackLeadingAppbar(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          PageRouteName.homeRoute,
+                        );
+                      },
+                    ),
+                    SizedBox(width: 27.w),
+                    Text(
+                      'Search',
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xFFB58E47),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(width: 18.w),
-                AppText(
-                  textColor: ColorManager.primaryColor,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                  text: 'Search',
-                  fontFamily: 'Lato',
+                SizedBox(height: 7.h),
+                CustomSearchTextFormField(),
+                Wrap(
+                  spacing: 2.h,
+                  children: const [
+                    FilterChipWidget(label: 'All', selected: true),
+                    FilterChipWidget(label: 'House'),
+                    FilterChipWidget(label: 'Apartment'),
+                    FilterChipWidget(label: 'Villa'),
+                  ],
+                ),
+                SizedBox(height: 20.sp),
+                _buildSectionTitle('Type'),
+                SizedBox(height: 10.sp),
+                Wrap(
+                  spacing: 2.h,
+                  children: const [
+                    FilterChipWidget(label: 'Installments'),
+                    FilterChipWidget(label: 'Sell'),
+                    FilterChipWidget(label: 'Rent'),
+                  ],
+                ),
+                SizedBox(height: 20.sp),
+                _buildSectionTitle('Location'),
+                SizedBox(height: 10.sp),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    DropdownButtonWidget(label: 'Country'),
+                    SizedBox(width: 10),
+                    DropdownButtonWidget(label: 'Region'),
+                    SizedBox(width: 10),
+                    DropdownButtonWidget(label: 'City'),
+                  ],
+                ),
+                SizedBox(height: 20.sp),
+                _buildSectionTitle('Search results'),
+                SizedBox(height: 10.sp),
+                const SearchResultItem(
+                  status: 'Waiting for payment',
+                  statusColor: Colors.orange,
+                ),
+                SizedBox(height: 16.sp),
+                const SearchResultItem(
+                  status: 'Paid',
+                  statusColor: Colors.green,
                 ),
               ],
             ),
-            SizedBox(height: 10.h),
-            CustomSearchTextFormField(),
-            const SizedBox(height: 20),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                FilterChipWidget(label: 'All', selected: true),
-                FilterChipWidget(label: 'House'),
-                FilterChipWidget(label: 'Apartment'),
-                FilterChipWidget(label: 'vila'),
-              ],
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Type',
-              style: TextStyle(
-                color: Colors.brown,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                FilterChipWidget(label: 'Installments'),
-                FilterChipWidget(label: 'Sell'),
-                FilterChipWidget(label: 'Rent'),
-              ],
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Location',
-              style: TextStyle(
-                color: Colors.brown,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                DropdownButtonWidget(label: 'Country'),
-                DropdownButtonWidget(label: 'Rigon'),
-                DropdownButtonWidget(label: 'City'),
-              ],
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Search results',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.brown,
-              ),
-            ),
-            const SizedBox(height: 10),
-            const SearchResultItem(
-              status: 'Waiting for payment',
-              statusColor: Colors.orange,
-            ),
-            const SizedBox(height: 10),
-            const SearchResultItem(status: 'Paid', statusColor: Colors.green),
-          ],
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildSectionTitle(String text) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.bold,
+        color: const Color(0xFFB58E47),
       ),
     );
   }
@@ -107,18 +113,19 @@ class FilterChipWidget extends StatelessWidget {
   final bool selected;
 
   const FilterChipWidget({
+    super.key,
     required this.label,
     this.selected = false,
-    super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return Chip(
       label: Text(label),
-      backgroundColor: selected ? Colors.brown : const Color(0xF6F5F9FF),
+      labelPadding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.h),
+      backgroundColor:
+          selected ? const Color(0xFFB58E47) : const Color(0xFFF6F5F9),
       labelStyle: TextStyle(color: selected ? Colors.white : Colors.black87),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.w)),
     );
   }
 }
@@ -126,22 +133,21 @@ class FilterChipWidget extends StatelessWidget {
 class DropdownButtonWidget extends StatelessWidget {
   final String label;
 
-  const DropdownButtonWidget({required this.label, super.key});
+  const DropdownButtonWidget({super.key, required this.label});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        color: const Color(0xF6F5F9FF),
-        borderRadius: BorderRadius.circular(24),
-      ),
-      child: Row(
-        children: [
-          Text(label),
-          const SizedBox(width: 8),
-          const Icon(Icons.keyboard_arrow_down),
-        ],
+    return Expanded(
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 2.5.h, horizontal: 5.w),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF6F5F9),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [Text(label), const Icon(Icons.keyboard_arrow_down)],
+        ),
       ),
     );
   }
@@ -152,31 +158,31 @@ class SearchResultItem extends StatelessWidget {
   final Color statusColor;
 
   const SearchResultItem({
+    super.key,
     required this.status,
     required this.statusColor,
-    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(12.sp),
       decoration: BoxDecoration(
         color: const Color(0xFFFFF8EB),
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(20),
       ),
-      padding: const EdgeInsets.all(12),
       child: Row(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Image.asset(
-              AssetsManager.rectangle,
+              AssetsManager.paymentView,
               width: 100,
               height: 100,
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12.sp),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -185,37 +191,38 @@ class SearchResultItem extends StatelessWidget {
                   'Mill Sper House',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 6.sp),
                 Row(
                   children: const [
                     Icon(Icons.star, size: 16, color: Colors.orange),
                     SizedBox(width: 4),
                     Text('4.8'),
-                    SizedBox(width: 4),
+                    SizedBox(width: 8),
                     Icon(Icons.location_on, size: 16, color: Colors.brown),
+                    SizedBox(width: 4),
                     Text('Jaddah'),
                   ],
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 6.sp),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 8.sp,
+                    vertical: 4.sp,
                   ),
                   decoration: BoxDecoration(
                     color: Colors.blueGrey,
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   child: const Text(
-                    '\$ 271/month',
+                    '\$271/month',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 6.sp),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('2 novamber 2023'),
+                    const Text('2 November 2023'),
                     Text(status, style: TextStyle(color: statusColor)),
                   ],
                 ),

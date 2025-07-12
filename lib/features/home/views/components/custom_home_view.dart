@@ -2,9 +2,15 @@ import 'package:mubasher_app/features/auth/presentation/views/components/auth_ex
 import 'package:mubasher_app/core/custom_widget/custom_search_text_form_field.dart';
 import 'package:mubasher_app/core/custom_widget/custom_property_card.dart';
 
-class CustomHomeView extends StatelessWidget {
+class CustomHomeView extends StatefulWidget {
   const CustomHomeView({super.key});
 
+  @override
+  State<CustomHomeView> createState() => _CustomHomeViewState();
+}
+
+class _CustomHomeViewState extends State<CustomHomeView> {
+  String selectedCategory = 'All';
   @override
   Widget build(BuildContext context) {
     final isArabic = Localizations.localeOf(context).languageCode == 'ar';
@@ -14,11 +20,11 @@ class CustomHomeView extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 22.h,
+            height: 20.h,
             child: Directionality(
               textDirection: TextDirection.ltr,
               child: Padding(
-                padding: EdgeInsets.only(right: 3.w),
+                padding: EdgeInsets.only(right: 5.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [_buildLogo(), _buildActions()],
@@ -26,9 +32,7 @@ class CustomHomeView extends StatelessWidget {
               ),
             ),
           ),
-
-          CustomSearchTextFormField(),
-
+          CustomSearchTextFormField(isHomeView: true),
           Expanded(
             child: ListView(
               padding: EdgeInsets.symmetric(horizontal: 5.w),
@@ -55,9 +59,7 @@ class CustomHomeView extends StatelessWidget {
                     },
                   ),
                 ),
-
                 SizedBox(height: 4.h),
-
                 SizedBox(
                   height: 103.px,
                   child: ListView.builder(
@@ -70,15 +72,15 @@ class CustomHomeView extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                             color: ColorManager.primaryColor,
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(5.w),
                           ),
-                          child: const Center(
-                            child: Text(
-                              "Ads Here",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: ColorManager.white,
-                              ),
+                          child: Center(
+                            child: AppText(
+                              fontFamily: 'Raleway',
+                              fontSize: 20.px,
+                              fontWeight: FontWeight.w700,
+                              textColor: ColorManager.white,
+                              text: 'Ads Here',
                             ),
                           ),
                         ),
@@ -86,9 +88,7 @@ class CustomHomeView extends StatelessWidget {
                     },
                   ),
                 ),
-
                 SizedBox(height: 2.h),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -98,9 +98,7 @@ class CustomHomeView extends StatelessWidget {
                     _buildCategoryChip('Villa'),
                   ],
                 ),
-
-                SizedBox(height: 2.h),
-
+                SizedBox(height: 4.h),
                 SizedBox(
                   height: 180.px,
                   child: ListView.builder(
@@ -189,13 +187,13 @@ class CustomHomeView extends StatelessWidget {
 
   Widget _buildLogo() {
     return SizedBox(
-      height: 90.h,
+      height: 100.h,
       child: Stack(
         alignment: Alignment.center,
         children: [
           SvgPicture.asset(SvgImagesManager.backgroundAppBar),
           Padding(
-            padding: EdgeInsets.only(right: 12.w, bottom: 10.w),
+            padding: EdgeInsets.only(right: 11.w, bottom: 10.w),
             child: SvgPicture.asset(SvgImagesManager.group22),
           ),
         ],
@@ -220,15 +218,33 @@ class CustomHomeView extends StatelessWidget {
     );
   }
 
-  static Widget _buildCategoryChip(String label) {
-    return Chip(
-      label: AppText(
-        text: label,
-        fontSize: 16.sp,
-        textColor: ColorManager.white,
+  Widget _buildCategoryChip(String label) {
+    final bool isSelected = selectedCategory == label;
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedCategory = label;
+        });
+      },
+      child: Chip(
+        label: AppText(
+          text: label,
+          fontFamily: 'Raleway',
+          fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+          fontSize: 16.px,
+          textColor: isSelected ? ColorManager.white : ColorManager.black,
+        ),
+        backgroundColor:
+            isSelected ? ColorManager.primaryColor : ColorManager.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4.w),
+          side: BorderSide(
+            color:
+                isSelected ? ColorManager.primaryColor : Colors.grey.shade300,
+          ),
+        ),
       ),
-      backgroundColor: ColorManager.primaryColor,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.w)),
     );
   }
 }

@@ -95,7 +95,7 @@ class ProfileOptionsView extends StatelessWidget {
                               onTap: () {
                                 Navigator.pushReplacementNamed(
                                   context,
-                                  PageRouteName.paymentRoute,
+                                  PageRouteName.stateRoute,
                                 );
                               },
                             ),

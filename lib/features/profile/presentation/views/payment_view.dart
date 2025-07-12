@@ -15,7 +15,7 @@ class PaymentView extends StatelessWidget {
               onTap: () {
                 Navigator.pushReplacementNamed(
                   context,
-                  PageRouteName.profileOptionsRoute,
+                  PageRouteName.productRoute,
                 );
               },
               text: context.lang.paymentText,
