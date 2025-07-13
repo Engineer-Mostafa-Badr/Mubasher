@@ -49,7 +49,7 @@ class _SplashViewState extends State<SplashView>
     if (!mounted) return;
 
     if (token != null && token.isNotEmpty) {
-      Navigator.pushReplacementNamed(context, PageRouteName.homeRoute);
+      Navigator.pushReplacementNamed(context, PageRouteName.homeUserRoute);
     } else {
       Navigator.pushReplacementNamed(context, PageRouteName.signInRoute);
     }

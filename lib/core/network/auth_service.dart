@@ -25,7 +25,7 @@ class AuthService {
       if (token != null && token.isNotEmpty) {
         print('✅ Token is valid, navigating to home route');
         // ignore: use_build_context_synchronously
-        Navigator.pushReplacementNamed(context, PageRouteName.homeRoute);
+        Navigator.pushReplacementNamed(context, PageRouteName.homeUserRoute);
       } else {
         print('❌ Token is invalid or missing, navigating to sign-in route');
         // ignore: use_build_context_synchronously

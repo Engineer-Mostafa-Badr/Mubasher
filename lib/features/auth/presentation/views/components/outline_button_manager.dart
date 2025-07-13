@@ -23,7 +23,7 @@ class OutlineButtonManager extends StatelessWidget {
           onPressed: () {
             context.read<AuthBloc>().add(ContinueWithoutLoginEvent());
 
-            Navigator.pushNamed(context, PageRouteName.homeRoute);
+            Navigator.pushNamed(context, PageRouteName.homeUserRoute);
           },
           child: AppText(
             text: context.lang.endTextLoginText,

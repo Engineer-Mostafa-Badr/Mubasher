@@ -21,7 +21,7 @@ class ProductView extends StatelessWidget {
                   onTap: () {
                     Navigator.pushReplacementNamed(
                       context,
-                      PageRouteName.homeRoute,
+                      PageRouteName.homeUserRoute,
                     );
                   },
                 ),

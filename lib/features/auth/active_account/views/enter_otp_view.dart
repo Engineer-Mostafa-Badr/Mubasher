@@ -357,7 +357,7 @@ class _EnterOTPViewState extends State<EnterOTPView> {
                   onPressed: () {
                     Navigator.pushNamedAndRemoveUntil(
                       context,
-                      PageRouteName.homeRoute,
+                      PageRouteName.homeSellerRoute,
                       ModalRoute.withName(PageRouteName.splashRoute),
                     );
                   },

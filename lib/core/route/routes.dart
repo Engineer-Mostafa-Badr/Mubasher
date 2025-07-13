@@ -3,7 +3,8 @@ class PageRouteName {
   static const String signInRoute = '/sign_in';
   static const String signUpSellerRoute = '/sign_up_seller';
   static const String signUpUserRoute = '/sign_up_user';
-  static const String homeRoute = '/home';
+  static const String homeUserRoute = '/homeUser';
+  static const String homeSellerRoute = '/homeSeller';
   static const String activateRoute = '/activate';
   static const String enterOTPRoute = '/enter_otp';
   static const String onBoardingOneRoute = '/on_boarding_one';

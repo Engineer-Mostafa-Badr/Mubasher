@@ -20,6 +20,7 @@ abstract class ColorManager {
   static const Color greyLabelText = Color(0xFFA1A5C1);
   static const Color greyTextFormField = Color(0xFFF5F4F8);
   static const Color grey2 = Color(0xFF2A2B2E);
+  static const Color backgroundGrey = Color(0xFFF5F4F8);
   static const Color white = Color(0xFFFFFFFF);
   static const Color red = Color(0xffe61f34);
   static const Color backgroundContainerProfile = Color(0xFFFFF6E9);

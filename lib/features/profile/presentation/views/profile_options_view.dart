@@ -36,7 +36,7 @@ class ProfileOptionsView extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacementNamed(
                         context,
-                        PageRouteName.homeRoute,
+                        PageRouteName.homeUserRoute,
                       );
                     },
                     text: context.lang.profileText,

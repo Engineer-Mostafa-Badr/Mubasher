@@ -64,4 +64,7 @@ abstract class SvgImagesManager {
   static const String countryCityIcon = "assets/svg/Country-City.svg";
   static const String arrowLeftIcon = "assets/svg/Arrow-left.svg";
   static const String chatOutlineIcon = "assets/svg/mdi_chat-outline.svg";
+  static const String addHomeIcon = "assets/svg/gala_add.svg";
+  static const String listIcon =
+      "assets/svg/material-symbols-light_list-alt-outline-rounded.svg";
 }

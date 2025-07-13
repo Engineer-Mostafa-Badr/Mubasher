@@ -1,7 +1,6 @@
 import 'package:mubasher_app/features/profile/presentation/views/change_password_view.dart';
 import 'package:mubasher_app/features/profile/presentation/views/profile_options_view.dart';
 import 'package:mubasher_app/features/profile/presentation/views/edit_profile_view.dart';
-import 'package:mubasher_app/features/search/views/state_view.dart';
 import 'package:mubasher_app/features/splash/on_boarding/views/on_boarding_three.dart';
 import 'package:mubasher_app/features/auth/presentation/views/sign_up_user_view.dart';
 import 'package:mubasher_app/features/splash/on_boarding/views/on_boarding_two.dart';
@@ -14,11 +13,13 @@ import 'package:mubasher_app/features/auth/presentation/views/forgot_password.da
 import 'package:mubasher_app/features/auth/domain/entities/user_entity.dart';
 import '../../features/auth/presentation/views/sign_up_seller_view.dart';
 import 'package:mubasher_app/features/favorite/views/favorite_view.dart';
+import 'package:mubasher_app/features/home/views/home_seller_view.dart';
 import 'package:mubasher_app/features/products/views/product_view.dart';
+import 'package:mubasher_app/features/home/views/home_user_view.dart';
 import 'package:mubasher_app/features/splash/views/splash_view.dart';
+import 'package:mubasher_app/features/search/views/state_view.dart';
 import '../../features/auth/presentation/views/sign_in_view.dart';
 import 'package:mubasher_app/features/chat/views/chat_view.dart';
-import 'package:mubasher_app/features/home/views/home_view.dart';
 import 'package:mubasher_app/core/route/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -45,9 +46,14 @@ class RoutesGenerator {
           builder: (context) => const SignUpUserView(),
           settings: settings,
         );
-      case PageRouteName.homeRoute:
+      case PageRouteName.homeUserRoute:
         return MaterialPageRoute(
-          builder: (context) => HomeView(),
+          builder: (context) => HomeUserView(),
+          settings: settings,
+        );
+      case PageRouteName.homeSellerRoute:
+        return MaterialPageRoute(
+          builder: (context) => HomeSellerView(),
           settings: settings,
         );
       case PageRouteName.activateRoute:

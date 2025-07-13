@@ -31,7 +31,7 @@ class SignInView extends StatelessWidget {
                 Navigator.pushReplacementNamed(
                   // ignore: use_build_context_synchronously
                   context,
-                  PageRouteName.homeRoute,
+                  PageRouteName.homeSellerRoute,
                 );
               });
             }
