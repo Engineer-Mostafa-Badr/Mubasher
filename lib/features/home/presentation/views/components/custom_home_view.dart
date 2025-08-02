@@ -160,8 +160,7 @@ class _CustomHomeViewState extends State<CustomHomeView> {
                   padding: const EdgeInsets.only(bottom: 12),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio:
-                        MediaQuery.of(context).size.width < 400 ? 0.63 : 0.7,
+                    childAspectRatio: 0.55,
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                   ),

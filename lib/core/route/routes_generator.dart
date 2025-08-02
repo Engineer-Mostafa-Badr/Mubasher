@@ -13,9 +13,9 @@ import 'package:mubasher_app/features/auth/presentation/views/forgot_password.da
 import 'package:mubasher_app/features/auth/domain/entities/user_entity.dart';
 import '../../features/auth/presentation/views/sign_up_seller_view.dart';
 import 'package:mubasher_app/features/favorite/views/favorite_view.dart';
-import 'package:mubasher_app/features/home/views/home_seller_view.dart';
+import 'package:mubasher_app/features/home/presentation/views/home_seller_view.dart';
 import 'package:mubasher_app/features/products/views/product_view.dart';
-import 'package:mubasher_app/features/home/views/home_user_view.dart';
+import 'package:mubasher_app/features/home/presentation/views/home_user_view.dart';
 import 'package:mubasher_app/features/splash/views/splash_view.dart';
 import 'package:mubasher_app/features/search/views/state_view.dart';
 import '../../features/auth/presentation/views/sign_in_view.dart';

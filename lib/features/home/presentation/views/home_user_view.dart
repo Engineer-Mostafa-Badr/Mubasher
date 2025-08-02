@@ -1,33 +1,33 @@
 import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
 import 'package:mubasher_app/features/profile/presentation/views/profile_options_view.dart';
-import 'package:mubasher_app/features/home/views/components/custom_home_seller_view.dart';
-import 'package:mubasher_app/features/search/views/add_product_view.dart';
-import 'package:mubasher_app/features/favorite/views/add_items_view.dart';
+import 'package:mubasher_app/features/home/presentation/views/components/custom_home_view.dart';
+import 'package:mubasher_app/features/favorite/views/favorite_view.dart';
+import 'package:mubasher_app/features/search/views/search_view.dart';
 import 'package:mubasher_app/features/chat/views/chat_view.dart';
 
-class HomeSellerView extends StatefulWidget {
-  const HomeSellerView({super.key});
+class HomeUserView extends StatefulWidget {
+  const HomeUserView({super.key});
 
   @override
-  State<HomeSellerView> createState() => _HomeSellerViewState();
+  HomeUserViewState createState() => HomeUserViewState();
 }
 
-class _HomeSellerViewState extends State<HomeSellerView> {
+class HomeUserViewState extends State<HomeUserView> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    const CustomHomeSellerView(),
-    const AddProductView(),
+    const CustomHomeView(),
+    const SearchView(),
     const ChatView(),
-    const AddItemsView(),
+    const FavoriteView(),
     const ProfileOptionsView(),
   ];
 
   final List<String> _iconPaths = [
     SvgImagesManager.home2,
-    SvgImagesManager.addHomeIcon,
+    SvgImagesManager.search,
     SvgImagesManager.chatOutlineIcon,
-    SvgImagesManager.listIcon,
+    SvgImagesManager.heart2,
     SvgImagesManager.profile,
   ];
 

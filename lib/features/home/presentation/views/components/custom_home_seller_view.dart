@@ -102,20 +102,12 @@ class _CustomHomeSellerViewState extends State<CustomHomeSellerView> {
                   padding: const EdgeInsets.only(bottom: 12),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio:
-                        MediaQuery.of(context).size.width < 400 ? 0.63 : 0.7,
+                    childAspectRatio: 0.55,
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                   ),
                   itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap:
-                          () => Navigator.pushReplacementNamed(
-                            context,
-                            PageRouteName.productRoute,
-                          ),
-                      child: PropertyCard(installment: index % 2 == 1),
-                    );
+                    return PropertyCard(installment: index % 2 == 1);
                   },
                 ),
                 SizedBox(height: 2.h),

@@ -5,7 +5,9 @@ import 'package:mubasher_app/core/route/routes.dart';
 import 'package:flutter/material.dart';
 
 class ProductView extends StatelessWidget {
-  const ProductView({super.key});
+  const ProductView({super.key, this.isHomeSeller = false});
+
+  final bool isHomeSeller;
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +19,23 @@ class ProductView extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                ArrowBackLeadingAppbar(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(
-                      context,
-                      PageRouteName.homeUserRoute,
-                    );
-                  },
-                ),
+                isHomeSeller
+                    ? ArrowBackLeadingAppbar(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          PageRouteName.homeSellerRoute,
+                        );
+                      },
+                    )
+                    : ArrowBackLeadingAppbar(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          PageRouteName.homeUserRoute,
+                        );
+                      },
+                    ),
                 Stack(
                   children: [
                     ClipRRect(
