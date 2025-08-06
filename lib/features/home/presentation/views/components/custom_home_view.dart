@@ -150,9 +150,7 @@ class _CustomHomeViewState extends State<CustomHomeView> {
                         ),
                   ),
                 ),
-
                 SizedBox(height: 4.h),
-
                 GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
