@@ -295,6 +295,7 @@ class _EnterOTPViewState extends State<EnterOTPView> {
       children: [
         BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          // ignore: deprecated_member_use
           child: Container(color: ColorManager.black.withOpacity(0.5)),
         ),
         Align(

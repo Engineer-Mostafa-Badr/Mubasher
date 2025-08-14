@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 import 'package:mubasher_app/core/helpers/language_storage_helper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
