@@ -1,5 +1,13 @@
-import 'package:mubasher_app/features/auth/presentation/views/components/auth_export_file.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mubasher_app/core/custom_widget/custom_property_card.dart';
+import 'package:mubasher_app/features/home/data/data_sources/home_remote_data_source.dart';
+import 'package:mubasher_app/features/home/data/repositories/home_repository_imp.dart';
+import 'package:mubasher_app/features/home/domain/entities/home_entity.dart';
+import 'package:mubasher_app/features/home/presentation/view_models/home_bloc.dart';
+import 'package:mubasher_app/features/home/presentation/view_models/home_event.dart';
+import 'package:mubasher_app/features/home/presentation/view_models/home_states.dart';
 
 class CustomHomeSellerView extends StatefulWidget {
   const CustomHomeSellerView({super.key});
@@ -10,125 +18,169 @@ class CustomHomeSellerView extends StatefulWidget {
 
 class _CustomHomeSellerViewState extends State<CustomHomeSellerView> {
   String selectedCategory = 'Your products';
+
   @override
   Widget build(BuildContext context) {
     final isArabic = Localizations.localeOf(context).languageCode == 'ar';
 
-    return Directionality(
-      textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
-      child: Column(
-        children: [
-          SizedBox(
-            height: 20.h,
-            child: Directionality(
-              textDirection: TextDirection.ltr,
-              child: Padding(
-                padding: EdgeInsets.only(right: 5.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [_buildLogo(), _buildActions()],
+    return BlocProvider(
+      create:
+          (context) =>
+              HomeBloc(HomeRepositoryImpl(HomeRemoteDataSource()))
+                ..add(LoadHomeEvent()),
+      child: Directionality(
+        textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 80,
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [_buildLogo(), _buildActions()],
+                  ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: 5.w),
-              children: [
-                SizedBox(
-                  height: 150.px,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 4,
-                    itemExtent: 310.px,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: EdgeInsetsDirectional.only(end: 16.px),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(AssetsManager.rectangle),
-                              fit: BoxFit.cover,
-                            ),
-                            borderRadius: BorderRadius.circular(4.w),
+            Expanded(
+              child: BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  if (state is HomeLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is HomeLoaded) {
+                    final data = state.data;
+
+                    return ListView(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      children: [
+                        // ✅ Banner
+                        SizedBox(
+                          height: 150,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: data.length,
+                            itemExtent: 300,
+                            itemBuilder: (context, index) {
+                              final HomeEntity item = data[index];
+                              return Padding(
+                                padding: const EdgeInsetsDirectional.only(
+                                  end: 12,
+                                ),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                        "${item.homeUrl}${item.photoUrl}",
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ),
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(height: 4.h),
-                SizedBox(
-                  height: 103.px,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 4,
-                    itemExtent: 310.px,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: EdgeInsetsDirectional.only(end: 16.px),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: ColorManager.primaryColor,
-                            borderRadius: BorderRadius.circular(5.w),
-                          ),
-                          child: Center(
-                            child: AppText(
-                              fontFamily: 'Raleway',
-                              fontSize: 20.px,
-                              fontWeight: FontWeight.w700,
-                              textColor: ColorManager.white,
-                              text: 'Ads Here',
-                            ),
+
+                        const SizedBox(height: 16),
+
+                        // ✅ Ads
+                        SizedBox(
+                          height: 100,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: data.length,
+                            itemExtent: 280,
+                            itemBuilder: (context, index) {
+                              final HomeEntity item = data[index];
+                              return Padding(
+                                padding: const EdgeInsetsDirectional.only(
+                                  end: 12,
+                                ),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      item.titleEn.isNotEmpty
+                                          ? item.titleEn
+                                          : "Ads Here",
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ),
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(height: 3.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _buildCategoryChip('Your products'),
-                    _buildCategoryChip('Orders'),
-                  ],
-                ),
-                SizedBox(height: 4.h),
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 3,
-                  padding: const EdgeInsets.only(bottom: 12),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.55,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                  ),
-                  itemBuilder: (context, index) {
-                    return PropertyCard(installment: index % 2 == 1);
-                  },
-                ),
-                SizedBox(height: 2.h),
-              ],
+
+                        const SizedBox(height: 16),
+
+                        // ✅ Category chips
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            _buildCategoryChip('Your products'),
+                            _buildCategoryChip('Orders'),
+                          ],
+                        ),
+
+                        const SizedBox(height: 16),
+
+                        // ✅ Grid products
+                        GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: data.length,
+                          padding: const EdgeInsets.only(bottom: 12),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                childAspectRatio: 0.55,
+                                crossAxisSpacing: 12,
+                                mainAxisSpacing: 12,
+                              ),
+                          itemBuilder: (context, index) {
+                            return PropertyCard(
+                              installment: index % 2 == 1,
+                              // هنا تقدر تبعت الـ item وتعدل PropertyCard يعرض بياناته
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  } else if (state is HomeError) {
+                    return Center(child: Text("Error: ${state.message}"));
+                  }
+                  return const SizedBox();
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildLogo() {
     return SizedBox(
-      height: 100.h,
+      height: 60,
       child: Stack(
         alignment: Alignment.center,
         children: [
-          SvgPicture.asset(SvgImagesManager.backgroundAppBar),
+          SvgPicture.asset("assets/svg/background_appbar.svg"),
           Padding(
-            padding: EdgeInsets.only(right: 11.w, bottom: 10.w),
-            child: SvgPicture.asset(SvgImagesManager.group22),
+            padding: const EdgeInsets.only(right: 10, bottom: 8),
+            child: SvgPicture.asset("assets/svg/group22.svg"),
           ),
         ],
       ),
@@ -138,13 +190,13 @@ class _CustomHomeSellerViewState extends State<CustomHomeSellerView> {
   Widget _buildActions() {
     return Row(
       children: [
-        SvgPicture.asset(SvgImagesManager.notification, height: 7.h),
-        SizedBox(width: 4.w),
+        SvgPicture.asset("assets/svg/notification.svg", height: 30),
+        const SizedBox(width: 12),
         ClipOval(
           child: Image.asset(
-            AssetsManager.ellipse,
-            width: 7.h,
-            height: 9.h,
+            "assets/images/ellipse.png",
+            width: 40,
+            height: 40,
             fit: BoxFit.contain,
           ),
         ),
@@ -162,22 +214,19 @@ class _CustomHomeSellerViewState extends State<CustomHomeSellerView> {
         });
       },
       child: Chip(
-        label: AppText(
-          text: label,
-          fontFamily: 'Raleway',
-          fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-          fontSize: 16.px,
-          textColor: isSelected ? ColorManager.white : ColorManager.black,
+        label: Text(
+          label,
+          style: TextStyle(
+            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+            fontSize: 16,
+            color: isSelected ? Colors.white : Colors.black,
+          ),
         ),
-        backgroundColor:
-            isSelected
-                ? ColorManager.primaryColor
-                : ColorManager.backgroundGrey,
+        backgroundColor: isSelected ? Colors.blue : Colors.grey.shade200,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6.w),
+          borderRadius: BorderRadius.circular(12),
           side: BorderSide(
-            color:
-                isSelected ? ColorManager.primaryColor : Colors.grey.shade300,
+            color: isSelected ? Colors.blue : Colors.grey.shade300,
           ),
         ),
       ),
