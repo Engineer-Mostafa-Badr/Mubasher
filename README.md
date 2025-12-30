@@ -1,16 +1,80 @@
-# mubasher_app
+# Mubasher App – مباشر لبيع وتأجير العقارات
 
-A new Flutter project.
+خدمة متكاملة لتجربة المستخدم مع تطبيق Mubasher، يربط العملاء بمزوِّدي الخدمات والمنتجات من شاشة واحدة مصممة باللغة العربية والإنجليزية مع دعم كامل للواجهات المتجاوبة.
 
-## Getting Started
+📱 **المميزات**
 
-This project is a starting point for a Flutter application.
+- تسجيل وتوثيق الحساب باستخدام رقم الهاتف أو البريد مع التحقق عبر رمز.
+- لوحة مراسلة داخلية (Chat) للتواصل مع المزوِّدين والدعم.
+- شاشة رئيسية تعرض العروض، التصنيفات، والمحتوى المتخصص للمستخدم.
+- ملفات شخصية تحتوي تفاصيل العميل، المحفظة، حالة الطلبات، والمفضلة.
+- بحث متقدم مع فلترة وتصفح المنتجات والمنشورات.
+- مفضلة، إشعارات فورية، وتتبع لحظي لحالة الطلبات مدمج مع Firebase وPusher.
+- تصميم متوافق مع مختلف المقاسات وتحسين الأداء للمستوى الإنتاجي (Production Ready).
 
-A few resources to get you started if this is your first Flutter project:
+🏗️ **البنية المعمارية**
+المشروع منظم حسب Clean Architecture مع فصل الطبقات لكل ميزة:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```
+lib/
+├── config/
+│   ├── app_controller/  # AppController وThemeController وآليات التوجيه
+│   └── lang/            # ملفات الترجمة (.arb) والتعريب مع easy_localization
+├── core/
+│   ├── constants/        # الألوان، الخطوط، القياسات، الرسائل الثابتة
+│   ├── custom_widget/    # ويدجت مشتركة وقابلة لإعادة الاستخدام
+│   ├── di/               # تسجيل الخدمات والاعتماديات باستخدام GetIt
+│   ├── error/            # تغليف الأخطاء والتعامل مع الاستثناءات
+│   ├── extension/        # امتدادات لدوال Dart/Flutter المساعدة
+│   ├── helpers/          # أدوات مساعدة للتعامل مع الحجم، التنقل، التنسيق
+│   ├── network/          # Api client (Dio) وinterceptors وقواعد الطلبات
+│   ├── resources/        # الأصول المشتركة، الأيقونات، الخريطة اللونية
+│   └── route/            # تعريف المسارات وحالة التوجيه
+└── features/
+    ├── auth/             # تسجيل/دخول/تفعيل الحساب
+    ├── chat/             # شاشة المحادثات والرسائل داخل التطبيق
+    ├── favorite/         # حفظ واسترجاع المفضلات
+    ├── home/             # الشاشة الرئيسية، البانرات، التصنيفات
+    ├── products/         # قوائم المنتجات وتفاصيلها
+    ├── profile/          # عرض وتحرير بيانات المستخدم
+    ├── search/           # البحث بفلترة متقدمة
+    ├── splash/           # شاشة البداية والتهيئة
+    └── ...               # باقي الميزات مثل orders, providers, wallet, notifications
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+كل ميزة مرتبطة بمجلدات البيانات Domain والواجهة Presentation لتوفير انسيابية في صيانة الكود.
+
+🛠️ **التقنيات الأساسية**
+
+- Flutter 3.8.x
+- State Management: BLoC (`flutter_bloc`) مع DI عبر `get_it`
+- Localization: `easy_localization`
+- Network: `dio` مع طبقات Api repository واضحة
+- التخزين المحلي الآمن: `flutter_secure_storage`
+- Real-time & Notifications: `Firebase Core`, `Firebase Messaging`, `Pusher Channels`
+
+## 📦 التثبيت
+
+```bash
+# تنظيف المشروع
+flutter clean
+
+# تثبيت الحزم
+flutter pub get
+
+# بناء APK (مع obfuscation)
+flutter build apk --obfuscate --split-debug-info=build/app/outputs/symbols
+```
+
+## 🌍 اللغات المدعومة
+
+- العربية (ar) – الافتراضي
+- الإنجليزية (en)
+- الأردية (ur)
+
+📝 **ملاحظات تطوير**
+
+- كل Feature تشمل طبقات `data`, `domain`, `presentation`.
+- الألوان، الثوابت، والتوجيهات في ملفات مجمعة تسهل التخصيص.
+- Widgets مشتركة مبنية داخل `core/custom_widget` لإعادة الاستخدام.
+- البنية جاهزة لدعم التوسعة (اللغات، الأونبوردنغ، إضافة منصات جديدة).
